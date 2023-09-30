@@ -1,7 +1,7 @@
-'use client';
-import { motion } from 'framer-motion';
-import { BsGithub } from 'react-icons/bs';
-import { VerticalCommonVariants } from '../../utils/framerVariants';
+"use client"
+import { motion } from "framer-motion"
+import { BsGithub } from "react-icons/bs"
+import { VerticalCommonVariants } from "../../utils/framerVariants"
 import {
   TS_LINK,
   VITE_LINK,
@@ -9,14 +9,14 @@ import {
   FRAMER_LINK,
   VERCEL_LINK,
   TAILWIND_LINK,
-  QUIET_NODE_PORTFOLIO_V2_GITHUB_LINK,
+  QUIET_NODE_PORTFOLIO_GITHUB_LINK,
   FIGMA_LINK,
-} from '../../utils/constants';
-import { SmotionDiv, SmotionLink } from '@/libs/framer-motion';
+} from "../../utils/constants"
+import { SmotionDiv, SmotionLink } from "@/libs/framer-motion"
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
-  const verticalVariants = VerticalCommonVariants(30);
+  const currentYear = new Date().getFullYear()
+  const verticalVariants = VerticalCommonVariants(30)
 
   return (
     <div className='overflow-hidden'>
@@ -43,7 +43,7 @@ const Footer = () => {
                 target='_blank'
               >
                 TypeScript,
-              </SmotionLink>{' '}
+              </SmotionLink>{" "}
               <SmotionLink
                 inLine={true}
                 whileHover={{ y: -2 }}
@@ -52,7 +52,7 @@ const Footer = () => {
                 target='_blank'
               >
                 React.js,
-              </SmotionLink>{' '}
+              </SmotionLink>{" "}
               <SmotionLink
                 inLine={true}
                 whileHover={{ y: -2 }}
@@ -61,7 +61,7 @@ const Footer = () => {
                 target='_blank'
               >
                 Vite.js,
-              </SmotionLink>{' '}
+              </SmotionLink>{" "}
               <br className='xssm:hidden' />
               <SmotionLink
                 inLine={true}
@@ -71,7 +71,7 @@ const Footer = () => {
                 target='_blank'
               >
                 TailwindCSS,
-              </SmotionLink>{' '}
+              </SmotionLink>{" "}
               <SmotionLink
                 inLine={true}
                 whileHover={{ y: -2 }}
@@ -80,7 +80,7 @@ const Footer = () => {
                 target='_blank'
               >
                 Framer Motion,
-              </SmotionLink>{' '}
+              </SmotionLink>{" "}
               <SmotionLink
                 inLine={true}
                 whileHover={{ y: -2 }}
@@ -89,8 +89,8 @@ const Footer = () => {
                 target='_blank'
               >
                 Figma,
-              </SmotionLink>{' '}
-              and{' '}
+              </SmotionLink>{" "}
+              and{" "}
               <SmotionLink
                 inLine={true}
                 whileHover={{ y: -2 }}
@@ -104,10 +104,7 @@ const Footer = () => {
           </SmotionDiv>
           {/* Star this project */}
           <motion.div variants={verticalVariants}>
-            <SmotionLink
-              href={QUIET_NODE_PORTFOLIO_V2_GITHUB_LINK}
-              target='_blank'
-            >
+            <SmotionLink href={QUIET_NODE_PORTFOLIO_GITHUB_LINK} target='_blank'>
               <div className='flex items-center gap-1'>
                 Star this project on Github
                 <BsGithub />
@@ -121,7 +118,7 @@ const Footer = () => {
             className='flex items-cent
           '
           >
-            &#169; Quiet Node {currentYear}
+            &#169; Ansh Roshan {currentYear}
           </motion.div>
 
           {/* Vietnamese */}
@@ -130,12 +127,12 @@ const Footer = () => {
             className='flex items-cent
           '
           >
-            🇻🇳 Vietnamese 🇻🇳
+            🇮🇳 भारत 🇮🇳
           </motion.div>
         </SmotionDiv>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

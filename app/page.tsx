@@ -1,11 +1,4 @@
-import {
-  About,
-  Intro,
-  Stats,
-  Footer,
-  Projects,
-  SocialMedia,
-} from '@/components';
+import { About, Intro, Stats, Footer, Projects, SocialMedia } from "@/components"
 
 export default function Home() {
   return (
@@ -17,5 +10,5 @@ export default function Home() {
       <SocialMedia />
       <Footer />
     </>
-  );
+  )
 }

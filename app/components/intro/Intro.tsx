@@ -9,7 +9,7 @@ import {
   QUIET_NODE_EMAIL_LINK,
 } from "@/utils/constants"
 import { AiFillGithub, AiFillLinkedin, AiFillTwitterCircle } from "react-icons/ai"
-
+import Canvas from "@/styles/Canvas"
 const Intro = () => {
   const descriptionVariants = VerticalCommonVariants(60, 9, 0.9)
   return (
@@ -20,6 +20,8 @@ const Intro = () => {
       id='intro'
     >
       {/* container */}
+      {/* <canvas className='canvas'></canvas> */}
+      <Canvas />
       <div className='h-full flex flex-col items-center justify-around relative'>
         {/* headers */}
         <div
@@ -27,7 +29,6 @@ const Intro = () => {
           gap-6
           sm:gap-12'
         >
-          <canvas className="canvas"></canvas>
           {/* Greetings */}
           <div className='drop-shadow-xl'>
             <SmotionHeader
@@ -37,8 +38,8 @@ const Intro = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
               className='text-primary font-extrabold flex gap-1 justify-center
-                    text-3xl
-                    sm:text-4xl'
+              text-3xl
+              sm:text-4xl'
             >
               Hello,
               <SmotionSpan

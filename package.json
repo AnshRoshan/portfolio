@@ -1,7 +1,8 @@
 {
-  "name": "portfolio-v2",
+  "name": "portfolio",
   "version": "0.1.0",
   "private": true,
+  "module": "esm",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
