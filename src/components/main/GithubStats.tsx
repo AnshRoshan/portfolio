@@ -154,7 +154,7 @@ export default function GithubStats({
                                             style={{
                                                 backgroundColor:
                                                     LANG_COLOR[l.name] ??
-                                                    "#9a9aa4",
+                                                    "var(--muted)",
                                             }}
                                         />
                                         {l.name}

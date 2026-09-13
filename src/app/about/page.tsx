@@ -397,7 +397,7 @@ export default async function AboutPage() {
                                         className="absolute left-5 top-0 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
                                         style={{
                                             borderColor: it.accent,
-                                            boxShadow: "0 0 0 4px #0a0a0b",
+                                            boxShadow: "0 0 0 4px var(--ink)",
                                         }}
                                     >
                                         {it.current ? (
