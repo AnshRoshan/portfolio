@@ -51,14 +51,21 @@ export default function BackgroundVideo() {
                 ) : null}
             </video>
 
-            {/* Readability scrim: darker top/bottom, lighter middle */}
-            <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/65 to-ink/95" />
+            {/* Readability scrim: strength is theme-aware via tokens so the
+                backdrop stays clearly visible in both light and dark */}
+            <div
+                className="absolute inset-0"
+                style={{
+                    background:
+                        "linear-gradient(to bottom, rgba(var(--ink-rgb), var(--scrim-top)), rgba(var(--ink-rgb), var(--scrim-mid)), rgba(var(--ink-rgb), var(--scrim-bottom)))",
+                }}
+            />
             {/* Side vignette */}
             <div
                 className="absolute inset-0"
                 style={{
                     background:
-                        "radial-gradient(120% 80% at 50% 35%, transparent 45%, rgba(var(--ink-rgb),0.65) 100%)",
+                        "radial-gradient(120% 80% at 50% 35%, transparent 45%, rgba(var(--ink-rgb), var(--vignette)) 100%)",
                 }}
             />
             {/* Film grain */}

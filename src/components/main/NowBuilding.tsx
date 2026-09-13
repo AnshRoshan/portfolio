@@ -42,7 +42,7 @@ export default function NowBuilding() {
             id="now"
             className="relative mx-auto w-full max-w-[1400px] scroll-mt-24 px-6 py-16 md:px-10 md:py-24"
         >
-            <div className="relative overflow-hidden rounded-[24px] border border-line bg-[linear-gradient(135deg,#0f0f13_0%,#0a0a0d_60%)] p-6 sm:p-10 lg:p-14">
+            <div className="relative overflow-hidden rounded-[24px] border border-line bg-[linear-gradient(135deg,var(--surface-2)_0%,var(--ink)_60%)] p-6 sm:p-10 lg:p-14">
                 {/* Soft mint bloom, matching the About portrait glow */}
                 <div
                     aria-hidden
