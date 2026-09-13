@@ -44,10 +44,10 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
                             type="button"
                             onClick={() => setActive(label)}
                             aria-pressed={isActive}
-                            className={`font-mono inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b] ${
+                            className={`font-mono inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
                                 isActive
-                                    ? "border-[#22d3ee]/40 bg-[#22d3ee]/10 text-[#22d3ee]"
-                                    : "border-white/10 text-[#9a9aa4] hover:border-[#22d3ee]/40 hover:text-[#22d3ee]"
+                                    ? "border-accent/40 bg-accent/10 text-accent"
+                                    : "border-line text-muted hover:border-accent/40 hover:text-accent"
                             }`}
                         >
                             {label}
@@ -79,7 +79,7 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
             </motion.div>
 
             {filtered.length === 0 ? (
-                <p className="mt-10 text-[#9a9aa4]">
+                <p className="mt-10 text-muted">
                     No projects in this category yet.
                 </p>
             ) : null}

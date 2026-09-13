@@ -174,16 +174,16 @@ export default async function AboutPage() {
                     {/* Text column (right on desktop) */}
                     <div className="flex flex-col gap-8 lg:order-2">
                         {/* Eyebrow - counts as 1 of max 2 */}
-                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
-                            <span className="h-px w-8 bg-[#22d3ee]" />
+                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                            <span className="h-px w-8 bg-accent" />
                             About
                         </span>
 
                         {/* Hero headline via SplitReveal */}
                         <SplitReveal>
-                            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-[#e7e7ea] leading-[1.08]">
+                            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-paper leading-[1.08]">
                                 I build AI that makes it to{" "}
-                                <span className="text-[#22d3ee]">
+                                <span className="text-accent">
                                     production.
                                 </span>
                             </h1>
@@ -191,7 +191,7 @@ export default async function AboutPage() {
 
                         {/* Bio */}
                         <Reveal delay={0.1} className="flex flex-col gap-5 max-w-[580px]">
-                            <p className="text-base leading-relaxed text-[#9a9aa4]">
+                            <p className="text-base leading-relaxed text-muted">
                                 Gen AI Developer at TCS. I design and ship
                                 end-to-end AI products, from the agentic backend
                                 to the interface users actually touch. My work
@@ -199,7 +199,7 @@ export default async function AboutPage() {
                                 and multi-model orchestration, with full
                                 ownership of deployment on the other end.
                             </p>
-                            <p className="text-base leading-relaxed text-[#9a9aa4]">
+                            <p className="text-base leading-relaxed text-muted">
                                 I care about one thing: building AI systems that
                                 are reliable in the real world. Not demos, not
                                 prototypes sitting in a notebook. Shipped
@@ -246,7 +246,7 @@ export default async function AboutPage() {
                             {/* Faint uniform ring for subtle structure */}
                             <div
                                 aria-hidden
-                                className="pointer-events-none absolute inset-[6%] -z-10 rounded-full border border-white/[0.06]"
+                                className="pointer-events-none absolute inset-[6%] -z-10 rounded-full border border-line"
                             />
                             {/* Transparent cutout, floating with depth */}
                             <Image
@@ -271,7 +271,7 @@ export default async function AboutPage() {
                     </h2>
                 </Reveal>
 
-                <div className="divide-y divide-white/10 border-y border-white/10">
+                <div className="divide-y divide-line border-y border-line">
                     {focusItems.map(({ icon: Icon, label, detail }, i) => (
                         <Reveal key={label} delay={i * 0.06}>
                             <div className="group grid items-start gap-3 py-7 md:grid-cols-[260px_1fr] md:gap-12 md:py-8">
@@ -279,13 +279,13 @@ export default async function AboutPage() {
                                     <Icon
                                         size={22}
                                         stroke={1.6}
-                                        className="shrink-0 text-[#22d3ee]"
+                                        className="shrink-0 text-accent"
                                     />
-                                    <h3 className="font-display text-xl font-medium tracking-tight text-[#e7e7ea]">
+                                    <h3 className="font-display text-xl font-medium tracking-tight text-paper">
                                         {label}
                                     </h3>
                                 </div>
-                                <p className="max-w-2xl text-base leading-relaxed text-[#9a9aa4] transition-colors duration-300 group-hover:text-[#e7e7ea]/90">
+                                <p className="max-w-2xl text-base leading-relaxed text-muted transition-colors duration-300 group-hover:text-paper/90">
                                     {detail}
                                 </p>
                             </div>
@@ -302,7 +302,7 @@ export default async function AboutPage() {
                     </h2>
                 </Reveal>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-white/10 rounded-[24px] overflow-hidden border border-white/10">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line rounded-[24px] overflow-hidden border border-line">
                     {skillGroups.map((group, i) => {
                         const isPrimary = i === 0;
                         return (
@@ -311,7 +311,7 @@ export default async function AboutPage() {
                                 delay={i * 0.07}
                                 className={isPrimary ? "md:col-span-2" : ""}
                             >
-                                <div className="relative bg-[#131316]/70 backdrop-blur-xl p-8 h-full flex flex-col gap-5">
+                                <div className="relative bg-surface/70 backdrop-blur-xl p-8 h-full flex flex-col gap-5">
                                     {isPrimary && (
                                         <div
                                             aria-hidden
@@ -325,15 +325,15 @@ export default async function AboutPage() {
                                     <div className="relative flex flex-col gap-5">
                                         <div className="flex flex-col gap-1.5">
                                             {isPrimary && (
-                                                <span className="font-mono mb-1 inline-flex w-fit items-center gap-2 rounded-full border border-[#22d3ee]/30 bg-[#22d3ee]/10 px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-[#22d3ee]">
-                                                    <span className="h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
+                                                <span className="font-mono mb-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-accent">
+                                                    <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                                                     Primary focus
                                                 </span>
                                             )}
-                                            <h3 className="font-display text-lg font-medium text-[#e7e7ea]">
+                                            <h3 className="font-display text-lg font-medium text-paper">
                                                 {group.title}
                                             </h3>
-                                            <p className="text-sm text-[#9a9aa4]">
+                                            <p className="text-sm text-muted">
                                                 {group.blurb}
                                             </p>
                                         </div>
@@ -341,7 +341,7 @@ export default async function AboutPage() {
                                             {group.skills.map((skill) => (
                                                 <span
                                                     key={skill.name}
-                                                    className="font-mono inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1 text-xs text-[#9a9aa4]"
+                                                    className="font-mono inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs text-muted"
                                                 >
                                                     <SkillIcon
                                                         skill={skill}
@@ -394,7 +394,7 @@ export default async function AboutPage() {
                                 <li className="relative pb-12 last:pb-0">
                                     {/* Node on the stem: a coloured glyph for this chapter */}
                                     <span
-                                        className="absolute left-5 top-0 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-[#0a0a0b] md:left-1/2"
+                                        className="absolute left-5 top-0 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
                                         style={{
                                             borderColor: it.accent,
                                             boxShadow: "0 0 0 4px #0a0a0b",
@@ -437,7 +437,7 @@ export default async function AboutPage() {
                                         }
                                     >
                                         <div
-                                            className="rounded-2xl border border-white/10 bg-[#131316]/70 p-5 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
+                                            className="rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
                                             style={{
                                                 boxShadow: `0 18px 50px -28px ${it.accent}`,
                                             }}
@@ -448,13 +448,13 @@ export default async function AboutPage() {
                                             >
                                                 {it.period}
                                             </span>
-                                            <h3 className="font-display mt-2 text-xl font-semibold tracking-tight text-[#e7e7ea]">
+                                            <h3 className="font-display mt-2 text-xl font-semibold tracking-tight text-paper">
                                                 {it.title}
                                             </h3>
-                                            <p className="mt-0.5 text-sm font-medium text-[#e7e7ea]/80">
+                                            <p className="mt-0.5 text-sm font-medium text-paper/80">
                                                 {it.org}
                                             </p>
-                                            <p className="mt-2 text-sm leading-relaxed text-[#9a9aa4]">
+                                            <p className="mt-2 text-sm leading-relaxed text-muted">
                                                 {it.detail}
                                             </p>
                                         </div>
@@ -481,21 +481,21 @@ export default async function AboutPage() {
                                 ? IconAward
                                 : IconCertificate;
                         const cls =
-                            "flex h-full items-start gap-4 rounded-2xl border border-white/10 bg-[#131316]/70 p-5 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-[#22d3ee]/40";
+                            "flex h-full items-start gap-4 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-accent/40";
                         const inner = (
                             <>
-                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-[#0f0f12]">
+                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-surface-2">
                                     <Icon
                                         size={20}
                                         stroke={1.6}
-                                        className="text-[#22d3ee]"
+                                        className="text-accent"
                                     />
                                 </span>
                                 <div className="min-w-0">
-                                    <h3 className="font-display text-sm font-semibold leading-snug text-[#e7e7ea]">
+                                    <h3 className="font-display text-sm font-semibold leading-snug text-paper">
                                         {c.name}
                                     </h3>
-                                    <p className="mt-0.5 text-xs text-[#9a9aa4]">
+                                    <p className="mt-0.5 text-xs text-muted">
                                         {c.issuer}
                                         {c.year ? ` · ${c.year}` : ""}
                                     </p>
@@ -504,7 +504,7 @@ export default async function AboutPage() {
                                             {c.skills.map((skill) => (
                                                 <span
                                                     key={skill}
-                                                    className="font-mono rounded border border-white/10 px-1.5 py-0.5 text-[10px] text-[#9a9aa4]"
+                                                    className="font-mono rounded border border-line px-1.5 py-0.5 text-[10px] text-muted"
                                                 >
                                                     {skill}
                                                 </span>
@@ -512,12 +512,12 @@ export default async function AboutPage() {
                                         </div>
                                     ) : null}
                                     {c.credentialId ? (
-                                        <p className="font-mono mt-2 text-[10px] tracking-[0.08em] text-[#9a9aa4]/70">
+                                        <p className="font-mono mt-2 text-[10px] tracking-[0.08em] text-muted/70">
                                             ID {c.credentialId}
                                         </p>
                                     ) : null}
                                     {c.url ? (
-                                        <span className="font-mono mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] text-[#22d3ee]">
+                                        <span className="font-mono mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] text-accent">
                                             Verify
                                             <IconArrowUpRight
                                                 size={12}
@@ -540,7 +540,7 @@ export default async function AboutPage() {
                                         href={c.url}
                                         target="_blank"
                                         rel="noreferrer"
-                                        className={`${cls} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]`}
+                                        className={`${cls} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink`}
                                     >
                                         {inner}
                                     </a>
@@ -556,7 +556,7 @@ export default async function AboutPage() {
             {/* ─── SECTION 5 · CTA BAND ──────────────────────────────────────── */}
             <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-32 md:pb-40">
                 <Reveal>
-                    <div className="rounded-[24px] bg-[#131316]/70 backdrop-blur-xl border border-white/10 px-8 py-16 md:px-16 md:py-20 flex flex-col items-center gap-8 text-center">
+                    <div className="rounded-[24px] bg-surface/70 backdrop-blur-xl border border-line px-8 py-16 md:px-16 md:py-20 flex flex-col items-center gap-8 text-center">
                         <h2 className="text-gradient font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight max-w-2xl">
                             Have an AI product to build?
                         </h2>

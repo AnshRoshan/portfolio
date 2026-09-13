@@ -61,10 +61,10 @@ export async function generateMetadata({
 function CaseSection({ title, body }: { title: string; body: string }) {
     return (
         <Reveal y={20} className="mt-12">
-            <h2 className="font-display text-2xl font-semibold tracking-tight text-[#e7e7ea] sm:text-3xl">
+            <h2 className="font-display text-2xl font-semibold tracking-tight text-paper sm:text-3xl">
                 {title}
             </h2>
-            <p className="mt-4 max-w-3xl whitespace-pre-line text-base leading-relaxed text-[#9a9aa4]">
+            <p className="mt-4 max-w-3xl whitespace-pre-line text-base leading-relaxed text-muted">
                 {body}
             </p>
         </Reveal>
@@ -119,20 +119,20 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-[#9a9aa4] transition-colors hover:text-[#22d3ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
                 <IconArrowLeft size={15} stroke={1.8} /> Back to projects
             </Link>
 
             {/* Header: full width, at the top */}
-            <header className="mt-8 border-b border-white/10 pb-10">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-[#22d3ee]">
+            <header className="mt-8 border-b border-line pb-10">
+                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
                     {category} · {year}
                 </p>
-                <h1 className="font-display mt-3 text-4xl font-semibold leading-tight tracking-tight text-[#e7e7ea] sm:text-5xl">
+                <h1 className="font-display mt-3 text-4xl font-semibold leading-tight tracking-tight text-paper sm:text-5xl">
                     {title}
                 </h1>
-                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-[#9a9aa4]">
+                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted">
                     {description}
                 </p>
 
@@ -141,7 +141,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="font-mono rounded-md border border-white/10 px-2.5 py-1 text-[11px] text-[#9a9aa4]"
+                                className="font-mono rounded-md border border-line px-2.5 py-1 text-[11px] text-muted"
                             >
                                 {tag}
                             </span>
@@ -176,22 +176,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     height={900}
                     priority
                     sizes="(max-width: 1152px) 100vw, 1152px"
-                    className="mt-10 aspect-[16/9] w-full rounded-2xl border border-white/10 object-cover"
+                    className="mt-10 aspect-[16/9] w-full rounded-2xl border border-line object-cover"
                 />
             ) : null}
 
             {/* Metrics */}
             {metrics?.length ? (
-                <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-3 lg:grid-cols-4">
+                <div className="mt-10 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-3 lg:grid-cols-4">
                     {metrics.map((m) => (
                         <div
                             key={`${m.label}-${m.value}`}
-                            className="bg-[#0f0f12]/80 p-6"
+                            className="bg-surface-2/80 p-6"
                         >
-                            <div className="font-display text-3xl font-semibold tracking-tight text-[#22d3ee]">
+                            <div className="font-display text-3xl font-semibold tracking-tight text-accent">
                                 {m.value}
                             </div>
-                            <div className="font-mono mt-1 text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+                            <div className="font-mono mt-1 text-[11px] uppercase tracking-[0.18em] text-muted">
                                 {m.label}
                             </div>
                         </div>
@@ -217,7 +217,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             width={1200}
                             height={800}
                             sizes="(max-width: 640px) 100vw, 50vw"
-                            className="w-full rounded-2xl border border-white/10 object-cover"
+                            className="w-full rounded-2xl border border-line object-cover"
                         />
                     ))}
                 </div>
@@ -225,14 +225,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             {/* More projects */}
             {moreProjects.length ? (
-                <div className="mt-20 border-t border-white/10 pt-12">
+                <div className="mt-20 border-t border-line pt-12">
                     <div className="mb-8 flex items-end justify-between gap-4">
-                        <h2 className="font-display text-2xl font-semibold tracking-tight text-[#e7e7ea]">
+                        <h2 className="font-display text-2xl font-semibold tracking-tight text-paper">
                             More projects
                         </h2>
                         <Link
                             href="/projects"
-                            className="group inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.16em] text-[#9a9aa4] transition-colors hover:text-[#22d3ee]"
+                            className="group inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent"
                         >
                             View all
                             <IconArrowUpRight
@@ -249,10 +249,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </div>
                 </div>
             ) : (
-                <div className="mt-16 border-t border-white/10 pt-10">
+                <div className="mt-16 border-t border-line pt-10">
                     <Link
                         href="/projects"
-                        className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-[#9a9aa4] transition-colors hover:text-[#22d3ee]"
+                        className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent"
                     >
                         <IconArrowLeft size={15} stroke={1.8} /> All projects
                     </Link>

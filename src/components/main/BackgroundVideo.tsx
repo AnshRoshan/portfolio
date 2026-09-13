@@ -32,7 +32,7 @@ export default function BackgroundVideo() {
     return (
         <div
             aria-hidden
-            className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-[#0a0a0b]"
+            className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-ink"
         >
             {/* key forces a remount so the source swaps when the route changes */}
             <video
@@ -43,7 +43,7 @@ export default function BackgroundVideo() {
                 playsInline
                 preload="metadata"
                 poster={src.poster}
-                className="h-full w-full object-cover opacity-[0.5]"
+                className="bg-video h-full w-full object-cover"
             >
                 <source src={src.webm} type="video/webm" />
                 {"mp4" in src ? (
@@ -52,13 +52,13 @@ export default function BackgroundVideo() {
             </video>
 
             {/* Readability scrim: darker top/bottom, lighter middle */}
-            <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0b]/85 via-[#0a0a0b]/65 to-[#0a0a0b]/95" />
+            <div className="absolute inset-0 bg-gradient-to-b from-ink/85 via-ink/65 to-ink/95" />
             {/* Side vignette */}
             <div
                 className="absolute inset-0"
                 style={{
                     background:
-                        "radial-gradient(120% 80% at 50% 35%, transparent 45%, rgba(10,10,11,0.65) 100%)",
+                        "radial-gradient(120% 80% at 50% 35%, transparent 45%, rgba(var(--ink-rgb),0.65) 100%)",
                 }}
             />
             {/* Film grain */}

@@ -15,12 +15,12 @@ function StageMeter({ stage }: { stage?: ProjectStage }) {
                         key={s}
                         className={
                             "h-1.5 w-6 rounded-full transition-colors " +
-                            (i <= idx ? "bg-[#22d3ee]" : "bg-white/[0.08]")
+                            (i <= idx ? "bg-accent" : "bg-fill")
                         }
                     />
                 ))}
             </div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                 {stage ?? "Idea"}
             </span>
         </div>
@@ -42,19 +42,19 @@ export default function NowBuilding() {
             id="now"
             className="relative mx-auto w-full max-w-[1400px] scroll-mt-24 px-6 py-16 md:px-10 md:py-24"
         >
-            <div className="relative overflow-hidden rounded-[24px] border border-white/10 bg-[linear-gradient(135deg,#0f0f13_0%,#0a0a0d_60%)] p-6 sm:p-10 lg:p-14">
+            <div className="relative overflow-hidden rounded-[24px] border border-line bg-[linear-gradient(135deg,#0f0f13_0%,#0a0a0d_60%)] p-6 sm:p-10 lg:p-14">
                 {/* Soft mint bloom, matching the About portrait glow */}
                 <div
                     aria-hidden
-                    className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-[#22d3ee]/15 blur-[120px]"
+                    className="pointer-events-none absolute -top-32 -right-32 h-[420px] w-[420px] rounded-full bg-accent/15 blur-[120px]"
                 />
 
                 {/* Header row: eyebrow + heading left, intro right */}
                 <div className="relative flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
                     <div>
                         <Reveal y={24}>
-                            <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
-                                <span className="h-px w-8 bg-[#22d3ee]" />
+                            <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                                <span className="h-px w-8 bg-accent" />
                                 In flight
                             </span>
                         </Reveal>
@@ -65,7 +65,7 @@ export default function NowBuilding() {
                         </SplitReveal>
                     </div>
                     <Reveal delay={0.18} y={20}>
-                        <p className="max-w-[46ch] pb-1 text-base text-[#9a9aa4]">
+                        <p className="max-w-[46ch] pb-1 text-base text-muted">
                             AI systems currently on the bench. Each one moves
                             from prototype to live here as it matures — same
                             pipeline as everything above.
@@ -77,9 +77,9 @@ export default function NowBuilding() {
                 <div className="relative mt-10 grid gap-5 sm:grid-cols-2 lg:gap-6">
                     {buildingProjects.map((p, i) => (
                         <Reveal key={p.slug} delay={0.08 * i} y={28}>
-                            <article className="group flex h-full flex-col rounded-2xl border border-white/10 bg-[#131316]/70 p-6 backdrop-blur transition-colors duration-300 hover:border-[#22d3ee]/40 sm:p-7">
+                            <article className="group flex h-full flex-col rounded-2xl border border-line bg-surface/70 p-6 backdrop-blur transition-colors duration-300 hover:border-accent/40 sm:p-7">
                                 <div className="flex items-start justify-between gap-3">
-                                    <span className="font-mono rounded-md border border-[#22d3ee]/30 bg-[#22d3ee]/10 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-[#22d3ee]">
+                                    <span className="font-mono rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-accent">
                                         {p.category}
                                     </span>
                                     {p.github ? (
@@ -88,7 +88,7 @@ export default function NowBuilding() {
                                             target="_blank"
                                             rel="noreferrer noopener"
                                             aria-label={`${p.title} on GitHub`}
-                                            className="rounded-md p-1.5 text-[#9a9aa4] transition-colors hover:text-[#22d3ee]"
+                                            className="rounded-md p-1.5 text-muted transition-colors hover:text-accent"
                                         >
                                             <IconBrandGithub
                                                 size={18}
@@ -96,16 +96,16 @@ export default function NowBuilding() {
                                             />
                                         </a>
                                     ) : (
-                                        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+                                        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                                             {p.year}
                                         </span>
                                     )}
                                 </div>
 
-                                <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight text-[#e7e7ea] transition-colors group-hover:text-[#22d3ee]">
+                                <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight text-paper transition-colors group-hover:text-accent">
                                     {p.title}
                                 </h3>
-                                <p className="mt-2.5 max-w-[62ch] text-sm leading-relaxed text-[#9a9aa4] sm:text-[15px]">
+                                <p className="mt-2.5 max-w-[62ch] text-sm leading-relaxed text-muted sm:text-[15px]">
                                     {p.description}
                                 </p>
 
@@ -114,13 +114,13 @@ export default function NowBuilding() {
                                         {p.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="font-mono rounded-md border border-white/10 px-2 py-0.5 text-[11px] text-[#9a9aa4]"
+                                                className="font-mono rounded-md border border-line px-2 py-0.5 text-[11px] text-muted"
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
-                                    <div className="mt-5 border-t border-white/10 pt-4">
+                                    <div className="mt-5 border-t border-line pt-4">
                                         <StageMeter stage={p.stage} />
                                     </div>
                                 </div>

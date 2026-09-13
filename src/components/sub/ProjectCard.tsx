@@ -57,7 +57,7 @@ export default function ProjectCard({
                 transformStyle: "preserve-3d",
                 willChange: "transform",
             }}
-            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#131316]/60 backdrop-blur-xl transition-all duration-300 group-hover:border-[#22d3ee]/40 group-hover:[--ty:-4px] group-hover:bg-[#131316]/80"
+            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:[--ty:-4px] group-hover:bg-surface/80"
         >
             {/* Cursor-following mint spotlight */}
             <div
@@ -81,12 +81,12 @@ export default function ProjectCard({
                     />
                 ) : (
                     <div className="grid h-full w-full place-items-center bg-[radial-gradient(120%_120%_at_30%_0%,rgba(34,211,238,0.20),transparent_55%)]">
-                        <span className="font-display px-6 text-center text-xl font-semibold tracking-tight text-[#e7e7ea]/90">
+                        <span className="font-display px-6 text-center text-xl font-semibold tracking-tight text-paper/90">
                             {title}
                         </span>
                     </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0b]/85 via-[#0a0a0b]/5 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/5 to-transparent" />
 
                 {/* Hover action buttons */}
                 <div className="absolute right-3 top-3 z-30 flex gap-2 opacity-0 translate-y-1 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -96,7 +96,7 @@ export default function ProjectCard({
                             target="_blank"
                             rel="noreferrer"
                             aria-label={`${title} live site`}
-                            className="flex h-9 w-9 items-center justify-center rounded-full bg-[#22d3ee] text-[#0a0a0b] transition-colors hover:bg-[#67e8f9] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-ink transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                         >
                             <IconArrowUpRight size={16} stroke={2} />
                         </a>
@@ -107,7 +107,7 @@ export default function ProjectCard({
                             target="_blank"
                             rel="noreferrer"
                             aria-label={`${title} on GitHub`}
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-white/15 bg-[#0a0a0b]/70 text-[#e7e7ea] backdrop-blur-md transition-colors hover:border-white/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                            className="flex h-9 w-9 items-center justify-center rounded-full border border-line-2 bg-ink/70 text-paper backdrop-blur-md transition-colors hover:border-line-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                         >
                             <IconBrandGithub size={16} stroke={2} />
                         </a>
@@ -115,7 +115,7 @@ export default function ProjectCard({
                 </div>
 
                 {/* Category badge */}
-                <span className="font-mono absolute bottom-3 left-3 z-10 rounded-full bg-[#0a0a0b]/70 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-[#22d3ee] backdrop-blur-md">
+                <span className="font-mono absolute bottom-3 left-3 z-10 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-accent backdrop-blur-md">
                     {category}
                 </span>
             </div>
@@ -124,7 +124,7 @@ export default function ProjectCard({
             {typeof index === "number" ? (
                 <span
                     aria-hidden
-                    className="font-display pointer-events-none absolute bottom-0 right-3 z-[5] text-7xl font-bold leading-none text-white/[0.05]"
+                    className="font-display pointer-events-none absolute bottom-0 right-3 z-[5] text-7xl font-bold leading-none text-fill"
                 >
                     {String(index + 1).padStart(2, "0")}
                 </span>
@@ -133,20 +133,20 @@ export default function ProjectCard({
             {/* Body */}
             <div className="relative z-10 flex flex-1 flex-col gap-2.5 p-5">
                 <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="font-display text-lg font-semibold tracking-tight text-[#e7e7ea] transition-colors group-hover:text-[#22d3ee]">
+                    <h3 className="font-display text-lg font-semibold tracking-tight text-paper transition-colors group-hover:text-accent">
                         <Link
                             href={`/projects/${slug}`}
-                            className="rounded-sm before:absolute before:inset-0 before:z-10 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+                            className="rounded-sm before:absolute before:inset-0 before:z-10 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                         >
                             {title}
                         </Link>
                     </h3>
-                    <span className="font-mono shrink-0 text-xs text-[#9a9aa4]">
+                    <span className="font-mono shrink-0 text-xs text-muted">
                         {year}
                     </span>
                 </div>
 
-                <p className="line-clamp-2 text-sm leading-relaxed text-[#9a9aa4]">
+                <p className="line-clamp-2 text-sm leading-relaxed text-muted">
                     {description}
                 </p>
 
@@ -154,13 +154,13 @@ export default function ProjectCard({
                     {tags.slice(0, 3).map((tag) => (
                         <span
                             key={tag}
-                            className="font-mono rounded-md border border-white/10 px-2 py-0.5 text-[10px] text-[#9a9aa4]"
+                            className="font-mono rounded-md border border-line px-2 py-0.5 text-[10px] text-muted"
                         >
                             {tag}
                         </span>
                     ))}
                     {tags.length > 3 ? (
-                        <span className="font-mono text-[10px] text-[#9a9aa4]">
+                        <span className="font-mono text-[10px] text-muted">
                             +{tags.length - 3}
                         </span>
                     ) : null}

@@ -74,24 +74,24 @@ export default function GithubStats({
     return (
         <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
             <Reveal>
-                <div className="rounded-[24px] border border-white/10 bg-[#131316]/70 p-8 backdrop-blur-xl md:p-10">
+                <div className="rounded-[24px] border border-line bg-surface/70 p-8 backdrop-blur-xl md:p-10">
                     {/* Header */}
                     <div className="flex flex-wrap items-end justify-between gap-4">
                         <div className="flex items-center gap-3">
                             <IconBrandGithub
                                 size={26}
                                 stroke={1.6}
-                                className="text-[#e7e7ea]"
+                                className="text-paper"
                             />
                             <div>
-                                <h2 className="font-display text-xl font-semibold tracking-tight text-[#e7e7ea]">
+                                <h2 className="font-display text-xl font-semibold tracking-tight text-paper">
                                     On GitHub
                                 </h2>
                                 <a
                                     href={stats.profileUrl}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="font-mono group inline-flex items-center gap-1 text-xs text-[#9a9aa4] transition-colors hover:text-[#22d3ee]"
+                                    className="font-mono group inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-accent"
                                 >
                                     @{stats.username}
                                     <IconArrowUpRight
@@ -103,8 +103,8 @@ export default function GithubStats({
                             </div>
                         </div>
                         {contributions ? (
-                            <p className="font-mono text-xs text-[#9a9aa4]">
-                                <span className="text-[#22d3ee]">
+                            <p className="font-mono text-xs text-muted">
+                                <span className="text-accent">
                                     {nf.format(contributions.total)}
                                 </span>{" "}
                                 contributions in the last year
@@ -119,10 +119,10 @@ export default function GithubStats({
                                 <Heatmap days={contributions.days} />
                             </div>
                             <div className="mt-3 flex items-center justify-between">
-                                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+                                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                                     {nf.format(stats.repos)} public repositories
                                 </span>
-                                <span className="font-mono flex items-center gap-1.5 text-[10px] text-[#9a9aa4]">
+                                <span className="font-mono flex items-center gap-1.5 text-[10px] text-muted">
                                     Less
                                     {LEVEL_BG.map((c) => (
                                         <span
@@ -139,15 +139,15 @@ export default function GithubStats({
 
                     {/* Languages */}
                     {stats.topLanguages.length > 0 ? (
-                        <div className="mt-8 border-t border-white/10 pt-6">
-                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+                        <div className="mt-8 border-t border-line pt-6">
+                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
                                 Most used languages
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
                                 {stats.topLanguages.map((l) => (
                                     <span
                                         key={l.name}
-                                        className="font-mono inline-flex items-center gap-1.5 rounded-md border border-white/10 px-2.5 py-1 text-xs text-[#9a9aa4]"
+                                        className="font-mono inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs text-muted"
                                     >
                                         <span
                                             className="h-2 w-2 rounded-full"

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import MagneticSocial from "../sub/MagneticSocial";
+import { ThemeToggle } from "./ThemeToggle";
 import { MobileNav } from "./MobileNav";
 import NavItems from "./NavItems";
 
@@ -41,7 +42,7 @@ const Navbar = () => {
             className={
                 "sticky top-0 z-50 w-full border-b transition-colors duration-300 " +
                 (scrolled
-                    ? "border-white/10 bg-[#0a0a0b]/60 backdrop-blur-xl"
+                    ? "border-line bg-ink/60 backdrop-blur-xl"
                     : "border-transparent")
             }
         >
@@ -50,14 +51,14 @@ const Navbar = () => {
                 <Link
                     href="/"
                     aria-label="Ansh Roshan, home"
-                    className="group inline-flex items-center gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-4 focus-visible:ring-offset-[#0a0a0b]"
+                    className="group inline-flex items-center gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
                 >
-                    <span className="font-mono text-sm font-medium tracking-tight text-[#e7e7ea] transition-colors group-hover:text-white">
+                    <span className="font-mono text-sm font-medium tracking-tight text-paper transition-colors group-hover:text-accent">
                         ansh roshan
                     </span>
                     <span
                         aria-hidden
-                        className="caret-blink ml-0.5 inline-block h-[15px] w-[7px] translate-y-px bg-[#22d3ee]"
+                        className="caret-blink ml-0.5 inline-block h-[15px] w-[7px] translate-y-px bg-accent"
                     />
                 </Link>
 
@@ -74,6 +75,7 @@ const Navbar = () => {
                                 <Icon size={19} stroke={1.5} />
                             </MagneticSocial>
                         ))}
+                        <ThemeToggle className="ml-2" />
                     </div>
                     <div className="lg:hidden">
                         <MobileNav />

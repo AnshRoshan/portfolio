@@ -89,8 +89,16 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
+            <head>
+                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: pre-paint theme script */}
+                <script
+                    dangerouslySetInnerHTML={{
+                        __html: `try{var t=localStorage.getItem("portfolio-theme");var c=document.documentElement.classList;t==="light"?c.remove("dark"):c.add("dark")}catch(e){}`,
+                    }}
+                />
+            </head>
             <body
-                className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-[#0a0a0b] text-white antialiased selection:bg-[#22d3ee] selection:text-[#0a0a0b]`}
+                className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-ink text-paper antialiased selection:bg-accent selection:text-ink`}
             >
                 <ThemeProvider>
                     <SiteChrome>{children}</SiteChrome>

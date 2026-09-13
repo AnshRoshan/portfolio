@@ -17,8 +17,8 @@ export default function Projects() {
         >
             <div className="mb-14 md:mb-20">
                 <Reveal y={24}>
-                    <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
-                        <span className="h-px w-8 bg-[#22d3ee]" />
+                    <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                        <span className="h-px w-8 bg-accent" />
                         Work
                     </span>
                 </Reveal>
@@ -28,7 +28,7 @@ export default function Projects() {
                     </h2>
                 </SplitReveal>
                 <Reveal delay={0.18} y={20}>
-                    <p className="mt-4 max-w-[52ch] text-base text-[#9a9aa4]">
+                    <p className="mt-4 max-w-[52ch] text-base text-muted">
                         A few things I have built and shipped, from AI models to
                         full products. More on the way.
                     </p>
@@ -47,7 +47,7 @@ export default function Projects() {
                 <div className="mt-14 flex justify-center">
                     <Link
                         href="/projects"
-                        className="group inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-[#e7e7ea] transition-colors hover:text-[#22d3ee]"
+                        className="group inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:text-accent"
                     >
                         View all projects
                         <IconArrowRight

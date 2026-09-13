@@ -47,6 +47,6 @@ export function SkillIcon({ skill, size = 16 }: { skill: Skill; size?: number })
     }
     const Icon = skill.icon ? ICON_MAP[skill.icon] : null;
     return Icon ? (
-        <Icon size={size} stroke={1.6} className="text-[#22d3ee]" />
+        <Icon size={size} stroke={1.6} className="text-accent" />
     ) : null;
 }

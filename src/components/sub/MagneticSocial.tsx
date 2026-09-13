@@ -45,11 +45,11 @@ export default function MagneticSocial({
             onMouseMove={onMove}
             onMouseLeave={reset}
             style={{ x, y }}
-            className="group relative flex h-9 w-9 items-center justify-center rounded-full text-[#9a9aa4] transition-colors duration-200 hover:text-[#22d3ee] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]"
+            className="group relative flex h-9 w-9 items-center justify-center rounded-full text-muted transition-colors duration-200 hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
         >
             <span
                 aria-hidden
-                className="absolute inset-0 rounded-full ring-1 ring-transparent transition-all duration-300 group-hover:bg-[#22d3ee]/10 group-hover:ring-[#22d3ee]/30 group-hover:shadow-[0_0_22px_rgba(34,211,238,0.28)]"
+                className="absolute inset-0 rounded-full ring-1 ring-transparent transition-all duration-300 group-hover:bg-accent/10 group-hover:ring-accent/30 group-hover:shadow-[0_0_22px_rgba(34,211,238,0.28)]"
             />
             <span className="relative">{children}</span>
         </motion.a>

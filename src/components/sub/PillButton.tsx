@@ -25,7 +25,7 @@ export default function PillButton({
     // ── Electric: jagged rainbow zigzag outline + dark pill ─────────────────
     if (variant === "electric") {
         const cls = cn(
-            "group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-[#0a0a0b] px-7 text-sm font-medium uppercase tracking-[0.12em] text-[#e7e7ea] transition-transform active:scale-[0.97] hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]",
+            "group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-7 text-sm font-medium uppercase tracking-[0.12em] text-paper transition-transform active:scale-[0.97] hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
             className,
         );
         const inner = (
@@ -53,11 +53,11 @@ export default function PillButton({
 
     // ── Primary / ghost ─────────────────────────────────────────────────────
     const base =
-        "group relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-[0.12em] whitespace-nowrap transition-all duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#22d3ee] focus-visible:ring-offset-2 focus-visible:ring-offset-[#0a0a0b]";
+        "group relative inline-flex items-center justify-center gap-2 rounded-full px-7 py-3 text-sm font-medium uppercase tracking-[0.12em] whitespace-nowrap transition-all duration-200 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink";
     const variants = {
         primary:
-            "bg-[#22d3ee] text-[#0a0a0b] hover:bg-[#67e8f9] shadow-[0_8px_30px_rgba(34,211,238,0.25)]",
-        ghost: "border border-white/15 text-[#e7e7ea] hover:bg-white/[0.06] hover:border-white/30",
+            "bg-accent text-ink hover:bg-accent-2 shadow-[0_8px_30px_rgba(34,211,238,0.25)]",
+        ghost: "border border-line-2 text-paper hover:bg-fill hover:border-line-2",
     } as const;
     const cls = cn(base, variants[variant], sweep && "overflow-hidden", className);
 
@@ -66,7 +66,7 @@ export default function PillButton({
             {sweep ? (
                 <span
                     aria-hidden
-                    className="pointer-events-none absolute left-[-60%] top-0 h-full w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-[#22d3ee]/30 to-transparent blur-md transition-all duration-[1600ms] ease-in-out group-hover:left-[120%]"
+                    className="pointer-events-none absolute left-[-60%] top-0 h-full w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-accent/30 to-transparent blur-md transition-all duration-[1600ms] ease-in-out group-hover:left-[120%]"
                 />
             ) : null}
             <span className="relative z-10 inline-flex items-center gap-2">

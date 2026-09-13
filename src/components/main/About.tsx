@@ -16,7 +16,7 @@ const About = () => {
             {/* Large editorial bio with scroll-linked word-by-word reveal */}
             <AnimatedText
                 text="I'm Ansh, a Gen AI developer at TCS. I build agentic systems and RAG pipelines, then ship them as full products: model to API to interface to deployment. I care about AI that holds up in production, not just in a demo."
-                className="font-display max-w-4xl text-3xl font-medium leading-[1.3] tracking-tight text-[#e7e7ea] sm:text-4xl lg:text-5xl"
+                className="font-display max-w-4xl text-3xl font-medium leading-[1.3] tracking-tight text-paper sm:text-4xl lg:text-5xl"
             />
 
             <Reveal delay={0.15} y={20}>

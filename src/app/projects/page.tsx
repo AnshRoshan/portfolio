@@ -18,8 +18,8 @@ export default function ProjectsPage() {
         <section className="relative mx-auto w-full max-w-[1400px] px-6 pt-12 pb-24 md:px-10 md:pt-16 md:pb-32">
             <div className="mb-14 md:mb-20">
                 <Reveal y={24}>
-                    <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
-                        <span className="h-px w-8 bg-[#22d3ee]" />
+                    <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                        <span className="h-px w-8 bg-accent" />
                         Projects
                     </span>
                 </Reveal>
@@ -29,7 +29,7 @@ export default function ProjectsPage() {
                     </h1>
                 </SplitReveal>
                 <Reveal delay={0.18} y={20}>
-                    <p className="mt-4 max-w-[58ch] text-base text-[#9a9aa4]">
+                    <p className="mt-4 max-w-[58ch] text-base text-muted">
                         AI models, agentic systems, and the full-stack products
                         around them. This list grows as I ship.
                     </p>

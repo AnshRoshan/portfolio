@@ -35,7 +35,7 @@ export default function ScrollProgress() {
         <div
             ref={ref}
             aria-hidden
-            className="pointer-events-none fixed left-0 top-0 z-[60] h-0.5 w-full bg-[#22d3ee]"
+            className="pointer-events-none fixed left-0 top-0 z-[60] h-0.5 w-full bg-accent"
         />
     );
 }

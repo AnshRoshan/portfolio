@@ -2,6 +2,68 @@
 
 @config "../../tailwind.config.ts";
 
+/* ============================================================
+   THEME TOKENS — semantic palette with light + dark values.
+   Components use the mapped utilities (bg-ink, text-paper,
+   text-muted, border-line, bg-surface, text-accent, ...).
+   ============================================================ */
+:root {
+    /* light theme (default) */
+    --ink: #f4f4f5;            /* page background */
+    --ink-rgb: 244, 244, 245;
+    --surface: #ffffff;        /* cards */
+    --surface-2: #ececee;      /* code blocks, wells */
+    --paper: #121217;          /* primary text */
+    --muted: #56565f;          /* secondary text */
+    --accent: #0e7490;         /* readable mint for light ground */
+    --accent-2: #0891b2;
+    --line: rgba(18, 18, 23, 0.14);
+    --line-2: rgba(18, 18, 23, 0.24);
+    --fill: rgba(18, 18, 23, 0.05);
+    --grad-a: #2b2b33;         /* metallic heading gradient (light) */
+    --grad-b: #4c4c58;
+    --grad-c: #83838f;
+    --video-opacity: 0.26;
+}
+
+.dark {
+    --ink: #0a0a0b;
+    --ink-rgb: 10, 10, 11;
+    --surface: #131316;
+    --surface-2: #0f0f12;
+    --paper: #e7e7ea;
+    --muted: #9a9aa4;
+    --accent: #22d3ee;
+    --accent-2: #67e8f9;
+    --line: rgba(255, 255, 255, 0.1);
+    --line-2: rgba(255, 255, 255, 0.16);
+    --fill: rgba(255, 255, 255, 0.05);
+    --grad-a: #f4f4f5;
+    --grad-b: #c4c4cc;
+    --grad-c: #8c8c97;
+    /* brighter cinematic backdrop in dark mode (owner request) */
+    --video-opacity: 0.68;
+}
+
+@theme inline {
+    --color-ink: var(--ink);
+    --color-surface: var(--surface);
+    --color-surface-2: var(--surface-2);
+    --color-paper: var(--paper);
+    --color-muted: var(--muted);
+    --color-accent: var(--accent);
+    --color-accent-2: var(--accent-2);
+    --color-line: var(--line);
+    --color-line-2: var(--line-2);
+    --color-fill: var(--fill);
+}
+
+/* Background video brightness follows the theme */
+.bg-video {
+    opacity: var(--video-opacity);
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -75,14 +137,11 @@
    All three via next/font vars. Single accent, dark theme locked.
    ============================================================ */
 
+/* Legacy aliases — bound to the theme tokens at the top of this file so
+   light/dark switching flows through (do not hardcode values here). */
 :root {
-  --ink: #0a0a0b;
-  --surface: #131316;
-  --paper: #e7e7ea;
-  --muted: #9a9aa4;
-  --accent: #22d3ee;
-  --accent-soft: rgba(34, 211, 238, 0.14);
-  --hairline: rgba(255, 255, 255, 0.08);
+  --accent-soft: color-mix(in oklab, var(--accent) 14%, transparent);
+  --hairline: var(--line);
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -133,7 +192,7 @@ body {
 
 .text-gradient,
 .text-gradient * {
-  background-image: linear-gradient(180deg, #f4f4f5 0%, #c4c4cc 55%, #8c8c97 100%);
+  background-image: linear-gradient(180deg, var(--grad-a) 0%, var(--grad-b) 55%, var(--grad-c) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

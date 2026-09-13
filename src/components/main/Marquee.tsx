@@ -56,9 +56,9 @@ function Chip({ item }: { item: Skill }) {
                     className="object-contain"
                 />
             ) : IconCmp ? (
-                <IconCmp size={18} stroke={1.6} className="text-[#22d3ee]" />
+                <IconCmp size={18} stroke={1.6} className="text-accent" />
             ) : null}
-            <span className="font-mono whitespace-nowrap text-xs text-[#e7e7ea] transition-colors group-hover:text-[#22d3ee]">
+            <span className="font-mono whitespace-nowrap text-xs text-paper transition-colors group-hover:text-accent">
                 {item.name}
             </span>
         </div>
@@ -123,7 +123,7 @@ export default function Marquee() {
                 </h2>
             </SplitReveal>
             <Reveal delay={0.12} y={16}>
-                <p className="mt-3 max-w-[52ch] text-[#9a9aa4]">
+                <p className="mt-3 max-w-[52ch] text-muted">
                     Across Gen AI and the backend, frontend, and infrastructure
                     that turn a model into a product.
                 </p>

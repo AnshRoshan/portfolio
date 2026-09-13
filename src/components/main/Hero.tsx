@@ -14,17 +14,17 @@ const Hero = () => {
                 <div className="order-2 lg:order-1">
                     {/* Availability signal for recruiters scanning the fold */}
                     <Reveal y={-12}>
-                        <span className="font-mono mb-6 inline-flex items-center gap-2.5 rounded-full border border-[#22d3ee]/30 bg-[#22d3ee]/[0.08] px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-[#9a9aa4]">
+                        <span className="font-mono mb-6 inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/[0.08] px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted">
                             <span className="relative flex h-1.5 w-1.5">
-                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-[#22d3ee] opacity-60" />
-                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-[#22d3ee]" />
+                                <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
+                                <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
                             </span>
                             Open to Gen AI roles and collaborations
                         </span>
                     </Reveal>
                     <Reveal y={-12}>
-                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
-                            <span className="h-px w-8 bg-[#22d3ee]" />
+                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                            <span className="h-px w-8 bg-accent" />
                             <span className="shimmer-text">AI Engineer · TCS</span>
                         </span>
                     </Reveal>
@@ -37,12 +37,12 @@ const Hero = () => {
                         <h1 className="font-display mt-6 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
                             Engineering AI
                             <br className="hidden sm:block" /> products,{" "}
-                            <span className="text-[#22d3ee]">end to end.</span>
+                            <span className="text-accent">end to end.</span>
                         </h1>
                     </Reveal>
 
                     <Reveal delay={0.22} y={16}>
-                        <p className="mt-5 font-mono text-sm uppercase tracking-[0.2em] text-[#9a9aa4]">
+                        <p className="mt-5 font-mono text-sm uppercase tracking-[0.2em] text-muted">
                             Building{" "}
                             <RotatingText
                                 words={[
@@ -51,13 +51,13 @@ const Hero = () => {
                                     "LLM apps",
                                     "production AI",
                                 ]}
-                                className="font-semibold text-[#22d3ee]"
+                                className="font-semibold text-accent"
                             />
                         </p>
                     </Reveal>
 
                     <Reveal delay={0.28} y={20}>
-                        <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-[#9a9aa4] sm:text-lg">
+                        <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-muted sm:text-lg">
                             Gen AI developer at TCS. I design the agentic
                             backend, the interface users touch, and everything in
                             between, then ship it to production.
@@ -99,7 +99,7 @@ const Hero = () => {
                         {/* Faint uniform ring — subtle structure, no hard top edge */}
                         <div
                             aria-hidden
-                            className="absolute inset-[7%] -z-10 rounded-full border border-white/[0.06]"
+                            className="absolute inset-[7%] -z-10 rounded-full border border-line"
                         />
                         {/* Static cutout — head/shoulders break the disc (no magnet drift) */}
                         <Image
