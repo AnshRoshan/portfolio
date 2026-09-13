@@ -1,6 +1,7 @@
 import Hero from "@/components/main/Hero";
 import Marquee from "@/components/main/Marquee";
 import NowBuilding from "@/components/main/NowBuilding";
+import Stack from "@/components/main/Stack";
 import Projects from "@/components/main/Projects";
 import { siteConfig } from "@/config/site";
 
@@ -9,7 +10,7 @@ const jsonLd = {
     "@type": "Person",
     name: siteConfig.author,
     url: siteConfig.url,
-    jobTitle: "Gen AI Developer",
+    jobTitle: "Artificial Intelligence Engineer",
     sameAs: [
         siteConfig.links.github,
         siteConfig.links.linkedin,
@@ -29,6 +30,7 @@ export default function Home() {
             <Marquee />
             <Projects />
             <NowBuilding />
+            <Stack />
         </div>
     );
 }

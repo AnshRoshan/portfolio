@@ -29,6 +29,19 @@ export default function ProjectCard({
         const r = el.getBoundingClientRect();
         el.style.setProperty("--mx", `${e.clientX - r.left}px`);
         el.style.setProperty("--my", `${e.clientY - r.top}px`);
+        // 3D tilt: rotate toward the cursor, capped so it reads as depth, not
+        // gimmick. Sits on top of the group-hover translate via a wrapper var.
+        const px = (e.clientX - r.left) / r.width - 0.5;
+        const py = (e.clientY - r.top) / r.height - 0.5;
+        el.style.setProperty("--rx", `${(-py * 4).toFixed(2)}deg`);
+        el.style.setProperty("--ry", `${(px * 6).toFixed(2)}deg`);
+    }
+
+    function onLeave() {
+        const el = ref.current;
+        if (!el) return;
+        el.style.setProperty("--rx", "0deg");
+        el.style.setProperty("--ry", "0deg");
     }
 
     return (
@@ -36,7 +49,15 @@ export default function ProjectCard({
         <article
             ref={ref}
             onMouseMove={onMove}
-            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#131316]/60 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1 group-hover:border-[#22d3ee]/40 group-hover:bg-[#131316]/80"
+            onMouseLeave={onLeave}
+            style={{
+                transform:
+                    "perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px))",
+                transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s",
+                transformStyle: "preserve-3d",
+                willChange: "transform",
+            }}
+            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 bg-[#131316]/60 backdrop-blur-xl transition-all duration-300 group-hover:border-[#22d3ee]/40 group-hover:[--ty:-4px] group-hover:bg-[#131316]/80"
         >
             {/* Cursor-following mint spotlight */}
             <div

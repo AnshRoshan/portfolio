@@ -3,7 +3,6 @@ import Image from "next/image";
 import {
     IconArrowUpRight,
     IconAward,
-    IconBackpack,
     IconBriefcase,
     IconCertificate,
     IconCloudUpload,
@@ -23,7 +22,7 @@ import { skillGroups } from "@/data/skills";
 export const metadata: Metadata = {
     title: "About",
     description:
-        "Gen AI Developer at TCS. Building agentic workflows, RAG pipelines, and full-stack AI products that ship to production.",
+        "AI Engineer at TCS in Bengaluru. Building agentic workflows, RAG chatbots, and LLM-powered enterprise applications that ship to production.",
 };
 
 const focusItems = [
@@ -52,14 +51,24 @@ const focusItems = [
 // University / school entries still carry [bracketed] placeholders.
 const journey = [
     {
-        period: "2024 — Present",
-        title: "Gen AI Developer",
-        org: "TCS (Tata Consultancy Services)",
+        period: "Apr 2025 — Present",
+        title: "Artificial Intelligence Engineer",
+        org: "TCS · Bengaluru",
         detail:
-            "Designing and shipping agentic systems and RAG pipelines for enterprise clients. Built multi-step LangGraph agents with tool use, memory, and human approval gates; designed retrieval pipelines with hybrid search, reranking, and eval-driven chunking; owned the full path from FastAPI services to React front ends to Docker and cloud deployment.",
+            "Building enterprise Generative AI applications and internal platforms: RAG chatbots and knowledge assistants that give employees reliable answers from enterprise data, AI-powered automation that streamlines SDLC workflows, and end-to-end GenAI delivery from proof-of-concept to production — on React, Python, PostgreSQL, Docker, and GitHub Actions.",
         accent: "#22d3ee", // cyan
         icon: IconBriefcase,
         current: true,
+    },
+    {
+        period: "Jan 2025 — Apr 2025",
+        title: "System Engineer",
+        org: "TCS · Bengaluru",
+        detail:
+            "Onboarded into TCS and moved into the AI engineering track within four months by shipping AI work end to end on my own stack.",
+        accent: "#a78bfa", // violet
+        icon: IconBriefcase,
+        current: false,
     },
     {
         period: "2022 — 2024",
@@ -67,62 +76,89 @@ const journey = [
         org: "Freelance & open source",
         detail:
             "Shipped storefronts, social apps, and internal tools on Next.js and MongoDB — a Stripe-backed ecommerce store from catalogue to completed order, and a social platform with auth, feeds, and a responsive interface. The foundations I now use for AI products.",
-        accent: "#a78bfa", // violet
+        accent: "#34d399", // emerald
         icon: IconBriefcase,
         current: false,
     },
     {
-        period: "2020 — 2024",
-        title: "B.Tech, Computer Science",
-        org: "[College / University name]",
+        period: "Mar 2023 — Apr 2023",
+        title: "Summer Intern",
+        org: "Bihar State Power Transmission Co. Ltd. · Naugachhia",
         detail:
-            "Focus on machine learning, data structures, and distributed systems. Final-year work on clinical risk prediction.",
-        accent: "#34d399", // emerald
-        icon: IconCertificate,
-        current: false,
-    },
-    {
-        period: "[20XX]",
-        title: "Class XII (Senior Secondary)",
-        org: "[School name]",
-        detail: "[Stream, e.g. Science (PCM). Add a percentage only if you want it shown.]",
+            "Worked on grid equipment and daily grid operations, and the communication flow between the grid and the Load Dispatch Center.",
         accent: "#fbbf24", // amber
-        icon: IconSchool,
+        icon: IconCloudUpload,
         current: false,
     },
     {
-        period: "[20XX]",
-        title: "Class X (Secondary)",
-        org: "[School name]",
-        detail: "[Optional one line.]",
+        period: "2021 — 2024",
+        title: "B.Tech, Electrical Engineering",
+        org: "Bhagalpur College of Engineering",
+        detail:
+            "The degree that started the self-taught software path: from React and Node.js into Python and Go, then into the GenAI stack. Final-year work on clinical risk prediction.",
         accent: "#fb7185", // rose
-        icon: IconBackpack,
+        icon: IconSchool,
         current: false,
     },
 ] as const;
 
 // Certifications & achievements. Add `url` (credential link) to make a card
 // clickable; leave "" if none.
-const certifications = [
+type Certification = {
+    name: string;
+    issuer: string;
+    year: string;
+    url?: string;
+    credentialId?: string;
+    skills?: string[];
+};
+
+const certifications: Certification[] = [
     {
-        name: "Claude Code Certified Developer",
+        name: "Claude Certified Architect — Professional",
         issuer: "Anthropic",
         year: "2026",
-        url: "",
+        url: "https://www.credly.com/badges/911b0cc0-846a-4b78-b0f7-c63381e4f213/public_url",
+        skills: [
+            "AI Governance",
+            "Context engineering",
+            "Enterprise Architecture",
+            "Evaluation & optimization",
+            "Integration Architecture",
+            "Solution Design",
+        ],
     },
     {
-        name: "Claude Code Certified Architect",
+        name: "Claude Certified Developer — Foundations",
         issuer: "Anthropic",
         year: "2026",
-        url: "",
+        url: "https://www.credly.com/badges/ba1c2fee-97a5-4b6b-8daa-870c3159e8e0/public_url",
+        skills: [
+            "Agent development",
+            "Claude API integration",
+            "MCP Server Development",
+            "Prompt Engineering",
+            "Eval & debugging",
+        ],
     },
     {
-        name: "AWS Certified Solutions Architect",
-        issuer: "Amazon Web Services",
-        year: "2026 (planned)",
-        url: "",
+        name: "AWS Cloud Solutions Architect Specialization",
+        issuer: "Amazon Web Services · Coursera",
+        year: "Mar 2024",
+        credentialId: "QPX5VKLV99FJ",
     },
-] as const;
+    {
+        name: "DevOps on AWS Specialization",
+        issuer: "Amazon Web Services · Coursera",
+        year: "Jan 2024",
+        credentialId: "MGKVVZBNDBD9",
+    },
+    {
+        name: "Prompt Design in Vertex AI Skill Badge",
+        issuer: "Google Cloud",
+        year: "Apr 2025",
+    },
+];
 
 export default async function AboutPage() {
     const [githubStats, githubContributions] = await Promise.all([
@@ -463,6 +499,23 @@ export default async function AboutPage() {
                                         {c.issuer}
                                         {c.year ? ` · ${c.year}` : ""}
                                     </p>
+                                    {c.skills ? (
+                                        <div className="mt-2.5 flex flex-wrap gap-1">
+                                            {c.skills.map((skill) => (
+                                                <span
+                                                    key={skill}
+                                                    className="font-mono rounded border border-white/10 px-1.5 py-0.5 text-[10px] text-[#9a9aa4]"
+                                                >
+                                                    {skill}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    ) : null}
+                                    {c.credentialId ? (
+                                        <p className="font-mono mt-2 text-[10px] tracking-[0.08em] text-[#9a9aa4]/70">
+                                            ID {c.credentialId}
+                                        </p>
+                                    ) : null}
                                     {c.url ? (
                                         <span className="font-mono mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] text-[#22d3ee]">
                                             Verify

@@ -25,7 +25,7 @@ const Hero = () => {
                     <Reveal y={-12}>
                         <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-[#9a9aa4]">
                             <span className="h-px w-8 bg-[#22d3ee]" />
-                            <span className="shimmer-text">Gen AI Developer</span>
+                            <span className="shimmer-text">AI Engineer · TCS</span>
                         </span>
                     </Reveal>
 

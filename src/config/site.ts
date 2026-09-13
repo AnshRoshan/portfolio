@@ -1,12 +1,13 @@
 export const siteConfig = {
     name: "Ansh Roshan",
-    title: "Ansh Roshan, Gen AI Developer",
+    title: "Ansh Roshan, AI Engineer",
     description:
-        "Gen AI Developer building agentic systems, RAG pipelines, and full-stack AI products that ship to production. LangChain, LangGraph, and multi-model orchestration, end to end.",
+        "AI Engineer at TCS building RAG chatbots, LLM-powered enterprise applications, and agentic systems that ship to production. Python, LangChain, LangGraph, Go, AWS, TypeScript.",
     url: "https://anshroshan.com",
     author: "Ansh Roshan",
     keywords: [
         "Ansh Roshan",
+        "AI Engineer",
         "Gen AI Developer",
         "Generative AI",
         "LangChain",

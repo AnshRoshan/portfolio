@@ -28,11 +28,11 @@ const Footer = () => {
                         </p>
 
                         <a
-                            href="mailto:anshroshan813210@gmail.com"
+                            href="mailto:ianshroshan@gmail.com"
                             className="inline-flex items-center gap-1.5 font-mono text-xs text-[#9a9aa4] transition-colors duration-200 hover:text-[#22d3ee]"
                         >
                             <IconMail size={16} stroke={1.6} />
-                            anshroshan813210@gmail.com
+                            ianshroshan@gmail.com
                         </a>
                     </div>
 

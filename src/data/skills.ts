@@ -25,6 +25,8 @@ export type Skill = {
     name: string;
     img?: string;
     icon?: SkillIconKey;
+    /** "core" skills get a lit chip in highlight contexts. */
+    level?: "core" | "working";
 };
 
 export type SkillGroup = {
@@ -38,13 +40,13 @@ export const skillGroups: SkillGroup[] = [
         title: "Gen AI & LLMs",
         blurb: "Agentic systems, RAG pipelines, and LLM apps shipped to production.",
         skills: [
-            { name: "LangChain", icon: "spark" },
-            { name: "LangGraph", icon: "graph" },
+            { name: "LangChain", icon: "spark", level: "core" },
+            { name: "LangGraph", icon: "graph", level: "core" },
             { name: "LlamaIndex", icon: "brain" },
-            { name: "RAG pipelines", icon: "vector" },
-            { name: "Agentic workflows", icon: "robot" },
+            { name: "RAG pipelines", icon: "vector", level: "core" },
+            { name: "Agentic workflows", icon: "robot", level: "core" },
             { name: "OpenAI", icon: "openai" },
-            { name: "Anthropic Claude", icon: "message" },
+            { name: "Anthropic Claude", icon: "message", level: "core" },
             { name: "Hugging Face", icon: "brain" },
             { name: "Vector databases", icon: "database" },
         ],

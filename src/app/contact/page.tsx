@@ -58,14 +58,14 @@ export default function ContactPage() {
                         {/* Direct email link */}
                         <Reveal y={20} delay={0.15}>
                             <a
-                                href="mailto:anshroshan813210@gmail.com"
+                                href="mailto:ianshroshan@gmail.com"
                                 className="group inline-flex items-center gap-3 text-[#9a9aa4] hover:text-[#22d3ee] transition-colors duration-200"
                             >
                                 <span className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#131316]/70 backdrop-blur-xl group-hover:border-[#22d3ee]/40 transition-colors duration-200">
                                     <IconMail size={18} strokeWidth={1.5} />
                                 </span>
                                 <span className="font-mono text-sm tracking-wide">
-                                    anshroshan813210@gmail.com
+                                    ianshroshan@gmail.com
                                 </span>
                                 <IconArrowUpRight
                                     size={14}
