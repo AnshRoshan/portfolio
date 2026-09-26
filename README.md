@@ -3,7 +3,7 @@
 Personal portfolio of Ansh Roshan — AI Engineer. Next.js 16 (App Router,
 Turbopack), React 19, Tailwind v4, GSAP/Framer Motion driven UI.
 
-The blog lives in a separate repo (`anshroshan-blog`, an Astro static site at
+The blog lives in a separate repo (`AnshRoshan/blog`, an Astro static site at
 [blog.anshroshan.com](https://blog.anshroshan.com)); the nav links there
 directly. Each project ships under its own `*.anshroshan.com` subdomain; this
 site is the hub at the apex domain.
