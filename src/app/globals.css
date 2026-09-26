@@ -9,18 +9,18 @@
    ============================================================ */
 :root {
     /* light theme (default) */
-    --ink: #f4f4f5;            /* page background */
+    --ink: #f4f4f5; /* page background */
     --ink-rgb: 244, 244, 245;
-    --surface: #ffffff;        /* cards */
-    --surface-2: #ececee;      /* code blocks, wells */
-    --paper: #121217;          /* primary text */
-    --muted: #56565f;          /* secondary text */
-    --accent: #0e7490;         /* readable mint for light ground */
+    --surface: #ffffff; /* cards */
+    --surface-2: #ececee; /* code blocks, wells */
+    --paper: #121217; /* primary text */
+    --muted: #56565f; /* secondary text */
+    --accent: #0e7490; /* readable mint for light ground */
     --accent-2: #0891b2;
     --line: rgba(18, 18, 23, 0.14);
     --line-2: rgba(18, 18, 23, 0.24);
     --fill: rgba(18, 18, 23, 0.05);
-    --grad-a: #2b2b33;         /* metallic heading gradient (light) */
+    --grad-a: #2b2b33; /* metallic heading gradient (light) */
     --grad-b: #4c4c58;
     --grad-c: #83838f;
     --video-opacity: 0.5;
@@ -71,71 +71,70 @@
     opacity: var(--video-opacity);
 }
 
-
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
-    --radius: 0.5rem;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-  }
+    :root {
+        --background: 0 0% 100%;
+        --foreground: 222.2 84% 4.9%;
+        --card: 0 0% 100%;
+        --card-foreground: 222.2 84% 4.9%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 222.2 84% 4.9%;
+        --primary: 222.2 47.4% 11.2%;
+        --primary-foreground: 210 40% 98%;
+        --secondary: 210 40% 96.1%;
+        --secondary-foreground: 222.2 47.4% 11.2%;
+        --muted: 210 40% 96.1%;
+        --muted-foreground: 215.4 16.3% 46.9%;
+        --accent: 210 40% 96.1%;
+        --accent-foreground: 222.2 47.4% 11.2%;
+        --destructive: 0 84.2% 60.2%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 214.3 31.8% 91.4%;
+        --input: 214.3 31.8% 91.4%;
+        --ring: 222.2 84% 4.9%;
+        --radius: 0.5rem;
+        --chart-1: 12 76% 61%;
+        --chart-2: 173 58% 39%;
+        --chart-3: 197 37% 24%;
+        --chart-4: 43 74% 66%;
+        --chart-5: 27 87% 67%;
+    }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%;
-  }
+    .dark {
+        --background: 222.2 84% 4.9%;
+        --foreground: 210 40% 98%;
+        --card: 222.2 84% 4.9%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222.2 84% 4.9%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 210 40% 98%;
+        --primary-foreground: 222.2 47.4% 11.2%;
+        --secondary: 217.2 32.6% 17.5%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217.2 32.6% 17.5%;
+        --muted-foreground: 215 20.2% 65.1%;
+        --accent: 217.2 32.6% 17.5%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 62.8% 30.6%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217.2 32.6% 17.5%;
+        --input: 217.2 32.6% 17.5%;
+        --ring: 212.7 26.8% 83.9%;
+        --chart-1: 220 70% 50%;
+        --chart-2: 160 60% 45%;
+        --chart-3: 30 80% 55%;
+        --chart-4: 280 65% 60%;
+        --chart-5: 340 75% 55%;
+    }
 }
 
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground;
+    }
 }
 
 /* ============================================================
@@ -148,22 +147,22 @@
 /* Legacy aliases — bound to the theme tokens at the top of this file so
    light/dark switching flows through (do not hardcode values here). */
 :root {
-  --accent-soft: color-mix(in oklab, var(--accent) 14%, transparent);
-  --hairline: var(--line);
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+    --accent-soft: color-mix(in oklab, var(--accent) 14%, transparent);
+    --hairline: var(--line);
+    --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 body {
-  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
 .font-display {
-  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+    font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
 
 /* Mono for eyebrows, labels, code-feel metadata (technical register) */
 .font-mono {
-  font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
+    font-family: var(--font-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
 /* Subtle metallic ink gradient for large display headings (Luma/Superhuman
@@ -177,208 +176,225 @@ body {
    repeats identically per word, so split headings still read as continuous. */
 /* Shimmer: a mint highlight sweeps across muted text (clipped to glyphs). */
 .shimmer-text {
-  background: linear-gradient(
-    90deg,
-    #9a9aa4 0%,
-    #9a9aa4 38%,
-    #22d3ee 50%,
-    #9a9aa4 62%,
-    #9a9aa4 100%
-  );
-  background-size: 200% 100%;
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
-  animation: shimmer-sweep 5s linear infinite;
+    background: linear-gradient(
+        90deg,
+        #9a9aa4 0%,
+        #9a9aa4 38%,
+        #22d3ee 50%,
+        #9a9aa4 62%,
+        #9a9aa4 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
+    animation: shimmer-sweep 5s linear infinite;
 }
 @keyframes shimmer-sweep {
-  to {
-    background-position: -200% 0;
-  }
+    to {
+        background-position: -200% 0;
+    }
 }
 
 .text-gradient,
 .text-gradient * {
-  background-image: linear-gradient(180deg, var(--grad-a) 0%, var(--grad-b) 55%, var(--grad-c) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  color: transparent;
+    background-image: linear-gradient(
+        180deg,
+        var(--grad-a) 0%,
+        var(--grad-b) 55%,
+        var(--grad-c) 100%
+    );
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    color: transparent;
 }
 
 /* Hairline divider used to group content without card chrome */
 .hairline {
-  border-color: var(--hairline);
+    border-color: var(--hairline);
 }
 
 /* Auto glare sweep for the hero electric CTA (a shine crosses periodically). */
 @keyframes btn-glare {
-  0% {
-    transform: translateX(-160%) skewX(-12deg);
-  }
-  60%,
-  100% {
-    transform: translateX(360%) skewX(-12deg);
-  }
+    0% {
+        transform: translateX(-160%) skewX(-12deg);
+    }
+    60%,
+    100% {
+        transform: translateX(360%) skewX(-12deg);
+    }
 }
 .btn-glare {
-  animation: btn-glare 4.5s ease-in-out infinite;
+    animation: btn-glare 4.5s ease-in-out infinite;
 }
 
 /* Terminal caret for the wordmark: a cyan block that blinks like a shell cursor. */
 @keyframes caret-blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
 }
 .caret-blink {
-  animation: caret-blink 1.1s steps(1) infinite;
+    animation: caret-blink 1.1s steps(1) infinite;
 }
 
 /* Hero orb: pure-CSS glowing mint sphere behind the portrait. Replaces the
    heavy WebGL (three.js) sphere — near-zero cost, slowly rotating. Reduced
    motion freezes it. */
 .hero-orb {
-  background:
-    radial-gradient(circle at 32% 28%, rgba(165, 243, 252, 0.5), transparent 42%),
-    radial-gradient(circle at 72% 68%, rgba(21, 94, 117, 0.45), transparent 52%),
-    radial-gradient(circle at 50% 55%, rgba(34, 211, 238, 0.38), transparent 70%);
-  filter: blur(34px);
-  opacity: 0.85;
-  animation: hero-orb-spin 22s linear infinite;
-  will-change: transform;
+    background:
+        radial-gradient(
+            circle at 32% 28%,
+            rgba(165, 243, 252, 0.5),
+            transparent 42%
+        ),
+        radial-gradient(
+            circle at 72% 68%,
+            rgba(21, 94, 117, 0.45),
+            transparent 52%
+        ),
+        radial-gradient(
+            circle at 50% 55%,
+            rgba(34, 211, 238, 0.38),
+            transparent 70%
+        );
+    filter: blur(34px);
+    opacity: 0.85;
+    animation: hero-orb-spin 22s linear infinite;
+    will-change: transform;
 }
 @keyframes hero-orb-spin {
-  to {
-    transform: rotate(360deg);
-  }
+    to {
+        transform: rotate(360deg);
+    }
 }
 @media (prefers-reduced-motion: reduce) {
-  .hero-orb {
-    animation: none;
-  }
+    .hero-orb {
+        animation: none;
+    }
 }
 
 /* Liquid-glass: web glassmorphism approximation (NOT Apple's native
    Liquid Glass material). backdrop-filter + layered border + inner highlight. */
 .liquid-glass {
-  position: relative;
-  overflow: hidden;
-  isolation: isolate;
-  background: var(--fill);
-  backdrop-filter: blur(14px) saturate(150%);
-  -webkit-backdrop-filter: blur(14px) saturate(150%);
-  border: 1px solid var(--line);
-  box-shadow:
-    inset 0 1px 0 var(--line-2),
-    0 12px 40px rgba(var(--ink-rgb), 0.25);
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    background: var(--fill);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border: 1px solid var(--line);
+    box-shadow:
+        inset 0 1px 0 var(--line-2),
+        0 12px 40px rgba(var(--ink-rgb), 0.25);
 }
 
 .liquid-glass::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  border-radius: inherit;
-  padding: 1px;
-  background: linear-gradient(
-    180deg,
-    var(--line-2) 0%,
-    var(--fill) 30%,
-    transparent 60%,
-    var(--fill) 100%
-  );
-  -webkit-mask:
-    linear-gradient(#fff 0 0) content-box,
-    linear-gradient(#fff 0 0);
-  -webkit-mask-composite: xor;
-  mask-composite: exclude;
-  pointer-events: none;
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        180deg,
+        var(--line-2) 0%,
+        var(--fill) 30%,
+        transparent 60%,
+        var(--fill) 100%
+    );
+    -webkit-mask:
+        linear-gradient(#fff 0 0) content-box,
+        linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
 }
 
 /* Solid fallback when transparency/blur is unwanted or unsupported */
 @media (prefers-reduced-transparency: reduce) {
-  .liquid-glass {
-    background: var(--surface);
-    backdrop-filter: none;
-    -webkit-backdrop-filter: none;
-  }
+    .liquid-glass {
+        background: var(--surface);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+    }
 }
 
 /* Cinematic aurora color field: slow-drifting blurred color blobs behind the
    3D starfield. Cool teal/cyan/indigo glow against the cosmic-navy base.
    Reduced motion freezes the drift (global rule below). */
 @keyframes aurora-a {
-  0%,
-  100% {
-    transform: translate3d(-8%, -6%, 0) scale(1);
-  }
-  50% {
-    transform: translate3d(6%, 4%, 0) scale(1.18);
-  }
+    0%,
+    100% {
+        transform: translate3d(-8%, -6%, 0) scale(1);
+    }
+    50% {
+        transform: translate3d(6%, 4%, 0) scale(1.18);
+    }
 }
 @keyframes aurora-b {
-  0%,
-  100% {
-    transform: translate3d(6%, 8%, 0) scale(1.1);
-  }
-  50% {
-    transform: translate3d(-6%, -4%, 0) scale(0.92);
-  }
+    0%,
+    100% {
+        transform: translate3d(6%, 8%, 0) scale(1.1);
+    }
+    50% {
+        transform: translate3d(-6%, -4%, 0) scale(0.92);
+    }
 }
 @keyframes aurora-c {
-  0%,
-  100% {
-    transform: translate3d(0, 4%, 0) scale(1.05);
-  }
-  50% {
-    transform: translate3d(4%, -6%, 0) scale(1.2);
-  }
+    0%,
+    100% {
+        transform: translate3d(0, 4%, 0) scale(1.05);
+    }
+    50% {
+        transform: translate3d(4%, -6%, 0) scale(1.2);
+    }
 }
 .aurora-blob {
-  position: absolute;
-  border-radius: 9999px;
-  filter: blur(90px);
-  opacity: 0.5;
-  will-change: transform;
+    position: absolute;
+    border-radius: 9999px;
+    filter: blur(90px);
+    opacity: 0.5;
+    will-change: transform;
 }
 
 /* Fixed film-grain veil for cinematic texture. Sits above the background
    layers but below content; never intercepts pointer events. */
 .grain-overlay {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
-  background-repeat: repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E");
+    background-repeat: repeat;
 }
 
 /* Kinetic marquee (tech stack). Tracks render items twice; -50% lands on the
    clone start for a seamless loop. Hover pauses; reduced-motion freezes it. */
 @keyframes marquee-left {
-  from {
-    transform: translateX(0);
-  }
-  to {
-    transform: translateX(-50%);
-  }
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
 }
 @keyframes marquee-right {
-  from {
-    transform: translateX(-50%);
-  }
-  to {
-    transform: translateX(0);
-  }
+    from {
+        transform: translateX(-50%);
+    }
+    to {
+        transform: translateX(0);
+    }
 }
 .marquee-track {
-  width: max-content;
-  will-change: transform;
+    width: max-content;
+    will-change: transform;
 }
 .marquee-row:hover .marquee-track {
-  animation-play-state: paused;
+    animation-play-state: paused;
 }
 
 /* NOTE: the global prefers-reduced-motion kill-switch was intentionally removed.

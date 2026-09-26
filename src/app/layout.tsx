@@ -1,8 +1,10 @@
-import { SiteChrome } from "@/components/main/SiteChrome";
-import { ThemeProvider } from "@/components/main/theme-provider";
-import { siteConfig } from "@/config/site";
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { SiteChrome } from "@/components/main/SiteChrome";
+import { ThemeProvider } from "@/components/main/theme-provider";
+import { JsonLd } from "@/components/seo/json-ld";
+import { siteConfig } from "@/config/site";
+import { personSchema, webSiteSchema } from "@/lib/seo";
 import "./globals.css";
 
 const inter = Inter({
@@ -90,12 +92,13 @@ export default function RootLayout({
     return (
         <html lang="en" className="dark" suppressHydrationWarning>
             <head>
-                {/* biome-ignore lint/security/noDangerouslySetInnerHtml: pre-paint theme script */}
                 <script
                     dangerouslySetInnerHTML={{
                         __html: `try{var t=localStorage.getItem("portfolio-theme");var c=document.documentElement.classList;t==="light"?c.remove("dark"):c.add("dark")}catch(e){}`,
                     }}
                 />
+                <JsonLd data={personSchema()} />
+                <JsonLd data={webSiteSchema()} />
             </head>
             <body
                 className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-ink text-paper antialiased selection:bg-accent selection:text-ink`}

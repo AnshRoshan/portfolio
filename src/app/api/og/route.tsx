@@ -1,12 +1,17 @@
+import { readFile } from "node:fs/promises";
 import { ImageResponse } from "next/og";
 import type { NextRequest } from "next/server";
 import { siteConfig } from "@/config/site";
 
 export const runtime = "nodejs";
 
-const interBold = fetch(
-    new URL("../../../assets/fonts/Inter-Bold.ttf", import.meta.url),
-).then((res) => res.arrayBuffer());
+// Turbopack build workers don't implement fetch() of file: URLs, so read the
+// bundled font from disk instead.
+const interBold = readFile(
+    new URL("../../../assets/fonts/Inter-Bold.ttf", import.meta.url)
+).then((buf) =>
+    buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength)
+);
 
 export async function GET(req: NextRequest) {
     try {
@@ -120,6 +125,10 @@ export async function GET(req: NextRequest) {
             {
                 width: 1200,
                 height: 630,
+                headers: {
+                    "Cache-Control":
+                        "public, max-age=31536000, s-maxage=31536000, immutable",
+                },
                 fonts: [
                     {
                         name: "Inter",
@@ -128,7 +137,7 @@ export async function GET(req: NextRequest) {
                         weight: 700,
                     },
                 ],
-            },
+            }
         );
     } catch {
         return new Response("Failed to generate image", { status: 500 });

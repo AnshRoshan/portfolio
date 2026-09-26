@@ -49,7 +49,7 @@ export default function MagneticSocial({
         >
             <span
                 aria-hidden
-                className="absolute inset-0 rounded-full ring-1 ring-transparent transition-all duration-300 group-hover:bg-accent/10 group-hover:ring-accent/30 group-hover:shadow-[0_0_22px_rgba(34,211,238,0.28)]"
+                className="absolute inset-0 rounded-full ring-1 ring-transparent transition-all duration-300 group-hover:bg-accent/10 group-hover:shadow-[0_0_22px_rgba(34,211,238,0.28)] group-hover:ring-accent/30"
             />
             <span className="relative">{children}</span>
         </motion.a>

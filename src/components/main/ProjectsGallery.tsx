@@ -20,7 +20,7 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
         return [
             { label: "All", count: projects.length },
             ...Array.from(counts, ([label, count]) => ({ label, count })).sort(
-                (a, b) => b.count - a.count,
+                (a, b) => b.count - a.count
             ),
         ];
     }, [projects]);
@@ -44,14 +44,16 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
                             type="button"
                             onClick={() => setActive(label)}
                             aria-pressed={isActive}
-                            className={`font-mono inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
+                            className={`inline-flex items-center gap-2 rounded-full border px-3.5 py-1.5 font-mono text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink ${
                                 isActive
                                     ? "border-accent/40 bg-accent/10 text-accent"
                                     : "border-line text-muted hover:border-accent/40 hover:text-accent"
                             }`}
                         >
                             {label}
-                            <span className="text-[10px] opacity-60">{count}</span>
+                            <span className="text-[10px] opacity-60">
+                                {count}
+                            </span>
                         </button>
                     );
                 })}
@@ -70,7 +72,10 @@ export default function ProjectsGallery({ projects }: { projects: Project[] }) {
                             initial={{ opacity: 0, scale: 0.96 }}
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.96 }}
-                            transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                            transition={{
+                                duration: 0.3,
+                                ease: [0.16, 1, 0.3, 1],
+                            }}
                         >
                             <ProjectCard project={project} index={idx} />
                         </motion.div>

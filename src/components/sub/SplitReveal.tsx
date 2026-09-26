@@ -60,7 +60,7 @@ export default function SplitReveal({
             });
             return () => split.revert();
         },
-        { scope: ref },
+        { scope: ref }
     );
 
     return (

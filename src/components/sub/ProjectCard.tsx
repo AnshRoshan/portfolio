@@ -19,8 +19,17 @@ export default function ProjectCard({
     project: Project;
     index?: number;
 }) {
-    const { slug, title, category, description, tags, image, live, github, year } =
-        project;
+    const {
+        slug,
+        title,
+        category,
+        description,
+        tags,
+        image,
+        live,
+        github,
+        year,
+    } = project;
     const ref = useRef<HTMLElement>(null);
 
     function onMove(e: React.MouseEvent<HTMLElement>) {
@@ -46,127 +55,128 @@ export default function ProjectCard({
 
     return (
         <div className="group h-full">
-        <article
-            ref={ref}
-            onMouseMove={onMove}
-            onMouseLeave={onLeave}
-            style={{
-                transform:
-                    "perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px))",
-                transition: "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s",
-                transformStyle: "preserve-3d",
-                willChange: "transform",
-            }}
-            className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:[--ty:-4px] group-hover:bg-surface/80"
-        >
-            {/* Cursor-following mint spotlight */}
-            <div
-                aria-hidden
-                className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+            <article
+                ref={ref}
+                onMouseMove={onMove}
+                onMouseLeave={onLeave}
                 style={{
-                    background:
-                        "radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(34,211,238,0.12), transparent 70%)",
+                    transform:
+                        "perspective(1100px) rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg)) translateY(var(--ty, 0px))",
+                    transition:
+                        "transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s, background-color 0.3s",
+                    transformStyle: "preserve-3d",
+                    willChange: "transform",
                 }}
-            />
-
-            {/* Media */}
-            <div className="relative aspect-[16/10] overflow-hidden">
-                {image ? (
-                    <Image
-                        src={image}
-                        alt={title}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
-                    />
-                ) : (
-                    <div className="grid h-full w-full place-items-center bg-[radial-gradient(120%_120%_at_30%_0%,rgba(34,211,238,0.20),transparent_55%)]">
-                        <span className="font-display px-6 text-center text-xl font-semibold tracking-tight text-paper/90">
-                            {title}
-                        </span>
-                    </div>
-                )}
-                <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/5 to-transparent" />
-
-                {/* Hover action buttons */}
-                <div className="absolute right-3 top-3 z-30 flex gap-2 opacity-0 translate-y-1 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
-                    {live ? (
-                        <a
-                            href={live}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${title} live site`}
-                            className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-ink transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-                        >
-                            <IconArrowUpRight size={16} stroke={2} />
-                        </a>
-                    ) : null}
-                    {github ? (
-                        <a
-                            href={github}
-                            target="_blank"
-                            rel="noreferrer"
-                            aria-label={`${title} on GitHub`}
-                            className="flex h-9 w-9 items-center justify-center rounded-full border border-line-2 bg-ink/70 text-paper backdrop-blur-md transition-colors hover:border-line-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-                        >
-                            <IconBrandGithub size={16} stroke={2} />
-                        </a>
-                    ) : null}
-                </div>
-
-                {/* Category badge */}
-                <span className="font-mono absolute bottom-3 left-3 z-10 rounded-full bg-ink/70 px-3 py-1 text-[10px] uppercase tracking-[0.18em] text-accent backdrop-blur-md">
-                    {category}
-                </span>
-            </div>
-
-            {/* Faint index watermark */}
-            {typeof index === "number" ? (
-                <span
+                className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface/80 group-hover:[--ty:-4px]"
+            >
+                {/* Cursor-following mint spotlight */}
+                <div
                     aria-hidden
-                    className="font-display pointer-events-none absolute bottom-0 right-3 z-[5] text-7xl font-bold leading-none text-fill"
-                >
-                    {String(index + 1).padStart(2, "0")}
-                </span>
-            ) : null}
+                    className="pointer-events-none absolute inset-0 z-20 rounded-2xl opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                    style={{
+                        background:
+                            "radial-gradient(240px circle at var(--mx, 50%) var(--my, 0%), rgba(34,211,238,0.12), transparent 70%)",
+                    }}
+                />
 
-            {/* Body */}
-            <div className="relative z-10 flex flex-1 flex-col gap-2.5 p-5">
-                <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="font-display text-lg font-semibold tracking-tight text-paper transition-colors group-hover:text-accent">
-                        <Link
-                            href={`/projects/${slug}`}
-                            className="rounded-sm before:absolute before:inset-0 before:z-10 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
-                        >
-                            {title}
-                        </Link>
-                    </h3>
-                    <span className="font-mono shrink-0 text-xs text-muted">
-                        {year}
+                {/* Media */}
+                <div className="relative aspect-[16/10] overflow-hidden">
+                    {image ? (
+                        <Image
+                            src={image}
+                            alt={title}
+                            fill
+                            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                            className="object-cover transition-transform duration-700 ease-out group-hover:scale-[1.06]"
+                        />
+                    ) : (
+                        <div className="grid h-full w-full place-items-center bg-[radial-gradient(120%_120%_at_30%_0%,rgba(34,211,238,0.20),transparent_55%)]">
+                            <span className="px-6 text-center font-display font-semibold text-paper/90 text-xl tracking-tight">
+                                {title}
+                            </span>
+                        </div>
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/5 to-transparent" />
+
+                    {/* Hover action buttons */}
+                    <div className="absolute top-3 right-3 z-30 flex translate-y-1 gap-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+                        {live ? (
+                            <a
+                                href={live}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label={`${title} live site`}
+                                className="flex h-9 w-9 items-center justify-center rounded-full bg-accent text-ink transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                            >
+                                <IconArrowUpRight size={16} stroke={2} />
+                            </a>
+                        ) : null}
+                        {github ? (
+                            <a
+                                href={github}
+                                target="_blank"
+                                rel="noreferrer"
+                                aria-label={`${title} on GitHub`}
+                                className="flex h-9 w-9 items-center justify-center rounded-full border border-line-2 bg-ink/70 text-paper backdrop-blur-md transition-colors hover:border-line-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                            >
+                                <IconBrandGithub size={16} stroke={2} />
+                            </a>
+                        ) : null}
+                    </div>
+
+                    {/* Category badge */}
+                    <span className="absolute bottom-3 left-3 z-10 rounded-full bg-ink/70 px-3 py-1 font-mono text-[10px] text-accent uppercase tracking-[0.18em] backdrop-blur-md">
+                        {category}
                     </span>
                 </div>
 
-                <p className="line-clamp-2 text-sm leading-relaxed text-muted">
-                    {description}
-                </p>
+                {/* Faint index watermark */}
+                {typeof index === "number" ? (
+                    <span
+                        aria-hidden
+                        className="pointer-events-none absolute right-3 bottom-0 z-[5] font-bold font-display text-7xl text-fill leading-none"
+                    >
+                        {String(index + 1).padStart(2, "0")}
+                    </span>
+                ) : null}
 
-                <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-2">
-                    {tags.slice(0, 3).map((tag) => (
-                        <span
-                            key={tag}
-                            className="font-mono rounded-md border border-line px-2 py-0.5 text-[10px] text-muted"
-                        >
-                            {tag}
+                {/* Body */}
+                <div className="relative z-10 flex flex-1 flex-col gap-2.5 p-5">
+                    <div className="flex items-baseline justify-between gap-3">
+                        <h3 className="font-display font-semibold text-lg text-paper tracking-tight transition-colors group-hover:text-accent">
+                            <Link
+                                href={`/projects/${slug}`}
+                                className="rounded-sm before:absolute before:inset-0 before:z-10 before:content-[''] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                            >
+                                {title}
+                            </Link>
+                        </h3>
+                        <span className="shrink-0 font-mono text-muted text-xs">
+                            {year}
                         </span>
-                    ))}
-                    {tags.length > 3 ? (
-                        <span className="font-mono text-[10px] text-muted">
-                            +{tags.length - 3}
-                        </span>
-                    ) : null}
+                    </div>
+
+                    <p className="line-clamp-2 text-muted text-sm leading-relaxed">
+                        {description}
+                    </p>
+
+                    <div className="mt-auto flex flex-wrap items-center gap-1.5 pt-2">
+                        {tags.slice(0, 3).map((tag) => (
+                            <span
+                                key={tag}
+                                className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] text-muted"
+                            >
+                                {tag}
+                            </span>
+                        ))}
+                        {tags.length > 3 ? (
+                            <span className="font-mono text-[10px] text-muted">
+                                +{tags.length - 3}
+                            </span>
+                        ) : null}
+                    </div>
                 </div>
-            </div>
-        </article>
+            </article>
         </div>
     );
 }

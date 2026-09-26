@@ -26,7 +26,7 @@ export default function PillButton({
     if (variant === "electric") {
         const cls = cn(
             "group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-7 text-sm font-medium uppercase tracking-[0.12em] text-paper transition-transform active:scale-[0.97] hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
-            className,
+            className
         );
         const inner = (
             <>
@@ -59,14 +59,19 @@ export default function PillButton({
             "bg-accent text-ink hover:bg-accent-2 shadow-[0_8px_30px_rgba(34,211,238,0.25)]",
         ghost: "border border-line-2 text-paper hover:bg-fill hover:border-line-2",
     } as const;
-    const cls = cn(base, variants[variant], sweep && "overflow-hidden", className);
+    const cls = cn(
+        base,
+        variants[variant],
+        sweep && "overflow-hidden",
+        className
+    );
 
     const inner = (
         <>
             {sweep ? (
                 <span
                     aria-hidden
-                    className="pointer-events-none absolute left-[-60%] top-0 h-full w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-accent/30 to-transparent blur-md transition-all duration-[1600ms] ease-in-out group-hover:left-[120%]"
+                    className="pointer-events-none absolute top-0 left-[-60%] h-full w-[45%] -skew-x-12 bg-gradient-to-r from-transparent via-accent/30 to-transparent blur-md transition-all duration-[1600ms] ease-in-out group-hover:left-[120%]"
                 />
             ) : null}
             <span className="relative z-10 inline-flex items-center gap-2">

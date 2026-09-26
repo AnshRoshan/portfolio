@@ -1,22 +1,26 @@
 {
-    "$schema": "https://biomejs.dev/schemas/1.8.3/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.5.14/schema.json",
     "files": {
-        "ignore": [
-            ".next",
-            "out",
-            "node_modules",
-            ".velite",
-            ".velite-cache",
-            ".vscode",
-            "public",
-            "content",
-            "src/data",
-            "src/fonts",
-            "src/styles",
-            "src/utils",
-            "src/components/ui"
-        ],
-        "include": ["**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}"]
+        "includes": [
+            "**/*.{ts,tsx,js,jsx,json,css,scss,md,yml,yaml}",
+            "!**/.next",
+            "!**/out",
+            "!**/node_modules",
+            "!**/.vscode",
+            "!**/public",
+            "!**/src/data",
+            "!**/src/assets",
+            "!**/src/components/ui",
+            "!**/~",
+            "!**/.archive",
+            "!**/.kilo",
+            "!**/.agents",
+            "!**/.claude",
+            "!**/.video_agent",
+            "!**/enhance-portfolio-website-design",
+            "!**/bun.lock",
+            "!**/tsconfig.tsbuildinfo"
+        ]
     },
     "formatter": {
         "enabled": true,
@@ -27,13 +31,12 @@
         "lineWidth": 80,
         "attributePosition": "auto"
     },
-    "organizeImports": { "enabled": true },
+    "assist": { "actions": { "source": { "organizeImports": "on" } } },
     "linter": {
         "enabled": true,
         "rules": {
-            "recommended": false,
+            "preset": "none",
             "a11y": {
-                "noBlankTarget": { "level": "warn", "fix": "safe" },
                 "useButtonType": "warn"
             },
             "nursery": {
@@ -57,8 +60,14 @@
                     "level": "warn",
                     "fix": "safe"
                 }
+            },
+            "security": {
+                "noBlankTarget": { "level": "warn", "fix": "safe" }
             }
         }
+    },
+    "css": {
+        "parser": { "tailwindDirectives": true }
     },
     "javascript": {
         "formatter": {

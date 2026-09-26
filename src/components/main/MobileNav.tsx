@@ -11,8 +11,8 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
-import { ThemeToggle } from "./ThemeToggle";
 import { Sheet, SheetContent, SheetTitle, SheetTrigger } from "../ui/sheet";
+import { ThemeToggle } from "./ThemeToggle";
 
 const navItems = [
     { name: "About", link: "/about" },
@@ -23,9 +23,17 @@ const navItems = [
 
 const socials = [
     { name: "GitHub", link: siteConfig.links.github, icon: IconBrandGithub },
-    { name: "LinkedIn", link: siteConfig.links.linkedin, icon: IconBrandLinkedin },
+    {
+        name: "LinkedIn",
+        link: siteConfig.links.linkedin,
+        icon: IconBrandLinkedin,
+    },
     { name: "X (Twitter)", link: siteConfig.links.twitter, icon: IconBrandX },
-    { name: "Instagram", link: siteConfig.links.instagram, icon: IconBrandInstagram },
+    {
+        name: "Instagram",
+        link: siteConfig.links.instagram,
+        icon: IconBrandInstagram,
+    },
 ];
 
 export function MobileNav() {
@@ -53,7 +61,7 @@ export function MobileNav() {
                         <Link
                             href="/"
                             onClick={() => setOpen(false)}
-                            className="font-display text-lg font-semibold tracking-tight text-paper"
+                            className="font-display font-semibold text-lg text-paper tracking-tight"
                         >
                             Ansh Roshan
                         </Link>
@@ -70,10 +78,18 @@ export function MobileNav() {
                                     key={item.name}
                                     href={item.link}
                                     onClick={() => setOpen(false)}
-                                    target={item.link.startsWith("http") ? "_blank" : undefined}
-                                    rel={item.link.startsWith("http") ? "noreferrer" : undefined}
+                                    target={
+                                        item.link.startsWith("http")
+                                            ? "_blank"
+                                            : undefined
+                                    }
+                                    rel={
+                                        item.link.startsWith("http")
+                                            ? "noreferrer"
+                                            : undefined
+                                    }
                                     className={
-                                        "font-display rounded-xl px-4 py-3 text-2xl font-medium tracking-tight transition-colors " +
+                                        "rounded-xl px-4 py-3 font-display font-medium text-2xl tracking-tight transition-colors" +
                                         (active
                                             ? "text-accent"
                                             : "text-muted hover:bg-fill hover:text-paper")
@@ -88,7 +104,7 @@ export function MobileNav() {
                     <Link
                         href="/contact"
                         onClick={() => setOpen(false)}
-                        className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 text-sm font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                        className="mt-8 inline-flex items-center justify-center rounded-full bg-accent px-6 py-3 font-medium text-ink text-sm uppercase tracking-[0.12em] transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                     >
                         Get in touch
                     </Link>

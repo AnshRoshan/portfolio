@@ -7,11 +7,17 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { JsonLd } from "@/components/seo/json-ld";
 import PillButton from "@/components/sub/PillButton";
 import ProjectCard from "@/components/sub/ProjectCard";
 import Reveal from "@/components/sub/Reveal";
-import { siteConfig } from "@/config/site";
-import { projects, type ProjectDetail } from "@/data/projects";
+import { type ProjectDetail, projects } from "@/data/projects";
+import {
+    absoluteUrl,
+    breadcrumbSchema,
+    pageMetadata,
+    projectSchema,
+} from "@/lib/seo";
 
 interface ProjectPageProps {
     params: Promise<{ slug: string }>;
@@ -32,39 +38,36 @@ export async function generateMetadata({
     const project = getProject(slug);
     if (!project) return {};
 
-    const ogSearch = new URLSearchParams();
-    ogSearch.set("title", project.title);
-    ogSearch.set("eyebrow", project.category);
-    const ogImage = project.image ?? `/api/og?${ogSearch.toString()}`;
-
-    return {
+    const meta = pageMetadata({
         title: project.title,
         description: project.description,
+        path: `/projects/${project.slug}`,
+        type: "article",
+    });
+    if (!project.image) return meta;
+
+    const image = project.image.startsWith("http")
+        ? project.image
+        : absoluteUrl(project.image);
+    return {
+        ...meta,
         openGraph: {
-            title: project.title,
-            description: project.description,
-            type: "article",
-            url: `/projects/${project.slug}`,
+            ...meta.openGraph,
             images: [
-                { url: ogImage, width: 1200, height: 630, alt: project.title },
+                { url: image, width: 1200, height: 630, alt: project.title },
             ],
         },
-        twitter: {
-            card: "summary_large_image",
-            title: project.title,
-            description: project.description,
-            images: [ogImage],
-        },
+        twitter: { ...meta.twitter, images: [image] },
     };
 }
 
 function CaseSection({ title, body }: { title: string; body: string }) {
     return (
         <Reveal y={20} className="mt-12">
-            <h2 className="font-display text-2xl font-semibold tracking-tight text-paper sm:text-3xl">
+            <h2 className="font-display font-semibold text-2xl text-paper tracking-tight sm:text-3xl">
                 {title}
             </h2>
-            <p className="mt-4 max-w-3xl whitespace-pre-line text-base leading-relaxed text-muted">
+            <p className="mt-4 max-w-3xl whitespace-pre-line text-base text-muted leading-relaxed">
                 {body}
             </p>
         </Reveal>
@@ -94,45 +97,33 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         gallery,
     } = project;
 
-    const jsonLd = {
-        "@context": "https://schema.org",
-        "@type": "CreativeWork",
-        name: title,
-        description,
-        url: `${siteConfig.url}/projects/${slug}`,
-        ...(image
-            ? {
-                  image: image.startsWith("http")
-                      ? image
-                      : `${siteConfig.url}${image}`,
-              }
-            : {}),
-    };
-
     return (
         <article className="relative mx-auto w-full max-w-6xl px-6 pt-12 pb-24 md:px-10 md:pt-16">
-            {/* biome-ignore lint/security/noDangerouslySetInnerHtml: JSON-LD structured data */}
-            <script
-                type="application/ld+json"
-                dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+            <JsonLd data={projectSchema(project)} />
+            <JsonLd
+                data={breadcrumbSchema([
+                    { name: "Home", path: "/" },
+                    { name: "Projects", path: "/projects" },
+                    { name: title, path: `/projects/${slug}` },
+                ])}
             />
 
             <Link
                 href="/projects"
-                className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                className="inline-flex items-center gap-1.5 rounded-sm font-mono text-muted text-xs uppercase tracking-[0.18em] transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
             >
                 <IconArrowLeft size={15} stroke={1.8} /> Back to projects
             </Link>
 
             {/* Header: full width, at the top */}
-            <header className="mt-8 border-b border-line pb-10">
-                <p className="font-mono text-xs uppercase tracking-[0.2em] text-accent">
+            <header className="mt-8 border-line border-b pb-10">
+                <p className="font-mono text-accent text-xs uppercase tracking-[0.2em]">
                     {category} · {year}
                 </p>
-                <h1 className="font-display mt-3 text-4xl font-semibold leading-tight tracking-tight text-paper sm:text-5xl">
+                <h1 className="mt-3 font-display font-semibold text-4xl text-paper leading-tight tracking-tight sm:text-5xl">
                     {title}
                 </h1>
-                <p className="mt-5 max-w-3xl text-lg leading-relaxed text-muted">
+                <p className="mt-5 max-w-3xl text-lg text-muted leading-relaxed">
                     {description}
                 </p>
 
@@ -141,7 +132,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                         {tags.map((tag) => (
                             <span
                                 key={tag}
-                                className="font-mono rounded-md border border-line px-2.5 py-1 text-[11px] text-muted"
+                                className="rounded-md border border-line px-2.5 py-1 font-mono text-[11px] text-muted"
                             >
                                 {tag}
                             </span>
@@ -188,10 +179,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                             key={`${m.label}-${m.value}`}
                             className="bg-surface-2/80 p-6"
                         >
-                            <div className="font-display text-3xl font-semibold tracking-tight text-accent">
+                            <div className="font-display font-semibold text-3xl text-accent tracking-tight">
                                 {m.value}
                             </div>
-                            <div className="font-mono mt-1 text-[11px] uppercase tracking-[0.18em] text-muted">
+                            <div className="mt-1 font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                                 {m.label}
                             </div>
                         </div>
@@ -200,7 +191,9 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
             ) : null}
 
             {/* Case-study prose sections */}
-            {problem ? <CaseSection title="The problem" body={problem} /> : null}
+            {problem ? (
+                <CaseSection title="The problem" body={problem} />
+            ) : null}
             {approach ? (
                 <CaseSection title="Approach & architecture" body={approach} />
             ) : null}
@@ -225,14 +218,14 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
             {/* More projects */}
             {moreProjects.length ? (
-                <div className="mt-20 border-t border-line pt-12">
+                <div className="mt-20 border-line border-t pt-12">
                     <div className="mb-8 flex items-end justify-between gap-4">
-                        <h2 className="font-display text-2xl font-semibold tracking-tight text-paper">
+                        <h2 className="font-display font-semibold text-2xl text-paper tracking-tight">
                             More projects
                         </h2>
                         <Link
                             href="/projects"
-                            className="group inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.16em] text-muted transition-colors hover:text-accent"
+                            className="group inline-flex items-center gap-1.5 rounded-sm font-mono text-muted text-xs uppercase tracking-[0.16em] transition-colors hover:text-accent"
                         >
                             View all
                             <IconArrowUpRight
@@ -249,10 +242,10 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                     </div>
                 </div>
             ) : (
-                <div className="mt-16 border-t border-line pt-10">
+                <div className="mt-16 border-line border-t pt-10">
                     <Link
                         href="/projects"
-                        className="inline-flex items-center gap-1.5 rounded-sm font-mono text-xs uppercase tracking-[0.18em] text-muted transition-colors hover:text-accent"
+                        className="inline-flex items-center gap-1.5 rounded-sm font-mono text-muted text-xs uppercase tracking-[0.18em] transition-colors hover:text-accent"
                     >
                         <IconArrowLeft size={15} stroke={1.8} /> All projects
                     </Link>

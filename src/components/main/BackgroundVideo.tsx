@@ -43,7 +43,7 @@ export default function BackgroundVideo() {
                 playsInline
                 preload="metadata"
                 poster={src.poster}
-                className="bg-video h-full w-full object-cover"
+                className="h-full w-full bg-video object-cover"
             >
                 <source src={src.webm} type="video/webm" />
                 {"mp4" in src ? (

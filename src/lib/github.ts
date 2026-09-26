@@ -43,14 +43,14 @@ export async function getGithubStats(): Promise<GithubStats | null> {
 
         const userRes = await fetch(
             `https://api.github.com/users/${USER}`,
-            opts,
+            opts
         );
         if (!userRes.ok) return null;
         const user = await userRes.json();
 
         const reposRes = await fetch(
             `https://api.github.com/users/${USER}/repos?per_page=100&sort=pushed`,
-            opts,
+            opts
         );
         const repos: Repo[] = reposRes.ok ? await reposRes.json() : [];
 
@@ -100,7 +100,7 @@ export async function getGithubContributions(): Promise<GithubContributions | nu
     try {
         const res = await fetch(
             `https://github-contributions-api.jogruber.de/v4/${USER}?y=last`,
-            { next: { revalidate: REVALIDATE_SECONDS } },
+            { next: { revalidate: REVALIDATE_SECONDS } }
         );
         if (!res.ok) return null;
         const data = await res.json();
@@ -109,12 +109,11 @@ export async function getGithubContributions(): Promise<GithubContributions | nu
                 date: d.date,
                 count: d.count,
                 level: d.level,
-            }),
+            })
         );
         if (!days.length) return null;
         const total =
-            data.total?.lastYear ??
-            days.reduce((sum, d) => sum + d.count, 0);
+            data.total?.lastYear ?? days.reduce((sum, d) => sum + d.count, 0);
         return { total, days };
     } catch {
         return null;

@@ -41,18 +41,16 @@ function Heatmap({ days }: { days: ContribDay[] }) {
             style={{ gridAutoColumns: "11px" }}
         >
             {Array.from({ length: offset }).map((_, i) => (
-                <span
-                    // biome-ignore lint/suspicious/noArrayIndexKey: fixed leading pad
-                    key={`pad-${i}`}
-                    className="h-[11px] w-[11px]"
-                />
+                <span key={`pad-${i}`} className="h-[11px] w-[11px]" />
             ))}
             {days.map((d) => (
                 <span
                     key={d.date}
                     title={`${d.count} contribution${d.count === 1 ? "" : "s"} on ${d.date}`}
                     className="h-[11px] w-[11px] rounded-[2px]"
-                    style={{ backgroundColor: LEVEL_BG[d.level] ?? LEVEL_BG[0] }}
+                    style={{
+                        backgroundColor: LEVEL_BG[d.level] ?? LEVEL_BG[0],
+                    }}
                 />
             ))}
         </div>
@@ -72,7 +70,7 @@ export default function GithubStats({
     contributions: GithubContributions | null;
 }) {
     return (
-        <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
+        <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
             <Reveal>
                 <div className="rounded-[24px] border border-line bg-surface/70 p-8 backdrop-blur-xl md:p-10">
                     {/* Header */}
@@ -84,14 +82,14 @@ export default function GithubStats({
                                 className="text-paper"
                             />
                             <div>
-                                <h2 className="font-display text-xl font-semibold tracking-tight text-paper">
+                                <h2 className="font-display font-semibold text-paper text-xl tracking-tight">
                                     On GitHub
                                 </h2>
                                 <a
                                     href={stats.profileUrl}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="font-mono group inline-flex items-center gap-1 text-xs text-muted transition-colors hover:text-accent"
+                                    className="group inline-flex items-center gap-1 font-mono text-muted text-xs transition-colors hover:text-accent"
                                 >
                                     @{stats.username}
                                     <IconArrowUpRight
@@ -103,7 +101,7 @@ export default function GithubStats({
                             </div>
                         </div>
                         {contributions ? (
-                            <p className="font-mono text-xs text-muted">
+                            <p className="font-mono text-muted text-xs">
                                 <span className="text-accent">
                                     {nf.format(contributions.total)}
                                 </span>{" "}
@@ -119,10 +117,10 @@ export default function GithubStats({
                                 <Heatmap days={contributions.days} />
                             </div>
                             <div className="mt-3 flex items-center justify-between">
-                                <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                                <span className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                                     {nf.format(stats.repos)} public repositories
                                 </span>
-                                <span className="font-mono flex items-center gap-1.5 text-[10px] text-muted">
+                                <span className="flex items-center gap-1.5 font-mono text-[10px] text-muted">
                                     Less
                                     {LEVEL_BG.map((c) => (
                                         <span
@@ -139,15 +137,15 @@ export default function GithubStats({
 
                     {/* Languages */}
                     {stats.topLanguages.length > 0 ? (
-                        <div className="mt-8 border-t border-line pt-6">
-                            <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                        <div className="mt-8 border-line border-t pt-6">
+                            <p className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                                 Most used languages
                             </p>
                             <div className="mt-3 flex flex-wrap gap-2">
                                 {stats.topLanguages.map((l) => (
                                     <span
                                         key={l.name}
-                                        className="font-mono inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs text-muted"
+                                        className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 font-mono text-muted text-xs"
                                     >
                                         <span
                                             className="h-2 w-2 rounded-full"

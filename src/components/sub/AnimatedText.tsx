@@ -1,6 +1,11 @@
 "use client";
 
-import { motion, type MotionValue, useScroll, useTransform } from "framer-motion";
+import {
+    type MotionValue,
+    motion,
+    useScroll,
+    useTransform,
+} from "framer-motion";
 import { useRef } from "react";
 
 /**
@@ -50,7 +55,6 @@ export default function AnimatedText({
                 const end = start + 1 / words.length;
                 return (
                     <Word
-                        // biome-ignore lint/suspicious/noArrayIndexKey: words are positional and static
                         key={i}
                         progress={scrollYProgress}
                         range={[start, end]}

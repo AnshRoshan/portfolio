@@ -40,7 +40,7 @@ function buildPath(w: number, h: number) {
         x1: number,
         y1: number,
         nx: number,
-        ny: number,
+        ny: number
     ) => {
         const len = Math.hypot(x1 - x0, y1 - y0);
         const n = Math.max(1, Math.round(len / STEP));
@@ -59,7 +59,7 @@ function buildPath(w: number, h: number) {
                 cx + R * Math.cos(a),
                 cy + R * Math.sin(a),
                 -Math.cos(a),
-                -Math.sin(a),
+                -Math.sin(a)
             );
             s += len / n;
         }
@@ -106,7 +106,11 @@ export default function ZigzagBorder() {
     const d = w > 0 && h > 0 ? buildPath(w, h) : "";
 
     return (
-        <span ref={ref} aria-hidden className="pointer-events-none absolute inset-0">
+        <span
+            ref={ref}
+            aria-hidden
+            className="pointer-events-none absolute inset-0"
+        >
             {d ? (
                 <svg
                     className="absolute inset-0 h-full w-full overflow-visible"

@@ -17,13 +17,13 @@ export default function Projects() {
         >
             <div className="mb-14 md:mb-20">
                 <Reveal y={24}>
-                    <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                         <span className="h-px w-8 bg-accent" />
                         Work
                     </span>
                 </Reveal>
                 <SplitReveal className="mt-6">
-                    <h2 className="text-gradient font-display text-4xl font-semibold tracking-tight sm:text-5xl lg:text-6xl">
+                    <h2 className="font-display font-semibold text-4xl text-gradient tracking-tight sm:text-5xl lg:text-6xl">
                         Selected work
                     </h2>
                 </SplitReveal>
@@ -47,7 +47,7 @@ export default function Projects() {
                 <div className="mt-14 flex justify-center">
                     <Link
                         href="/projects"
-                        className="group inline-flex items-center gap-2 text-sm font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:text-accent"
+                        className="group inline-flex items-center gap-2 font-medium text-paper text-sm uppercase tracking-[0.16em] transition-colors hover:text-accent"
                     >
                         View all projects
                         <IconArrowRight

@@ -1,7 +1,7 @@
 "use client";
 
-import Image from "next/image";
 import { IconArrowDownRight } from "@tabler/icons-react";
+import Image from "next/image";
 import PillButton from "../sub/PillButton";
 import Reveal from "../sub/Reveal";
 import RotatingText from "../sub/RotatingText";
@@ -14,7 +14,7 @@ const Hero = () => {
                 <div className="order-2 lg:order-1">
                     {/* Availability signal for recruiters scanning the fold */}
                     <Reveal y={-12}>
-                        <span className="font-mono mb-6 inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/[0.08] px-4 py-1.5 text-[11px] uppercase tracking-[0.18em] text-muted">
+                        <span className="mb-6 inline-flex items-center gap-2.5 rounded-full border border-accent/30 bg-accent/[0.08] px-4 py-1.5 font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                             <span className="relative flex h-1.5 w-1.5">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
                                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
@@ -23,9 +23,11 @@ const Hero = () => {
                         </span>
                     </Reveal>
                     <Reveal y={-12}>
-                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                        <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
-                            <span className="shimmer-text">AI Engineer · TCS</span>
+                            <span className="shimmer-text">
+                                AI Engineer · TCS
+                            </span>
                         </span>
                     </Reveal>
 
@@ -34,7 +36,7 @@ const Hero = () => {
                         instead of the masked word-reveal, so LCP isn't blocked
                         on JS. Kinetic SplitReveal stays on below-the-fold heads. */}
                     <Reveal y={20} fade={false}>
-                        <h1 className="font-display mt-6 text-balance text-5xl font-semibold leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
+                        <h1 className="mt-6 text-balance font-display font-semibold text-5xl leading-[1.04] tracking-tight sm:text-6xl lg:text-7xl">
                             Engineering AI
                             <br className="hidden sm:block" /> products,{" "}
                             <span className="text-accent">end to end.</span>
@@ -42,7 +44,7 @@ const Hero = () => {
                     </Reveal>
 
                     <Reveal delay={0.22} y={16}>
-                        <p className="mt-5 font-mono text-sm uppercase tracking-[0.2em] text-muted">
+                        <p className="mt-5 font-mono text-muted text-sm uppercase tracking-[0.2em]">
                             Building{" "}
                             <RotatingText
                                 words={[
@@ -57,10 +59,10 @@ const Hero = () => {
                     </Reveal>
 
                     <Reveal delay={0.28} y={20}>
-                        <p className="mt-5 max-w-[46ch] text-base leading-relaxed text-muted sm:text-lg">
+                        <p className="mt-5 max-w-[46ch] text-base text-muted leading-relaxed sm:text-lg">
                             Gen AI developer at TCS. I design the agentic
-                            backend, the interface users touch, and everything in
-                            between, then ship it to production.
+                            backend, the interface users touch, and everything
+                            in between, then ship it to production.
                         </p>
                     </Reveal>
 
@@ -75,7 +77,6 @@ const Hero = () => {
                             </PillButton>
                         </div>
                     </Reveal>
-
                 </div>
 
                 {/* Right: cutout floating in front of a glowing glass disc */}

@@ -1,5 +1,3 @@
-import type { Metadata } from "next";
-import Image from "next/image";
 import {
     IconArrowUpRight,
     IconAward,
@@ -11,38 +9,39 @@ import {
     IconRobot,
     IconSchool,
 } from "@tabler/icons-react";
+import type { Metadata } from "next";
+import Image from "next/image";
 import GithubStats from "@/components/main/GithubStats";
 import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
 import { SkillIcon } from "@/components/sub/SkillIcon";
 import SplitReveal from "@/components/sub/SplitReveal";
-import { getGithubContributions, getGithubStats } from "@/lib/github";
 import { skillGroups } from "@/data/skills";
+import { getGithubContributions, getGithubStats } from "@/lib/github";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "About",
     description:
         "AI Engineer at TCS in Bengaluru. Building agentic workflows, RAG chatbots, and LLM-powered enterprise applications that ship to production.",
-};
+    path: "/about",
+});
 
 const focusItems = [
     {
         icon: IconRobot,
         label: "Gen AI",
-        detail:
-            "Multi-agent systems and retrieval pipelines that stay reliable under real traffic: evaluations, guardrails, and graceful failure, not just happy-path demos.",
+        detail: "Multi-agent systems and retrieval pipelines that stay reliable under real traffic: evaluations, guardrails, and graceful failure, not just happy-path demos.",
     },
     {
         icon: IconCode,
         label: "Full-stack",
-        detail:
-            "Owning the whole path: typed FastAPI and Node services, React and Next.js front ends, and the contracts that hold them together.",
+        detail: "Owning the whole path: typed FastAPI and Node services, React and Next.js front ends, and the contracts that hold them together.",
     },
     {
         icon: IconCloudUpload,
         label: "Delivery",
-        detail:
-            "Containerised, observable, reproducible: Docker and Kubernetes on AWS with infra as code, so a model becomes a product that stays up.",
+        detail: "Containerised, observable, reproducible: Docker and Kubernetes on AWS with infra as code, so a model becomes a product that stays up.",
     },
 ] as const;
 
@@ -54,8 +53,7 @@ const journey = [
         period: "Apr 2025 — Present",
         title: "Artificial Intelligence Engineer",
         org: "TCS · Bengaluru",
-        detail:
-            "Building enterprise Generative AI applications and internal platforms: RAG chatbots and knowledge assistants that give employees reliable answers from enterprise data, AI-powered automation that streamlines SDLC workflows, and end-to-end GenAI delivery from proof-of-concept to production — on React, Python, PostgreSQL, Docker, and GitHub Actions.",
+        detail: "Building enterprise Generative AI applications and internal platforms: RAG chatbots and knowledge assistants that give employees reliable answers from enterprise data, AI-powered automation that streamlines SDLC workflows, and end-to-end GenAI delivery from proof-of-concept to production — on React, Python, PostgreSQL, Docker, and GitHub Actions.",
         accent: "#22d3ee", // cyan
         icon: IconBriefcase,
         current: true,
@@ -64,8 +62,7 @@ const journey = [
         period: "Jan 2025 — Apr 2025",
         title: "System Engineer",
         org: "TCS · Bengaluru",
-        detail:
-            "Onboarded into TCS and moved into the AI engineering track within four months by shipping AI work end to end on my own stack.",
+        detail: "Onboarded into TCS and moved into the AI engineering track within four months by shipping AI work end to end on my own stack.",
         accent: "#a78bfa", // violet
         icon: IconBriefcase,
         current: false,
@@ -74,8 +71,7 @@ const journey = [
         period: "2022 — 2024",
         title: "Full-stack Developer",
         org: "Freelance & open source",
-        detail:
-            "Shipped storefronts, social apps, and internal tools on Next.js and MongoDB — a Stripe-backed ecommerce store from catalogue to completed order, and a social platform with auth, feeds, and a responsive interface. The foundations I now use for AI products.",
+        detail: "Shipped storefronts, social apps, and internal tools on Next.js and MongoDB — a Stripe-backed ecommerce store from catalogue to completed order, and a social platform with auth, feeds, and a responsive interface. The foundations I now use for AI products.",
         accent: "#34d399", // emerald
         icon: IconBriefcase,
         current: false,
@@ -84,8 +80,7 @@ const journey = [
         period: "Mar 2023 — Apr 2023",
         title: "Summer Intern",
         org: "Bihar State Power Transmission Co. Ltd. · Naugachhia",
-        detail:
-            "Worked on grid equipment and daily grid operations, and the communication flow between the grid and the Load Dispatch Center.",
+        detail: "Worked on grid equipment and daily grid operations, and the communication flow between the grid and the Load Dispatch Center.",
         accent: "#fbbf24", // amber
         icon: IconCloudUpload,
         current: false,
@@ -94,8 +89,7 @@ const journey = [
         period: "2021 — 2024",
         title: "B.Tech, Electrical Engineering",
         org: "Bhagalpur College of Engineering",
-        detail:
-            "The degree that started the self-taught software path: from React and Node.js into Python and Go, then into the GenAI stack. Final-year work on clinical risk prediction.",
+        detail: "The degree that started the self-taught software path: from React and Node.js into Python and Go, then into the GenAI stack. Final-year work on clinical risk prediction.",
         accent: "#fb7185", // rose
         icon: IconSchool,
         current: false,
@@ -169,29 +163,30 @@ export default async function AboutPage() {
     return (
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
             {/* ─── SECTION 1 · INTRO ─────────────────────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
-                <div className="grid gap-16 lg:grid-cols-[0.85fr_1fr] lg:gap-12 xl:gap-20 items-center">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
+                <div className="grid items-center gap-16 lg:grid-cols-[0.85fr_1fr] lg:gap-12 xl:gap-20">
                     {/* Text column (right on desktop) */}
                     <div className="flex flex-col gap-8 lg:order-2">
                         {/* Eyebrow - counts as 1 of max 2 */}
-                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                        <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
                             About
                         </span>
 
                         {/* Hero headline via SplitReveal */}
                         <SplitReveal>
-                            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl font-semibold tracking-tight text-paper leading-[1.08]">
+                            <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
                                 I build AI that makes it to{" "}
-                                <span className="text-accent">
-                                    production.
-                                </span>
+                                <span className="text-accent">production.</span>
                             </h1>
                         </SplitReveal>
 
                         {/* Bio */}
-                        <Reveal delay={0.1} className="flex flex-col gap-5 max-w-[580px]">
-                            <p className="text-base leading-relaxed text-muted">
+                        <Reveal
+                            delay={0.1}
+                            className="flex max-w-[580px] flex-col gap-5"
+                        >
+                            <p className="text-base text-muted leading-relaxed">
                                 Gen AI Developer at TCS. I design and ship
                                 end-to-end AI products, from the agentic backend
                                 to the interface users actually touch. My work
@@ -199,7 +194,7 @@ export default async function AboutPage() {
                                 and multi-model orchestration, with full
                                 ownership of deployment on the other end.
                             </p>
-                            <p className="text-base leading-relaxed text-muted">
+                            <p className="text-base text-muted leading-relaxed">
                                 I care about one thing: building AI systems that
                                 are reliable in the real world. Not demos, not
                                 prototypes sitting in a notebook. Shipped
@@ -264,14 +259,14 @@ export default async function AboutPage() {
             </section>
 
             {/* ─── SECTION 2 · FOCUS (editorial label / description rows) ────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
                 <Reveal className="mb-10 md:mb-12">
-                    <h2 className="text-gradient font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
                         What I do
                     </h2>
                 </Reveal>
 
-                <div className="divide-y divide-line border-y border-line">
+                <div className="divide-y divide-line border-line border-y">
                     {focusItems.map(({ icon: Icon, label, detail }, i) => (
                         <Reveal key={label} delay={i * 0.06}>
                             <div className="group grid items-start gap-3 py-7 md:grid-cols-[260px_1fr] md:gap-12 md:py-8">
@@ -281,11 +276,11 @@ export default async function AboutPage() {
                                         stroke={1.6}
                                         className="shrink-0 text-accent"
                                     />
-                                    <h3 className="font-display text-xl font-medium tracking-tight text-paper">
+                                    <h3 className="font-display font-medium text-paper text-xl tracking-tight">
                                         {label}
                                     </h3>
                                 </div>
-                                <p className="max-w-2xl text-base leading-relaxed text-muted transition-colors duration-300 group-hover:text-paper/90">
+                                <p className="max-w-2xl text-base text-muted leading-relaxed transition-colors duration-300 group-hover:text-paper/90">
                                     {detail}
                                 </p>
                             </div>
@@ -295,14 +290,14 @@ export default async function AboutPage() {
             </section>
 
             {/* ─── SECTION 3 · STACK (no eyebrow) ───────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
                 <Reveal className="mb-12">
-                    <h2 className="text-gradient font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
                         The stack
                     </h2>
                 </Reveal>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-px bg-line rounded-[24px] overflow-hidden border border-line">
+                <div className="grid grid-cols-1 gap-px overflow-hidden rounded-[24px] border border-line bg-line md:grid-cols-2">
                     {skillGroups.map((group, i) => {
                         const isPrimary = i === 0;
                         return (
@@ -311,7 +306,7 @@ export default async function AboutPage() {
                                 delay={i * 0.07}
                                 className={isPrimary ? "md:col-span-2" : ""}
                             >
-                                <div className="relative bg-surface/70 backdrop-blur-xl p-8 h-full flex flex-col gap-5">
+                                <div className="relative flex h-full flex-col gap-5 bg-surface/70 p-8 backdrop-blur-xl">
                                     {isPrimary && (
                                         <div
                                             aria-hidden
@@ -325,15 +320,15 @@ export default async function AboutPage() {
                                     <div className="relative flex flex-col gap-5">
                                         <div className="flex flex-col gap-1.5">
                                             {isPrimary && (
-                                                <span className="font-mono mb-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[10.5px] uppercase tracking-[0.18em] text-accent">
+                                                <span className="mb-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[10.5px] text-accent uppercase tracking-[0.18em]">
                                                     <span className="h-1.5 w-1.5 rounded-full bg-accent" />
                                                     Primary focus
                                                 </span>
                                             )}
-                                            <h3 className="font-display text-lg font-medium text-paper">
+                                            <h3 className="font-display font-medium text-lg text-paper">
                                                 {group.title}
                                             </h3>
-                                            <p className="text-sm text-muted">
+                                            <p className="text-muted text-sm">
                                                 {group.blurb}
                                             </p>
                                         </div>
@@ -341,7 +336,7 @@ export default async function AboutPage() {
                                             {group.skills.map((skill) => (
                                                 <span
                                                     key={skill.name}
-                                                    className="font-mono inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 text-xs text-muted"
+                                                    className="inline-flex items-center gap-1.5 rounded-md border border-line px-2.5 py-1 font-mono text-muted text-xs"
                                                 >
                                                     <SkillIcon
                                                         skill={skill}
@@ -368,9 +363,9 @@ export default async function AboutPage() {
             ) : null}
 
             {/* ─── SECTION 4 · JOURNEY (center-stem timeline, colored branches) ── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
                 <Reveal className="mb-14 md:mb-20">
-                    <h2 className="text-gradient font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
                         How I got here
                     </h2>
                 </Reveal>
@@ -394,7 +389,7 @@ export default async function AboutPage() {
                                 <li className="relative pb-12 last:pb-0">
                                     {/* Node on the stem: a coloured glyph for this chapter */}
                                     <span
-                                        className="absolute left-5 top-0 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
+                                        className="absolute top-0 left-5 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
                                         style={{
                                             borderColor: it.accent,
                                             boxShadow: "0 0 0 4px var(--ink)",
@@ -404,7 +399,9 @@ export default async function AboutPage() {
                                             <span
                                                 aria-hidden
                                                 className="absolute inset-0 inline-flex animate-ping rounded-full opacity-40"
-                                                style={{ backgroundColor: it.accent }}
+                                                style={{
+                                                    backgroundColor: it.accent,
+                                                }}
                                             />
                                         ) : null}
                                         <Icon
@@ -419,7 +416,7 @@ export default async function AboutPage() {
                                     <span
                                         aria-hidden
                                         className={
-                                            "absolute top-4 hidden h-[2px] w-8 md:block " +
+                                            "absolute top-4 hidden h-[2px] w-8 md:block" +
                                             (right ? "left-1/2" : "right-1/2")
                                         }
                                         style={{
@@ -430,10 +427,10 @@ export default async function AboutPage() {
                                     {/* Card, branching to one side on desktop */}
                                     <div
                                         className={
-                                            "group ml-12 md:w-[calc(50%-2.5rem)] " +
+                                            "group ml-12 md:w-[calc(50%-2.5rem)]" +
                                             (right
                                                 ? "md:ml-auto"
-                                                : "md:ml-0 md:mr-auto md:text-right")
+                                                : "md:mr-auto md:ml-0 md:text-right")
                                         }
                                     >
                                         <div
@@ -448,13 +445,13 @@ export default async function AboutPage() {
                                             >
                                                 {it.period}
                                             </span>
-                                            <h3 className="font-display mt-2 text-xl font-semibold tracking-tight text-paper">
+                                            <h3 className="mt-2 font-display font-semibold text-paper text-xl tracking-tight">
                                                 {it.title}
                                             </h3>
-                                            <p className="mt-0.5 text-sm font-medium text-paper/80">
+                                            <p className="mt-0.5 font-medium text-paper/80 text-sm">
                                                 {it.org}
                                             </p>
-                                            <p className="mt-2 text-sm leading-relaxed text-muted">
+                                            <p className="mt-2 text-muted text-sm leading-relaxed">
                                                 {it.detail}
                                             </p>
                                         </div>
@@ -467,9 +464,9 @@ export default async function AboutPage() {
             </section>
 
             {/* ─── SECTION · CERTIFICATIONS & ACHIEVEMENTS ──────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-24 md:pb-32">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
                 <Reveal className="mb-10 md:mb-12">
-                    <h2 className="text-gradient font-display text-3xl sm:text-4xl font-semibold tracking-tight">
+                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
                         Certifications & achievements
                     </h2>
                 </Reveal>
@@ -492,10 +489,10 @@ export default async function AboutPage() {
                                     />
                                 </span>
                                 <div className="min-w-0">
-                                    <h3 className="font-display text-sm font-semibold leading-snug text-paper">
+                                    <h3 className="font-display font-semibold text-paper text-sm leading-snug">
                                         {c.name}
                                     </h3>
-                                    <p className="mt-0.5 text-xs text-muted">
+                                    <p className="mt-0.5 text-muted text-xs">
                                         {c.issuer}
                                         {c.year ? ` · ${c.year}` : ""}
                                     </p>
@@ -504,7 +501,7 @@ export default async function AboutPage() {
                                             {c.skills.map((skill) => (
                                                 <span
                                                     key={skill}
-                                                    className="font-mono rounded border border-line px-1.5 py-0.5 text-[10px] text-muted"
+                                                    className="rounded border border-line px-1.5 py-0.5 font-mono text-[10px] text-muted"
                                                 >
                                                     {skill}
                                                 </span>
@@ -512,12 +509,12 @@ export default async function AboutPage() {
                                         </div>
                                     ) : null}
                                     {c.credentialId ? (
-                                        <p className="font-mono mt-2 text-[10px] tracking-[0.08em] text-muted/70">
+                                        <p className="mt-2 font-mono text-[10px] text-muted/70 tracking-[0.08em]">
                                             ID {c.credentialId}
                                         </p>
                                     ) : null}
                                     {c.url ? (
-                                        <span className="font-mono mt-2 inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.14em] text-accent">
+                                        <span className="mt-2 inline-flex items-center gap-1 font-mono text-[11px] text-accent uppercase tracking-[0.14em]">
                                             Verify
                                             <IconArrowUpRight
                                                 size={12}
@@ -554,10 +551,10 @@ export default async function AboutPage() {
             </section>
 
             {/* ─── SECTION 5 · CTA BAND ──────────────────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pb-32 md:pb-40">
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-32 md:px-10 md:pb-40">
                 <Reveal>
-                    <div className="rounded-[24px] bg-surface/70 backdrop-blur-xl border border-line px-8 py-16 md:px-16 md:py-20 flex flex-col items-center gap-8 text-center">
-                        <h2 className="text-gradient font-display text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-tight max-w-2xl">
+                    <div className="flex flex-col items-center gap-8 rounded-[24px] border border-line bg-surface/70 px-8 py-16 text-center backdrop-blur-xl md:px-16 md:py-20">
+                        <h2 className="max-w-2xl font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl lg:text-5xl">
                             Have an AI product to build?
                         </h2>
                         <PillButton href="/contact">Get in touch</PillButton>

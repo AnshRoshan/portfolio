@@ -54,7 +54,7 @@ function ScrambleLink({
     const textRef = useRef<HTMLSpanElement>(null);
     const hovering = useRef(false);
     const leaveTimer = useRef<ReturnType<typeof setTimeout> | undefined>(
-        undefined,
+        undefined
     );
 
     function decode() {
@@ -90,17 +90,15 @@ function ScrambleLink({
             onMouseLeave={onLeave}
             onFocus={decode}
             className={
-                "group relative rounded-md px-2 py-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink " +
-                (active
-                    ? "text-accent"
-                    : "text-muted hover:text-paper")
+                "group relative rounded-md px-2 py-2 font-mono text-xs uppercase tracking-[0.2em] transition-colors duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink" +
+                (active ? "text-accent" : "text-muted hover:text-paper")
             }
         >
             <span ref={textRef}>{name}</span>
             <span
                 aria-hidden
                 className={
-                    "absolute bottom-1 left-2 right-2 h-px origin-left bg-accent transition-transform duration-300 ease-out " +
+                    "absolute right-2 bottom-1 left-2 h-px origin-left bg-accent transition-transform duration-300 ease-out" +
                     (active
                         ? "scale-x-100"
                         : "scale-x-0 group-hover:scale-x-100")

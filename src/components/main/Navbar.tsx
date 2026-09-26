@@ -11,15 +11,23 @@ import Link from "next/link";
 import { useState } from "react";
 import { siteConfig } from "@/config/site";
 import MagneticSocial from "../sub/MagneticSocial";
-import { ThemeToggle } from "./ThemeToggle";
 import { MobileNav } from "./MobileNav";
 import NavItems from "./NavItems";
+import { ThemeToggle } from "./ThemeToggle";
 
 const socials = [
     { name: "GitHub", href: siteConfig.links.github, icon: IconBrandGithub },
-    { name: "LinkedIn", href: siteConfig.links.linkedin, icon: IconBrandLinkedin },
+    {
+        name: "LinkedIn",
+        href: siteConfig.links.linkedin,
+        icon: IconBrandLinkedin,
+    },
     { name: "X (Twitter)", href: siteConfig.links.twitter, icon: IconBrandX },
-    { name: "Instagram", href: siteConfig.links.instagram, icon: IconBrandInstagram },
+    {
+        name: "Instagram",
+        href: siteConfig.links.instagram,
+        icon: IconBrandInstagram,
+    },
 ];
 
 /**
@@ -40,7 +48,7 @@ const Navbar = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
             className={
-                "sticky top-0 z-50 w-full border-b transition-colors duration-300 " +
+                "sticky top-0 z-50 w-full border-b transition-colors duration-300" +
                 (scrolled
                     ? "border-line bg-ink/60 backdrop-blur-xl"
                     : "border-transparent")
@@ -53,12 +61,12 @@ const Navbar = () => {
                     aria-label="Ansh Roshan, home"
                     className="group inline-flex items-center gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
                 >
-                    <span className="font-mono text-sm font-medium tracking-tight text-paper transition-colors group-hover:text-accent">
+                    <span className="font-medium font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
                         ansh roshan
                     </span>
                     <span
                         aria-hidden
-                        className="caret-blink ml-0.5 inline-block h-[15px] w-[7px] translate-y-px bg-accent"
+                        className="ml-0.5 inline-block h-[15px] w-[7px] translate-y-px bg-accent caret-blink"
                     />
                 </Link>
 

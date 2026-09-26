@@ -1,8 +1,6 @@
 "use client";
 
 import { useGSAP } from "@gsap/react";
-import { gsap } from "gsap";
-import { useRef } from "react";
 import {
     IconApi,
     IconBrain,
@@ -17,6 +15,8 @@ import {
     IconSparkles,
     IconVectorBezier2,
 } from "@tabler/icons-react";
+import { gsap } from "gsap";
+import { useRef } from "react";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
 import { allSkills, type Skill, type SkillIconKey } from "@/data/skills";
@@ -46,22 +46,22 @@ function Chip({ item }: { item: Skill }) {
     const IconCmp = item.icon ? ICON_MAP[item.icon] : null;
     return (
         <div className="group shrink-0">
-        <div className="liquid-glass flex min-w-max cursor-default items-center gap-2.5 rounded-full px-5 py-3 transition-transform duration-200 group-hover:-translate-y-1">
-            {item.img ? (
-                <img
-                    src={item.img}
-                    alt=""
-                    loading="lazy"
-                    style={{ height: 22, width: "auto" }}
-                    className="object-contain"
-                />
-            ) : IconCmp ? (
-                <IconCmp size={18} stroke={1.6} className="text-accent" />
-            ) : null}
-            <span className="font-mono whitespace-nowrap text-xs text-paper transition-colors group-hover:text-accent">
-                {item.name}
-            </span>
-        </div>
+            <div className="liquid-glass flex min-w-max cursor-default items-center gap-2.5 rounded-full px-5 py-3 transition-transform duration-200 group-hover:-translate-y-1">
+                {item.img ? (
+                    <img
+                        src={item.img}
+                        alt=""
+                        loading="lazy"
+                        style={{ height: 22, width: "auto" }}
+                        className="object-contain"
+                    />
+                ) : IconCmp ? (
+                    <IconCmp size={18} stroke={1.6} className="text-accent" />
+                ) : null}
+                <span className="whitespace-nowrap font-mono text-paper text-xs transition-colors group-hover:text-accent">
+                    {item.name}
+                </span>
+            </div>
         </div>
     );
 }
@@ -92,10 +92,10 @@ function MarqueeRow({
             tween.current = gsap.fromTo(
                 el,
                 { xPercent: from },
-                { xPercent: to, ease: "none", duration, repeat: -1 },
+                { xPercent: to, ease: "none", duration, repeat: -1 }
             );
         },
-        { scope: trackRef },
+        { scope: trackRef }
     );
 
     return (
@@ -118,7 +118,7 @@ export default function Marquee() {
     return (
         <section className="relative mx-auto w-full max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
             <SplitReveal>
-                <h2 className="text-gradient font-display text-3xl font-semibold tracking-tight sm:text-4xl lg:text-5xl">
+                <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl lg:text-5xl">
                     The stack I build with
                 </h2>
             </SplitReveal>

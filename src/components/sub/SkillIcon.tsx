@@ -33,7 +33,13 @@ const ICON_MAP: Record<SkillIconKey, typeof IconSparkles> = {
  * Renders a skill's logo (`img`) or, when none exists, a mono mint icon from
  * `icon`. Shared by the Marquee chips and the About stack so both stay in sync.
  */
-export function SkillIcon({ skill, size = 16 }: { skill: Skill; size?: number }) {
+export function SkillIcon({
+    skill,
+    size = 16,
+}: {
+    skill: Skill;
+    size?: number;
+}) {
     if (skill.img) {
         return (
             <img

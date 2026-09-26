@@ -5,13 +5,18 @@ import {
     IconMail,
 } from "@tabler/icons-react";
 
+import type { Metadata } from "next";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
 import { siteConfig } from "@/config/site";
+import { pageMetadata } from "@/lib/seo";
 
-export const metadata = {
+export const metadata: Metadata = pageMetadata({
     title: "Contact",
-};
+    description:
+        "Get in touch with Ansh Roshan, AI Engineer building RAG pipelines, agentic systems, and full-stack products. Open to collaborations and conversations.",
+    path: "/contact",
+});
 
 const EMAIL = "ianshroshan@gmail.com";
 
@@ -21,31 +26,31 @@ const inputClasses =
 export default function ContactPage() {
     return (
         <section className="relative min-h-[100dvh] bg-transparent">
-            <div className="relative mx-auto w-full max-w-[1400px] px-6 md:px-10 pt-12 md:pt-16 pb-28">
+            <div className="relative mx-auto w-full max-w-[1400px] px-6 pt-12 pb-28 md:px-10 md:pt-16">
                 {/* Statement header */}
                 <div className="flex max-w-3xl flex-col gap-7">
                     <Reveal y={16}>
-                        <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                        <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
                             Contact
                         </span>
                     </Reveal>
                     <SplitReveal delay={0.05}>
-                        <h1 className="text-gradient font-display text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+                        <h1 className="font-display font-semibold text-4xl text-gradient leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
                             Let&rsquo;s build something that holds up in
                             production.
                         </h1>
                     </SplitReveal>
                     <Reveal y={20} delay={0.1}>
-                        <p className="max-w-[52ch] text-base leading-relaxed text-muted">
+                        <p className="max-w-[52ch] text-base text-muted leading-relaxed">
                             Agentic systems, RAG pipelines, AI-powered internal
-                            tools, or full products around them — if it needs
-                            to survive real traffic, I&rsquo;m interested.
-                            Email is the fastest way to reach me.
+                            tools, or full products around them — if it needs to
+                            survive real traffic, I&rsquo;m interested. Email is
+                            the fastest way to reach me.
                         </p>
                     </Reveal>
                     <Reveal y={16} delay={0.13}>
-                        <span className="inline-flex w-fit items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-accent">
+                        <span className="inline-flex w-fit items-center gap-2.5 rounded-full border border-accent/30 bg-accent/10 px-3.5 py-1.5 font-mono text-[11px] text-accent uppercase tracking-[0.18em]">
                             <span className="relative flex h-2 w-2">
                                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-accent opacity-60" />
                                 <span className="relative inline-flex h-2 w-2 rounded-full bg-accent" />
@@ -68,17 +73,17 @@ export default function ContactPage() {
                                     <IconMail size={19} strokeWidth={1.5} />
                                 </span>
                                 <span className="min-w-0 flex-1">
-                                    <span className="font-mono block text-[10px] uppercase tracking-[0.22em] text-muted">
+                                    <span className="block font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                         Email — fastest
                                     </span>
-                                    <span className="mt-0.5 block truncate font-mono text-sm tracking-wide text-paper transition-colors group-hover:text-accent">
+                                    <span className="mt-0.5 block truncate font-mono text-paper text-sm tracking-wide transition-colors group-hover:text-accent">
                                         {EMAIL}
                                     </span>
                                 </span>
                                 <IconArrowUpRight
                                     size={16}
                                     strokeWidth={1.5}
-                                    className="shrink-0 text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                                    className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                                 />
                             </a>
                         </Reveal>
@@ -92,10 +97,10 @@ export default function ContactPage() {
                                         strokeWidth={1.5}
                                         className="text-accent"
                                     />
-                                    <p className="font-mono mt-3 text-[10px] uppercase tracking-[0.22em] text-muted">
+                                    <p className="mt-3 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                         Based in
                                     </p>
-                                    <p className="mt-1 text-sm text-paper">
+                                    <p className="mt-1 text-paper text-sm">
                                         Bengaluru, India
                                     </p>
                                 </div>
@@ -105,10 +110,10 @@ export default function ContactPage() {
                                         strokeWidth={1.5}
                                         className="text-accent"
                                     />
-                                    <p className="font-mono mt-3 text-[10px] uppercase tracking-[0.22em] text-muted">
+                                    <p className="mt-3 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                         Replies in
                                     </p>
-                                    <p className="mt-1 text-sm text-paper">
+                                    <p className="mt-1 text-paper text-sm">
                                         ~24 hours
                                     </p>
                                 </div>
@@ -118,7 +123,7 @@ export default function ContactPage() {
                         {/* Socials */}
                         <Reveal y={20} delay={0.15}>
                             <div className="rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-xl">
-                                <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-muted">
+                                <p className="font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                     Elsewhere
                                 </p>
                                 <div className="mt-3 flex flex-col">
@@ -144,20 +149,20 @@ export default function ContactPage() {
                                             href={href}
                                             target="_blank"
                                             rel="noreferrer"
-                                            className="group flex items-center justify-between gap-4 border-t border-line py-3 first:border-t-0 first:pt-0 last:pb-0"
+                                            className="group flex items-center justify-between gap-4 border-line border-t py-3 first:border-t-0 first:pt-0 last:pb-0"
                                         >
                                             <span>
-                                                <span className="block text-sm font-medium text-paper transition-colors group-hover:text-accent">
+                                                <span className="block font-medium text-paper text-sm transition-colors group-hover:text-accent">
                                                     {label}
                                                 </span>
-                                                <span className="block text-xs text-muted">
+                                                <span className="block text-muted text-xs">
                                                     {sub}
                                                 </span>
                                             </span>
                                             <IconArrowUpRight
                                                 size={15}
                                                 strokeWidth={1.5}
-                                                className="shrink-0 text-muted transition-all duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-accent"
+                                                className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
                                             />
                                         </a>
                                     ))}
@@ -179,10 +184,10 @@ export default function ContactPage() {
                                 }}
                             />
                             <div className="h-full rounded-[24px] border border-line bg-surface/70 p-8 backdrop-blur-xl md:p-10">
-                                <h2 className="font-display text-xl font-semibold tracking-tight text-paper">
+                                <h2 className="font-display font-semibold text-paper text-xl tracking-tight">
                                     Write me directly
                                 </h2>
-                                <p className="mt-1.5 text-sm text-muted">
+                                <p className="mt-1.5 text-muted text-sm">
                                     A couple of lines about what you&rsquo;re
                                     building is plenty.
                                 </p>
@@ -205,7 +210,7 @@ export default function ContactPage() {
                                     <div>
                                         <label
                                             htmlFor="first-name"
-                                            className="font-mono mb-2 block text-xs uppercase tracking-[0.22em] text-muted"
+                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
                                         >
                                             First name
                                         </label>
@@ -223,7 +228,7 @@ export default function ContactPage() {
                                     <div>
                                         <label
                                             htmlFor="last-name"
-                                            className="font-mono mb-2 block text-xs uppercase tracking-[0.22em] text-muted"
+                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
                                         >
                                             Last name
                                         </label>
@@ -240,7 +245,7 @@ export default function ContactPage() {
                                     <div className="sm:col-span-2">
                                         <label
                                             htmlFor="email"
-                                            className="font-mono mb-2 block text-xs uppercase tracking-[0.22em] text-muted"
+                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
                                         >
                                             Email
                                         </label>
@@ -258,7 +263,7 @@ export default function ContactPage() {
                                     <div className="sm:col-span-2">
                                         <label
                                             htmlFor="company"
-                                            className="font-mono mb-2 block text-xs uppercase tracking-[0.22em] text-muted"
+                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
                                         >
                                             Company{" "}
                                             <span className="normal-case tracking-normal opacity-60">
@@ -277,7 +282,7 @@ export default function ContactPage() {
                                     <div className="sm:col-span-2">
                                         <label
                                             htmlFor="message"
-                                            className="font-mono mb-2 block text-xs uppercase tracking-[0.22em] text-muted"
+                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
                                         >
                                             Message
                                         </label>
@@ -288,18 +293,18 @@ export default function ContactPage() {
                                             required
                                             placeholder="What are you building?"
                                             className={
-                                                inputClasses + " resize-none"
+                                                inputClasses + "resize-none"
                                             }
                                         />
                                     </div>
 
-                                    <div className="sm:col-span-2 flex flex-wrap items-center justify-between gap-4 pt-1">
-                                        <p className="font-mono text-[11px] uppercase tracking-[0.14em] text-muted">
+                                    <div className="flex flex-wrap items-center justify-between gap-4 pt-1 sm:col-span-2">
+                                        <p className="font-mono text-[11px] text-muted uppercase tracking-[0.14em]">
                                             No spam. No newsletters.
                                         </p>
                                         <button
                                             type="submit"
-                                            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 text-sm font-medium uppercase tracking-[0.12em] text-ink transition-colors hover:bg-accent-2 active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                                            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 font-medium text-ink text-sm uppercase tracking-[0.12em] transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:scale-[0.97]"
                                         >
                                             Send message
                                         </button>

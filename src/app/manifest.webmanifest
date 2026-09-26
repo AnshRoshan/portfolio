@@ -1,0 +1,20 @@
+{
+    "name": "Ansh Roshan — AI Engineer",
+    "short_name": "Ansh Roshan",
+    "description": "Portfolio of Ansh Roshan, AI Engineer building RAG pipelines, agentic systems, and full-stack products.",
+    "icons": [
+        {
+            "src": "/icon.png",
+            "sizes": "64x64",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#0a0a0b",
+    "background_color": "#0a0a0b",
+    "display": "standalone"
+}

@@ -28,14 +28,14 @@ export default function ScrollProgress() {
             });
             return () => st.kill();
         },
-        { scope: ref },
+        { scope: ref }
     );
 
     return (
         <div
             ref={ref}
             aria-hidden
-            className="pointer-events-none fixed left-0 top-0 z-[60] h-0.5 w-full bg-accent"
+            className="pointer-events-none fixed top-0 left-0 z-[60] h-0.5 w-full bg-accent"
         />
     );
 }

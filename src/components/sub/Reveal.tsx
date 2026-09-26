@@ -52,7 +52,7 @@ export default function Reveal({
                 scrollTrigger: { trigger: el, start, once: true },
             });
         },
-        { scope: ref },
+        { scope: ref }
     );
 
     return (

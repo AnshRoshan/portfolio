@@ -21,7 +21,7 @@ export default function RotatingText({
     useEffect(() => {
         const id = setInterval(
             () => setI((prev) => (prev + 1) % words.length),
-            interval,
+            interval
         );
         return () => clearInterval(id);
     }, [words.length, interval]);

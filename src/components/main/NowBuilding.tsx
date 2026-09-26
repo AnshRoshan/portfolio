@@ -1,26 +1,29 @@
 import { IconBrandGithub } from "@tabler/icons-react";
-import { buildingProjects, type ProjectStage } from "@/data/projects";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
+import { buildingProjects, type ProjectStage } from "@/data/projects";
 
 const STAGES: ProjectStage[] = ["Idea", "Prototype", "Alpha", "Beta", "Live"];
 
 function StageMeter({ stage }: { stage?: ProjectStage }) {
     const idx = stage ? STAGES.indexOf(stage) : 0;
     return (
-        <div className="flex items-center gap-3" aria-label={`Stage: ${stage ?? "Idea"}`}>
+        <div
+            className="flex items-center gap-3"
+            aria-label={`Stage: ${stage ?? "Idea"}`}
+        >
             <div className="flex gap-1" aria-hidden>
                 {STAGES.map((s, i) => (
                     <span
                         key={s}
                         className={
-                            "h-1.5 w-6 rounded-full transition-colors " +
+                            "h-1.5 w-6 rounded-full transition-colors" +
                             (i <= idx ? "bg-accent" : "bg-fill")
                         }
                     />
                 ))}
             </div>
-            <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+            <span className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                 {stage ?? "Idea"}
             </span>
         </div>
@@ -53,13 +56,13 @@ export default function NowBuilding() {
                 <div className="relative flex flex-wrap items-end justify-between gap-x-12 gap-y-6">
                     <div>
                         <Reveal y={24}>
-                            <span className="font-mono inline-flex items-center gap-2.5 text-sm uppercase tracking-[0.22em] text-muted">
+                            <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                                 <span className="h-px w-8 bg-accent" />
                                 In flight
                             </span>
                         </Reveal>
                         <SplitReveal className="mt-5">
-                            <h2 className="text-gradient font-display text-4xl font-semibold tracking-tight sm:text-5xl">
+                            <h2 className="font-display font-semibold text-4xl text-gradient tracking-tight sm:text-5xl">
                                 Now building
                             </h2>
                         </SplitReveal>
@@ -79,7 +82,7 @@ export default function NowBuilding() {
                         <Reveal key={p.slug} delay={0.08 * i} y={28}>
                             <article className="group flex h-full flex-col rounded-2xl border border-line bg-surface/70 p-6 backdrop-blur transition-colors duration-300 hover:border-accent/40 sm:p-7">
                                 <div className="flex items-start justify-between gap-3">
-                                    <span className="font-mono rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 text-[11px] uppercase tracking-[0.14em] text-accent">
+                                    <span className="rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] text-accent uppercase tracking-[0.14em]">
                                         {p.category}
                                     </span>
                                     {p.github ? (
@@ -96,16 +99,16 @@ export default function NowBuilding() {
                                             />
                                         </a>
                                     ) : (
-                                        <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-muted">
+                                        <span className="font-mono text-[11px] text-muted uppercase tracking-[0.18em]">
                                             {p.year}
                                         </span>
                                     )}
                                 </div>
 
-                                <h3 className="font-display mt-4 text-2xl font-semibold tracking-tight text-paper transition-colors group-hover:text-accent">
+                                <h3 className="mt-4 font-display font-semibold text-2xl text-paper tracking-tight transition-colors group-hover:text-accent">
                                     {p.title}
                                 </h3>
-                                <p className="mt-2.5 max-w-[62ch] text-sm leading-relaxed text-muted sm:text-[15px]">
+                                <p className="mt-2.5 max-w-[62ch] text-muted text-sm leading-relaxed sm:text-[15px]">
                                     {p.description}
                                 </p>
 
@@ -114,13 +117,13 @@ export default function NowBuilding() {
                                         {p.tags.map((tag) => (
                                             <span
                                                 key={tag}
-                                                className="font-mono rounded-md border border-line px-2 py-0.5 text-[11px] text-muted"
+                                                className="rounded-md border border-line px-2 py-0.5 font-mono text-[11px] text-muted"
                                             >
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
-                                    <div className="mt-5 border-t border-line pt-4">
+                                    <div className="mt-5 border-line border-t pt-4">
                                         <StageMeter stage={p.stage} />
                                     </div>
                                 </div>
