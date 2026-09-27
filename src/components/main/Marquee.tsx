@@ -136,10 +136,15 @@ export default function Marquee() {
                         "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
                     WebkitMaskImage:
                         "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",
+                    perspective: "1100px",
                 }}
             >
-                <MarqueeRow items={rowA} direction="left" duration={22} />
-                <MarqueeRow items={rowB} direction="right" duration={28} />
+                <div className="[transform:rotateX(9deg)]">
+                    <MarqueeRow items={rowA} direction="left" duration={22} />
+                </div>
+                <div className="[transform:rotateX(9deg)]">
+                    <MarqueeRow items={rowB} direction="right" duration={28} />
+                </div>
             </div>
         </section>
     );

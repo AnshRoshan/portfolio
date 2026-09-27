@@ -117,7 +117,7 @@ const Footer = () => {
                             className="group inline-flex w-fit items-center gap-1"
                         >
                             <span className="font-medium font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
-                                ansh roshan
+                                Ansh Roshan
                             </span>
                             <span
                                 aria-hidden

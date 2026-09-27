@@ -5,12 +5,10 @@ import {
     IconCertificate,
     IconCloudUpload,
     IconCode,
-    IconDownload,
     IconRobot,
     IconSchool,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
-import Image from "next/image";
 import GithubStats from "@/components/main/GithubStats";
 import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
@@ -180,9 +178,9 @@ export default async function AboutPage() {
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
             {/* ─── SECTION 1 · INTRO ─────────────────────────────────────────── */}
             <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <div className="grid items-center gap-16 lg:grid-cols-[0.85fr_1fr] lg:gap-12 xl:gap-20">
-                    {/* Text column (right on desktop) */}
-                    <div className="flex flex-col gap-8 lg:order-2">
+                <div>
+                    {/* Text column: the full story, no portrait (it lives in the hero) */}
+                    <div className="flex max-w-[820px] flex-col gap-8">
                         {/* Eyebrow - counts as 1 of max 2 */}
                         <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
@@ -218,111 +216,7 @@ export default async function AboutPage() {
                                 people.
                             </p>
                         </Reveal>
-
-                        {/* CTAs */}
-                        <Reveal delay={0.2}>
-                            <div className="flex flex-wrap items-center gap-3">
-                                <PillButton href="/contact">
-                                    Get in touch
-                                </PillButton>
-                                <PillButton
-                                    href="https://drive.google.com/file/d/1TF-POXkJmb7m69R3nLEwOrxdDkywTBfc/view"
-                                    variant="ghost"
-                                    external
-                                >
-                                    Download resume{" "}
-                                    <IconDownload size={18} stroke={1.8} />
-                                </PillButton>
-                            </div>
-                        </Reveal>
                     </div>
-
-                    {/* Portrait card (left on desktop): photo on a deep panel
-                        with a location pill, name plate, and floating cert */}
-                    <Reveal
-                        x={-24}
-                        y={0}
-                        delay={0.15}
-                        className="flex justify-center lg:order-1 lg:justify-start"
-                    >
-                        <div className="relative w-full max-w-[460px] lg:max-w-none">
-                            <div className="glow-card relative overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)]">
-                                {/* Accent hairline across the top edge */}
-                                <span
-                                    aria-hidden
-                                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-                                />
-                                {/* Soft cyan light behind the subject */}
-                                <div
-                                    aria-hidden
-                                    className="absolute inset-x-0 top-0 h-[70%] bg-[radial-gradient(ellipse_60%_50%_at_50%_38%,color-mix(in_srgb,var(--accent)_13%,transparent),transparent_70%)]"
-                                />
-
-                                <Image
-                                    src="/ansh-pro.webp"
-                                    alt="Ansh Roshan"
-                                    width={520}
-                                    height={650}
-                                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 460px"
-                                    className="relative aspect-[4/5] w-full object-cover object-top"
-                                    priority
-                                />
-
-                                {/* Bottom scrim keeps the name plate legible */}
-                                <div
-                                    aria-hidden
-                                    className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink via-ink/75 to-transparent"
-                                />
-
-                                {/* Location pill */}
-                                <span className="absolute bottom-[6.5rem] left-5 inline-flex items-center gap-2 rounded-full border border-line bg-ink/70 px-3.5 py-1.5 font-mono text-[10px] text-paper uppercase tracking-[0.18em] backdrop-blur-md">
-                                    <span className="relative flex h-1.5 w-1.5">
-                                        <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent" />
-                                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-                                    </span>
-                                    Bengaluru
-                                </span>
-
-                                {/* Name plate */}
-                                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-6 pb-6">
-                                    <div>
-                                        <p className="font-display font-semibold text-2xl text-paper tracking-tight">
-                                            Ansh Roshan
-                                        </p>
-                                        <p className="mt-1.5 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
-                                            Artificial Intelligence Engineer @
-                                            TCS
-                                        </p>
-                                    </div>
-                                    <span
-                                        aria-hidden
-                                        className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-accent/30 bg-accent/10"
-                                    >
-                                        <IconRobot
-                                            size={16}
-                                            stroke={1.7}
-                                            className="text-accent"
-                                        />
-                                    </span>
-                                </div>
-                            </div>
-
-                            {/* Floating credential badge */}
-                            <div className="absolute -top-5 -right-2 rounded-2xl border border-line bg-surface/95 px-4 py-3 backdrop-blur-xl sm:-right-6">
-                                <span className="flex items-center gap-1.5 font-mono text-[9px] text-muted uppercase tracking-[0.2em]">
-                                    <IconCertificate
-                                        size={12}
-                                        stroke={2}
-                                        className="text-accent"
-                                    />
-                                    Certified
-                                </span>
-                                <p className="mt-1 font-semibold text-paper text-sm">
-                                    Claude Architect · Pro
-                                </p>
-                            </div>
-                        </div>
-                    </Reveal>
                 </div>
             </section>
 

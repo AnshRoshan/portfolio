@@ -47,7 +47,7 @@ export default function Projects() {
                 }
             />
 
-            <div className="mt-14 flex flex-col gap-6 lg:gap-8">
+            <div className="mt-12 flex flex-col gap-4 lg:gap-5">
                 {featured.map((project, i) => {
                     const reverse = i % 2 === 1;
                     return (
@@ -66,7 +66,7 @@ export default function Projects() {
                                     {/* Cover */}
                                     <div
                                         className={cn(
-                                            "relative min-h-[240px] overflow-hidden lg:min-h-[380px]",
+                                            "relative min-h-[168px] overflow-hidden lg:min-h-[248px]",
                                             reverse && "lg:order-2"
                                         )}
                                     >
@@ -93,7 +93,7 @@ export default function Projects() {
                                     {/* Body */}
                                     <div
                                         className={cn(
-                                            "flex flex-col justify-center gap-5 p-7 sm:p-9 lg:p-10",
+                                            "flex flex-col justify-center gap-4 p-6 sm:p-7 lg:p-8",
                                             reverse && "lg:order-1"
                                         )}
                                     >
@@ -107,17 +107,17 @@ export default function Projects() {
                                             </span>
                                         </div>
 
-                                        <h3 className="font-display font-semibold text-2xl text-paper leading-[1.1] tracking-tight transition-colors group-hover:text-accent sm:text-3xl lg:text-4xl">
+                                        <h3 className="font-display font-semibold text-paper text-xl leading-[1.15] tracking-tight transition-colors group-hover:text-accent sm:text-2xl lg:text-[26px]">
                                             {project.title}
                                         </h3>
 
-                                        <p className="max-w-[56ch] text-muted text-sm leading-relaxed sm:text-[15px]">
+                                        <p className="line-clamp-2 max-w-[56ch] text-muted text-sm leading-relaxed">
                                             {project.description}
                                         </p>
 
                                         <div className="flex flex-wrap gap-1.5">
                                             {project.tags
-                                                .slice(0, 5)
+                                                .slice(0, 3)
                                                 .map((t) => (
                                                     <span
                                                         key={t}
