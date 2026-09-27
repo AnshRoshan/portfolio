@@ -28,13 +28,19 @@ const COLLAPSED_COUNT = 3;
  * chapters; the rest unfold behind a "Show the full journey" button so the
  * page stays tight.
  */
-export default function Journey() {
+export default function Journey({
+    className = "max-w-6xl",
+}: {
+    /** Measure of the timeline. Wide pages pass a larger value so the column
+     *  doesn't float in the middle of a 1400px container. */
+    className?: string;
+}) {
     const [expanded, setExpanded] = useState(false);
     const visible = expanded ? journey : journey.slice(0, COLLAPSED_COUNT);
 
     return (
         <div>
-            <ol className="relative mx-auto max-w-5xl">
+            <ol className={cn("relative mx-auto", className)}>
                 {/* Central multi-colour stem (mobile-left, centered on desktop) */}
                 <span
                     aria-hidden
@@ -88,9 +94,14 @@ export default function Journey() {
                             >
                                 <Reveal delay={i * 0.06} y={24}>
                                     <article
-                                        className="group relative flex flex-col gap-3.5 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:bg-surface/90 sm:p-6"
+                                        className="group relative flex flex-col gap-3.5 rounded-2xl border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:bg-surface/90 sm:p-6"
                                         style={{
-                                            boxShadow: `0 18px 50px -28px ${it.accent}`,
+                                            /* The branch colour tints the card's
+                                               cast shadow. Mixed toward the page
+                                               ground in light mode, where an
+                                               unmixed coloured shadow reads as a
+                                               smudge rather than depth. */
+                                            boxShadow: `0 18px 50px -28px color-mix(in srgb, ${it.accent} var(--tl-glow-mix), var(--ink))`,
                                         }}
                                     >
                                         <div

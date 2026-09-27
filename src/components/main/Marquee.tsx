@@ -17,8 +17,7 @@ import {
 } from "@tabler/icons-react";
 import { gsap } from "gsap";
 import { useRef } from "react";
-import Reveal from "@/components/sub/Reveal";
-import SplitReveal from "@/components/sub/SplitReveal";
+import SectionHeading from "@/components/sections/SectionHeading";
 import { allSkills, type Skill, type SkillIconKey } from "@/data/skills";
 
 gsap.registerPlugin(useGSAP);
@@ -99,10 +98,12 @@ function MarqueeRow({
     );
 
     return (
+        // py-1 is load-bearing: the clip below hides the chip's 4px hover
+        // lift, and without headroom the hovered chip loses its top border.
         <div className="overflow-hidden">
             <div
                 ref={trackRef}
-                className="flex w-max gap-4"
+                className="flex w-max gap-4 py-1"
                 onMouseEnter={() => tween.current?.pause()}
                 onMouseLeave={() => tween.current?.play()}
             >
@@ -116,21 +117,16 @@ function MarqueeRow({
 
 export default function Marquee() {
     return (
-        <section className="relative mx-auto w-full max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
-            <SplitReveal>
-                <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl lg:text-5xl">
-                    The stack I build with
-                </h2>
-            </SplitReveal>
-            <Reveal delay={0.12} y={16}>
-                <p className="mt-3 max-w-[52ch] text-muted">
-                    Across Gen AI and the backend, frontend, and infrastructure
-                    that turn a model into a product.
-                </p>
-            </Reveal>
+        <section className="relative mx-auto w-full max-w-[1400px] px-6 pt-16 pb-12 md:px-10 md:pt-24 md:pb-16">
+            <SectionHeading
+                index="01"
+                eyebrow="Stack"
+                title="The stack I build with"
+                description="Across Gen AI and the backend, frontend, and infrastructure that turn a model into a product."
+            />
 
             <div
-                className="mt-12 flex flex-col gap-4 overflow-hidden md:mt-16"
+                className="mt-12 flex flex-col gap-2 overflow-hidden md:mt-16"
                 style={{
                     maskImage:
                         "linear-gradient(to right, transparent, black 8%, black 92%, transparent)",

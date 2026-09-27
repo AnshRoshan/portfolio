@@ -1,8 +1,9 @@
 import { IconArrowUpRight, IconMail } from "@tabler/icons-react";
 import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
+import { siteConfig } from "@/config/site";
 
-const EMAIL = "ianshroshan@gmail.com";
+const EMAIL = siteConfig.email;
 
 /**
  * Closing call-to-action band: a deep quiet panel (no grain, no grid noise),
@@ -19,7 +20,7 @@ export default function CTABand({
     return (
         <section className="relative mx-auto w-full max-w-[1400px] px-6 py-16 md:px-10 md:py-24">
             <Reveal y={30}>
-                <div className="relative overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(160deg,var(--surface)_0%,var(--ink)_70%)]">
+                <div className="relative overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(160deg,var(--surface)_0%,var(--ink)_70%)] shadow-elev-1">
                     {/* Accent hairline across the top edge */}
                     <span
                         aria-hidden

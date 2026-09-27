@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { useInViewOnce } from "@/lib/hooks";
+import { cn } from "@/lib/utils";
 
 /**
  * Number that counts up once as it scrolls into view. The rAF loop writes
@@ -11,10 +12,12 @@ export default function Counter({
     value,
     suffix = "",
     label,
+    className,
 }: {
     value: number;
     suffix?: string;
     label: string;
+    className?: string;
 }) {
     const { ref: wrapRef, inView } = useInViewOnce<HTMLDivElement>();
     const numRef = useRef<HTMLSpanElement>(null);
@@ -37,7 +40,7 @@ export default function Counter({
     }, [inView, value]);
 
     return (
-        <div ref={wrapRef} className="flex flex-col gap-1.5">
+        <div ref={wrapRef} className={cn("flex flex-col gap-1.5", className)}>
             <span className="font-display font-semibold text-3xl text-paper tabular-nums sm:text-4xl">
                 <span ref={numRef}>0</span>
                 <span className="text-accent">{suffix}</span>

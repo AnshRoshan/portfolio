@@ -67,7 +67,7 @@ export default function ProjectCard({
                     transformStyle: "preserve-3d",
                     willChange: "transform",
                 }}
-                className="glow-card relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface/80 group-hover:[--ty:-4px]"
+                className="glow-card relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/70 shadow-elev-1 backdrop-blur-xl transition-all duration-300 hover:border-accent/40 hover:bg-surface hover:shadow-elev-2 group-hover:[--ty:-4px]"
             >
                 {/* Cursor-following mint spotlight */}
                 <div
@@ -96,7 +96,7 @@ export default function ProjectCard({
                             </span>
                         </div>
                     )}
-                    <div className="absolute inset-0 bg-gradient-to-t from-ink/85 via-ink/5 to-transparent" />
+                    <div className="img-scrim absolute inset-0" />
 
                     {/* Hover action buttons */}
                     <div className="absolute top-3 right-3 z-30 flex translate-y-1 gap-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
@@ -117,15 +117,17 @@ export default function ProjectCard({
                                 target="_blank"
                                 rel="noreferrer"
                                 aria-label={`${title} on GitHub`}
-                                className="flex h-9 w-9 items-center justify-center rounded-full border border-line-2 bg-ink/70 text-paper backdrop-blur-md transition-colors hover:border-line-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
+                                className="flex h-9 w-9 items-center justify-center rounded-full border border-media-chip-line bg-media-chip text-media-chip-fg backdrop-blur-md transition-colors hover:border-accent/60 hover:bg-media-chip focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                             >
                                 <IconBrandGithub size={16} stroke={2} />
                             </a>
                         ) : null}
                     </div>
 
-                    {/* Category badge */}
-                    <span className="absolute bottom-3 left-3 z-10 rounded-full bg-ink/70 px-3 py-1 font-mono text-[10px] text-accent uppercase tracking-[0.18em] backdrop-blur-md">
+                    {/* Category badge. On-media plate, not a light pill: these
+                        covers fade to white across their bottom third, which is
+                        exactly where this badge sits. */}
+                    <span className="absolute bottom-3 left-3 z-10 rounded-full border border-media-chip-line bg-media-chip px-3 py-1 font-mono text-[10px] text-media-chip-fg uppercase tracking-[0.18em] backdrop-blur-md">
                         {category}
                     </span>
                 </div>

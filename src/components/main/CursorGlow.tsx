@@ -53,10 +53,10 @@ export default function CursorGlow() {
         <div
             ref={ref}
             aria-hidden
-            className="pointer-events-none fixed top-0 left-0 z-[5] h-[520px] w-[520px] rounded-full opacity-0 mix-blend-screen transition-opacity duration-700"
+            className="mix-blend-[var(--cursor-blend)] pointer-events-none fixed top-0 left-0 z-[5] h-[520px] w-[520px] rounded-full opacity-0 transition-opacity duration-700"
             style={{
                 background:
-                    "radial-gradient(circle, color-mix(in srgb, var(--accent) 7%, transparent), color-mix(in srgb, var(--accent-2) 4%, transparent) 42%, transparent 68%)",
+                    "radial-gradient(circle, color-mix(in srgb, var(--accent) 12%, transparent), color-mix(in srgb, var(--accent-2) 7%, transparent) 42%, transparent 68%)",
                 filter: "blur(24px)",
             }}
         />

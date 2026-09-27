@@ -20,6 +20,12 @@ export type Project = {
     tagline?: string;
     tags: string[];
     image?: string;
+    /**
+     * Vertical anchor for the homepage bento cover, which is a fixed-height
+     * letterbox far wider than the 16:9 artwork. Defaults to centre; set it so
+     * the strip falls on the subject instead of through empty space.
+     */
+    coverFocus?: string;
     live?: string;
     github?: string;
     year: string;
@@ -55,7 +61,8 @@ export const projects: Project[] = [
         description:
             "A self-built AI pull-request review agent in the spirit of CodeRabbit: a zero-dependency review engine that reads any diff, posts inline comments plus a summary, and runs as a GitHub Action or Cloudflare Worker with your own LLM key — no server required. Named for the jeweler's lens: close, careful inspection of every diff.",
         tags: ["TypeScript", "GitHub Actions", "Cloudflare Workers", "Next.js"],
-        image: "/projects/cover-loupe.jpg",
+        image: "/projects/cover-loupe.webp",
+        coverFocus: "50% 38%",
         github: "https://github.com/AnshRoshan/loupe",
         year: "2026",
         featured: true,
@@ -68,7 +75,8 @@ export const projects: Project[] = [
         description:
             "Point it at any model — API, aggregator, or local — and it runs a 5-pillar battery (capability, reliability, safety, agency, economics), recording every run, task, turn, span, and token. Compare models side-by-side in a full dashboard with CLI/TUI runners, three.js 3D data views, and portable run bundles that pool into community averages.",
         tags: ["TypeScript", "three.js", "CLI/TUI", "Evaluation"],
-        image: "/projects/cover-llm-benchmark.jpg",
+        image: "/projects/cover-llm-benchmark.webp",
+        coverFocus: "50% 26%",
         live: "https://anshroshan.github.io/llm-benchmark/",
         github: "https://github.com/AnshRoshan/llm-benchmark",
         year: "2026",
@@ -81,7 +89,8 @@ export const projects: Project[] = [
         description:
             "A hybrid agentic RAG system: it reads PDFs, Office docs, markdown, code, and web pages, builds four kinds of search indexes — BM25 vectorless, LanceDB vector, an LLM-extracted knowledge graph, and read-only text-to-SQL — and an agent decides which to chain for each question, always answering with citations. Local-first, MIT.",
         tags: ["Python", "BM25", "LanceDB", "Knowledge Graph", "Text-to-SQL"],
-        image: "/projects/cover-ragstack.jpg",
+        image: "/projects/cover-ragstack.webp",
+        coverFocus: "50% 50%",
         live: "https://anshroshan.github.io/ragstack/",
         github: "https://github.com/AnshRoshan/ragstack",
         year: "2026",
@@ -96,7 +105,8 @@ export const projects: Project[] = [
         description:
             "A cache-aware LLM router with learned quality routing: one decision engine, two runtimes (pip + npm), zero dependencies, and an HTTP /decide sidecar that slots into LiteLLM and Bifrost to pick the best model per request on cost, latency, and quality.",
         tags: ["Python", "TypeScript", "LiteLLM", "Bifrost"],
-        image: "/projects/cover-llmrouter.jpg",
+        image: "/projects/cover-llmrouter.webp",
+        coverFocus: "50% 62%",
         github: "https://github.com/AnshRoshan/llmrouter",
         year: "2026",
         featured: true,
@@ -108,7 +118,7 @@ export const projects: Project[] = [
         description:
             "Agents write code, AISDLC runs the process: harness-agnostic Agent Skills plus a zero-dependency CLI for EARS specs, evidence gates G1–G6, and hash-bound approvals.",
         tags: ["Agent Skills", "CLI", "SDLC", "EARS"],
-        image: "/projects/cover-aisdlc.jpg",
+        image: "/projects/cover-aisdlc.webp",
         live: "https://anshroshan.github.io/aisdlc/",
         github: "https://github.com/AnshRoshan/aisdlc",
         year: "2026",
@@ -120,7 +130,7 @@ export const projects: Project[] = [
         description:
             "Describe a product and seven specialist agents — Orchestrator, Architect, Database, Backend, Frontend, QA, DevOps — plan, build, verify, and ship a Next.js + PostgreSQL codebase, with human approval on the risky steps.",
         tags: ["Next.js", "PostgreSQL", "Drizzle", "Vercel AI SDK"],
-        image: "/projects/cover-forge-agentic-codegen.jpg",
+        image: "/projects/cover-forge-agentic-codegen.webp",
         github: "https://github.com/AnshRoshan/agentic-codegen",
         year: "2026",
     },
@@ -132,7 +142,8 @@ export const projects: Project[] = [
         description:
             "A private, authenticated, multi-file collaborative workspace that presents as an AI workspace on the surface — behind the login it is a real-time collaborative code editor built on Monaco and operational transforms, with a Rust + WASM backend in a single Docker image.",
         tags: ["Rust", "WASM", "Monaco", "OT", "Docker"],
-        image: "/projects/cover-cortex.jpg",
+        image: "/projects/cover-cortex.webp",
+        coverFocus: "50% 34%",
         github: "https://github.com/AnshRoshan/cortex",
         year: "2026",
         featured: true,
@@ -144,7 +155,7 @@ export const projects: Project[] = [
         description:
             "Interactive CLI that scaffolds modern React apps — Vite, TypeScript, Tailwind v4, shadcn/ui, TanStack Router, Convex/Supabase, Clerk, and the AI SDK. Run it with npm create reactor@latest.",
         tags: ["CLI", "Vite", "Tailwind v4", "shadcn/ui"],
-        image: "/projects/cover-create-reactor.jpg",
+        image: "/projects/cover-create-reactor.webp",
         live: "https://www.npmjs.com/package/create-reactor",
         github: "https://github.com/AnshRoshan/create-reactor",
         year: "2026",
@@ -156,7 +167,7 @@ export const projects: Project[] = [
         description:
             "A notes application for text sharing and conversion — write once, share anywhere, convert between formats.",
         tags: ["TypeScript", "Notes", "Vercel"],
-        image: "/projects/cover-ar-notes.jpg",
+        image: "/projects/cover-ar-notes.webp",
         live: "https://ar-note.vercel.app",
         github: "https://github.com/AnshRoshan/ar-notes",
         year: "2026",
@@ -168,7 +179,7 @@ export const projects: Project[] = [
         description:
             "A movie database with login and signup, personal watchlists, and comments — a full product from auth to UI.",
         tags: ["JavaScript", "Auth", "MovieDB"],
-        image: "/projects/cover-anshflix.jpg",
+        image: "/projects/cover-anshflix.webp",
         live: "https://anshflix.vercel.app",
         github: "https://github.com/AnshRoshan/anshflix",
         year: "2024",
@@ -180,7 +191,7 @@ export const projects: Project[] = [
         description:
             "A classification model that predicts heart-failure risk from clinical features, with data cleaning, feature engineering, and model evaluation in a reproducible notebook.",
         tags: ["Python", "scikit-learn", "Pandas"],
-        image: "/projects/heart-disease.jpg",
+        image: "/projects/heart-disease.webp",
         live: "https://colab.research.google.com/drive/1FiQ-stb81wMvrwq-94k5bpvVK8D5MS55?usp=sharing",
         github:
             "https://colab.research.google.com/drive/1FiQ-stb81wMvrwq-94k5bpvVK8D5MS55?usp=sharing",
@@ -205,7 +216,7 @@ export const projects: Project[] = [
         description:
             "A social platform with authentication, posts, and feeds, built on Next.js and MongoDB with a focus on a fast, responsive interface.",
         tags: ["Next.js", "MongoDB", "Tailwind"],
-        image: "/projects/social-app.jpg",
+        image: "/projects/social-app.webp",
         live: "https://anshmeta.netlify.app/",
         github: "https://github.com/AnshRoshan/social-app",
         year: "2024",
@@ -229,7 +240,7 @@ export const projects: Project[] = [
         description:
             "A collection of React builds spanning UI experiments and small apps, used as a sandbox for patterns and component ideas.",
         tags: ["React", "TypeScript", "Tailwind"],
-        image: "/projects/react-projects.jpeg",
+        image: "/projects/react-projects.webp",
         live: "https://anshroshan.github.io/React-Projects/",
         github: "https://github.com/AnshRoshan/React-Projects",
         year: "2023",

@@ -1,11 +1,18 @@
 import {
     IconArrowUpRight,
+    IconBrandGithub,
+    IconBrandInstagram,
+    IconBrandLinkedin,
+    IconBrandX,
     IconClock,
+    IconDownload,
     IconLocation,
     IconMail,
+    IconRss,
 } from "@tabler/icons-react";
 
 import type { Metadata } from "next";
+import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
 import { siteConfig } from "@/config/site";
@@ -18,10 +25,47 @@ export const metadata: Metadata = pageMetadata({
     path: "/contact",
 });
 
-const EMAIL = "ianshroshan@gmail.com";
+const EMAIL = siteConfig.email;
 
+/** Direct channels, in the order they answer fastest. */
+const elsewhere = [
+    {
+        label: "GitHub",
+        sub: "Code, tools, and open source",
+        href: siteConfig.links.github,
+        Icon: IconBrandGithub,
+    },
+    {
+        label: "LinkedIn",
+        sub: "The professional record",
+        href: siteConfig.links.linkedin,
+        Icon: IconBrandLinkedin,
+    },
+    {
+        label: "X / Twitter",
+        sub: "Notes and updates",
+        href: siteConfig.links.twitter,
+        Icon: IconBrandX,
+    },
+    {
+        label: "Blog",
+        sub: "Longer write-ups on what shipped",
+        href: siteConfig.links.blog,
+        Icon: IconRss,
+    },
+    {
+        label: "Instagram",
+        sub: "Occasional off-screen notes",
+        href: siteConfig.links.instagram,
+        Icon: IconBrandInstagram,
+    },
+];
+
+// Inputs sit on --surface-2, not a translucent surface: on a light card a
+// `bg-surface/60` field is the same value as the card behind it and the form
+// reads as a blank panel.
 const inputClasses =
-    "w-full rounded-xl border border-line bg-surface/60 px-4 py-3 text-paper placeholder:text-muted/60 outline-none transition focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent/40";
+    "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-paper placeholder:text-muted/70 outline-none transition focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent/40";
 
 export default function ContactPage() {
     return (
@@ -36,13 +80,13 @@ export default function ContactPage() {
                         </span>
                     </Reveal>
                     <SplitReveal delay={0.05}>
-                        <h1 className="font-display font-semibold text-4xl text-gradient leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
+                        <h1 className="font-display font-semibold text-4xl text-paper leading-[1.06] tracking-tight sm:text-5xl lg:text-6xl">
                             Let&rsquo;s build something that holds up in
                             production.
                         </h1>
                     </SplitReveal>
                     <Reveal y={20} delay={0.1}>
-                        <p className="max-w-[52ch] text-base text-muted leading-relaxed">
+                        <p className="max-w-[52ch] text-base text-muted leading-relaxed sm:text-lg">
                             Agentic systems, RAG pipelines, AI-powered internal
                             tools, or full products around them — if it needs to
                             survive real traffic, I&rsquo;m interested. Email is
@@ -60,14 +104,15 @@ export default function ContactPage() {
                     </Reveal>
                 </div>
 
-                <div className="mt-14 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
-                    {/* LEFT COLUMN — direct channels */}
-                    <div className="flex flex-col gap-4">
+                <div className="mt-14 grid items-start gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:gap-14">
+                    {/* LEFT COLUMN — direct channels. Sticky so it stays put
+                        while the (much taller) form scrolls past. */}
+                    <div className="flex flex-col gap-4 lg:sticky lg:top-28">
                         {/* Primary: email */}
                         <Reveal y={20} delay={0.05}>
                             <a
                                 href={`mailto:${EMAIL}`}
-                                className="group flex items-center gap-4 rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40"
+                                className="group flex items-center gap-4 rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
                             >
                                 <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-surface-2 text-accent">
                                     <IconMail size={19} strokeWidth={1.5} />
@@ -88,10 +133,29 @@ export default function ContactPage() {
                             </a>
                         </Reveal>
 
+                        {/* Secondary exit: the resume, for people who came to
+                            check credentials rather than start a thread. */}
+                        <Reveal y={20} delay={0.08}>
+                            <div className="flex flex-col items-stretch gap-3 rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl sm:flex-row sm:items-center">
+                                <span className="font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
+                                    Or skip the intro
+                                </span>
+                                <PillButton
+                                    href={siteConfig.links.resume}
+                                    variant="ghost"
+                                    external
+                                    className="sm:ml-auto"
+                                >
+                                    Resume
+                                    <IconDownload size={16} stroke={1.8} />
+                                </PillButton>
+                            </div>
+                        </Reveal>
+
                         {/* Context rows */}
                         <Reveal y={20} delay={0.1}>
                             <div className="grid grid-cols-2 gap-4">
-                                <div className="rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-xl">
+                                <div className="rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl">
                                     <IconLocation
                                         size={18}
                                         strokeWidth={1.5}
@@ -104,7 +168,7 @@ export default function ContactPage() {
                                         Bengaluru, India
                                     </p>
                                 </div>
-                                <div className="rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-xl">
+                                <div className="rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl">
                                     <IconClock
                                         size={18}
                                         strokeWidth={1.5}
@@ -122,50 +186,41 @@ export default function ContactPage() {
 
                         {/* Socials */}
                         <Reveal y={20} delay={0.15}>
-                            <div className="rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-xl">
+                            <div className="rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl">
                                 <p className="font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                     Elsewhere
                                 </p>
                                 <div className="mt-3 flex flex-col">
-                                    {[
-                                        {
-                                            label: "GitHub",
-                                            sub: "Code, tools, and open source",
-                                            href: siteConfig.links.github,
-                                        },
-                                        {
-                                            label: "LinkedIn",
-                                            sub: "The professional record",
-                                            href: siteConfig.links.linkedin,
-                                        },
-                                        {
-                                            label: "X / Twitter",
-                                            sub: "Notes and updates",
-                                            href: siteConfig.links.twitter,
-                                        },
-                                    ].map(({ label, sub, href }) => (
-                                        <a
-                                            key={label}
-                                            href={href}
-                                            target="_blank"
-                                            rel="noreferrer"
-                                            className="group flex items-center justify-between gap-4 border-line border-t py-3 first:border-t-0 first:pt-0 last:pb-0"
-                                        >
-                                            <span>
-                                                <span className="block font-medium text-paper text-sm transition-colors group-hover:text-accent">
-                                                    {label}
+                                    {elsewhere.map(
+                                        ({ label, sub, href, Icon }) => (
+                                            <a
+                                                key={label}
+                                                href={href}
+                                                target="_blank"
+                                                rel="noreferrer noopener"
+                                                className="group flex items-center gap-3 border-line border-t py-3 first:border-t-0 first:pt-0 last:pb-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                                            >
+                                                <Icon
+                                                    size={15}
+                                                    strokeWidth={1.7}
+                                                    className="shrink-0 text-accent"
+                                                />
+                                                <span className="min-w-0 flex-1">
+                                                    <span className="block font-medium text-paper text-sm transition-colors group-hover:text-accent">
+                                                        {label}
+                                                    </span>
+                                                    <span className="block text-muted text-xs">
+                                                        {sub}
+                                                    </span>
                                                 </span>
-                                                <span className="block text-muted text-xs">
-                                                    {sub}
-                                                </span>
-                                            </span>
-                                            <IconArrowUpRight
-                                                size={15}
-                                                strokeWidth={1.5}
-                                                className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                                            />
-                                        </a>
-                                    ))}
+                                                <IconArrowUpRight
+                                                    size={15}
+                                                    strokeWidth={1.5}
+                                                    className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                                                />
+                                            </a>
+                                        )
+                                    )}
                                 </div>
                             </div>
                         </Reveal>
@@ -173,17 +228,18 @@ export default function ContactPage() {
 
                     {/* RIGHT COLUMN — form */}
                     <Reveal y={28} delay={0.12}>
-                        <div className="relative h-full">
-                            {/* Mint glow behind the form card */}
+                        <div className="relative">
+                            {/* Accent glow behind the form card, driven by the
+                                token so it also works in the light theme. */}
                             <div
                                 aria-hidden
-                                className="pointer-events-none absolute -inset-x-4 -top-10 bottom-0 -z-10 rounded-[32px] opacity-60 blur-3xl"
+                                className="pointer-events-none absolute -inset-x-4 -top-10 bottom-0 -z-10 rounded-[1.5rem] opacity-70 blur-3xl"
                                 style={{
                                     background:
-                                        "radial-gradient(60% 50% at 70% 0%, rgba(34,211,238,0.16), transparent 70%)",
+                                        "radial-gradient(60% 50% at 70% 0%, color-mix(in srgb, var(--accent) 18%, transparent), transparent 70%)",
                                 }}
                             />
-                            <div className="h-full rounded-[24px] border border-line bg-surface/70 p-8 backdrop-blur-xl md:p-10">
+                            <div className="rounded-[1.5rem] border border-line bg-surface/70 p-6 shadow-elev-2 backdrop-blur-xl sm:p-8 md:p-10">
                                 <h2 className="font-display font-semibold text-paper text-xl tracking-tight">
                                     Write me directly
                                 </h2>
@@ -299,14 +355,19 @@ export default function ContactPage() {
                                     </div>
 
                                     <div className="flex flex-wrap items-center justify-between gap-4 pt-1 sm:col-span-2">
-                                        <p className="font-mono text-[11px] text-muted uppercase tracking-[0.14em]">
-                                            No spam. No newsletters.
+                                        <p className="max-w-[34ch] font-mono text-[11px] text-muted leading-relaxed tracking-[0.08em]">
+                                            Lands straight in my inbox. I reply
+                                            within a day, no newsletter.
                                         </p>
                                         <button
                                             type="submit"
                                             className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 font-medium text-ink text-sm uppercase tracking-[0.12em] transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:scale-[0.97]"
                                         >
                                             Send message
+                                            <IconArrowUpRight
+                                                size={16}
+                                                stroke={1.9}
+                                            />
                                         </button>
                                     </div>
                                 </form>

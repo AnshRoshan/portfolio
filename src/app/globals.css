@@ -6,23 +6,77 @@
    THEME TOKENS — semantic palette with light + dark values.
    Components use the mapped utilities (bg-ink, text-paper,
    text-muted, border-line, bg-surface, text-accent, ...).
+
+   LIGHT MODE IS NEVER PURE WHITE. A #fff ground silently kills every
+   hairline, every translucent card, and every white-background photo on
+   the site at the same time — surfaces vanish into the page and the
+   artwork looks like a rendering bug. So the light theme is a cool
+   cyan-tinted paper stack: every step is measurably different from the
+   one behind it, fills carry a trace of the brand accent rather than
+   flat grey, and elevation comes from shadow rather than from borders
+   alone.
    ============================================================ */
 :root {
-    /* light theme — cool paper, not gray */
-    --ink: #f7f8fa; /* page background */
-    --ink-rgb: 247, 248, 250;
-    --surface: #ffffff; /* cards */
-    --surface-2: #eef0f4; /* code blocks, wells */
-    --paper: #10141c; /* primary text */
-    --muted: #525a68; /* secondary text */
-    --accent: #0e7490; /* readable cyan for light ground */
-    --accent-2: #0891b2;
-    --line: rgba(16, 20, 28, 0.1);
-    --line-2: rgba(16, 20, 28, 0.2);
-    --fill: rgba(16, 20, 28, 0.045);
-    --grad-a: #1a1e28; /* metallic heading gradient (light) */
-    --grad-b: #3c4454;
-    --grad-c: #6b7484;
+    /* light theme — cool cyan paper, never #fff */
+    --ink: #e4edf3; /* page ground */
+    --ink-rgb: 228, 237, 243;
+    --surface: #f7fbfd; /* cards: lighter and cooler than the ground */
+    --surface-2: #d6e4ec; /* wells, inputs, code blocks */
+    --paper: #08111f; /* primary text */
+    --muted: #4a5a6e; /* secondary text — 5.8:1 on --ink */
+    --accent: #0a6a86; /* deep teal — 5.2:1 on --ink */
+    --accent-2: #0c87a8;
+    --line: rgba(8, 17, 31, 0.14);
+    --line-2: rgba(8, 17, 31, 0.26);
+    --fill: rgba(10, 106, 134, 0.08); /* accent-tinted, not grey */
+    --fill-2: rgba(10, 106, 134, 0.15);
+    --grad-a: #0f1a2c; /* metallic heading gradient (light) */
+    --grad-b: #36455c;
+    --grad-c: #67768c;
+
+    /* Chips that sit ON imagery — cover badges, name plates. Dark in both
+       themes on purpose: the project covers fade to white at their base
+       and the studio portrait is shot on a white sweep, so a light plate
+       disappears exactly where it needs to carry text. */
+    --media-chip: rgba(6, 12, 22, 0.74);
+    --media-chip-fg: #eef5fb;
+    --media-chip-line: rgba(255, 255, 255, 0.22);
+
+    /* How far cover imagery dissolves into the surface behind it. Light
+       needs far less than dark: these covers already carry a white base
+       fade, so a heavy scrim just bleaches the bottom third. */
+    --img-fade: 0.5;
+    --img-fade-color: var(--surface);
+
+    /* Elevation. On a tinted ground, shadow is what separates a card from
+       the page; a 14%-alpha border alone is not enough. */
+    --shadow-1:
+        0 1px 2px rgba(8, 17, 31, 0.05), 0 8px 22px -12px rgba(8, 17, 31, 0.22);
+    --shadow-2:
+        0 2px 4px rgba(8, 17, 31, 0.05), 0 20px 48px -22px rgba(8, 17, 31, 0.3);
+    --glass-shadow:
+        0 10px 34px -12px rgba(8, 17, 31, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.85);
+    --card-inset: rgba(255, 255, 255, 0.92);
+
+    /* Data-viz floor colour (heatmap level 0, unlit bar tracks). */
+    --heat-0: rgba(8, 17, 31, 0.09);
+
+    /* How much of a timeline node's own colour survives into its cast shadow.
+       Dark mode wants the full accent; on a light ground a saturated coloured
+       shadow reads as a stain, so it is mixed most of the way to the page. */
+    --tl-glow-mix: 38%;
+
+    /* The pointer glow. `screen` is invisible on a light ground, so light
+       mode multiplies instead and leaves a trace of the accent. */
+    --cursor-blend: multiply;
+
+    /* The hero electric CTA. A `bg-ink` pill is a near-white hole on light
+       paper, so light mode fills it with the accent; dark mode keeps the
+       near-black pill it was designed around. */
+    --electric-bg: #0a6a86;
+    --electric-fg: #f2fafd;
+
     /* video backdrop readability layers */
     --video-opacity: 0.5;
     --scrim-top: 0.38;
@@ -44,9 +98,27 @@
     --line: rgba(233, 237, 245, 0.08);
     --line-2: rgba(233, 237, 245, 0.14);
     --fill: rgba(233, 237, 245, 0.04);
+    --fill-2: rgba(34, 211, 238, 0.1);
     --grad-a: #f2f5fb;
     --grad-b: #b9c2d4;
     --grad-c: #7f8aa0;
+    --media-chip: rgba(7, 9, 15, 0.72);
+    --media-chip-fg: #e9edf5;
+    --media-chip-line: rgba(233, 237, 245, 0.18);
+    --img-fade: 0.85;
+    --img-fade-color: var(--ink);
+    --shadow-1:
+        0 1px 2px rgba(0, 0, 0, 0.4), 0 10px 30px -14px rgba(0, 0, 0, 0.7);
+    --shadow-2:
+        0 2px 6px rgba(0, 0, 0, 0.45), 0 24px 56px -24px rgba(0, 0, 0, 0.8);
+    --glass-shadow:
+        0 12px 40px rgba(7, 9, 15, 0.5), inset 0 1px 0 rgba(233, 237, 245, 0.09);
+    --card-inset: rgba(233, 237, 245, 0.08);
+    --heat-0: rgba(255, 255, 255, 0.06);
+    --tl-glow-mix: 100%;
+    --cursor-blend: screen;
+    --electric-bg: var(--ink);
+    --electric-fg: var(--paper);
     /* brighter cinematic video backdrop in dark mode (owner request) */
     --video-opacity: 0.82;
     --scrim-top: 0.5;
@@ -66,6 +138,13 @@
     --color-line: var(--line);
     --color-line-2: var(--line-2);
     --color-fill: var(--fill);
+    --color-fill-2: var(--fill-2);
+    --color-media-chip: var(--media-chip);
+    --color-media-chip-fg: var(--media-chip-fg);
+    --color-media-chip-line: var(--media-chip-line);
+    --color-heat-0: var(--heat-0);
+    --shadow-elev-1: var(--shadow-1);
+    --shadow-elev-2: var(--shadow-2);
 }
 
 /* Background video brightness follows the theme */
@@ -302,9 +381,7 @@ html {
     backdrop-filter: blur(14px) saturate(150%);
     -webkit-backdrop-filter: blur(14px) saturate(150%);
     border: 1px solid var(--line);
-    box-shadow:
-        inset 0 1px 0 var(--line-2),
-        0 12px 40px rgba(var(--ink-rgb), 0.25);
+    box-shadow: var(--glass-shadow);
 }
 
 .liquid-glass::before {
@@ -336,6 +413,45 @@ html {
         backdrop-filter: none;
         -webkit-backdrop-filter: none;
     }
+}
+
+/* Scrim that dissolves cover imagery into the surface it sits on. Both the
+   strength and the colour it fades toward are theme tokens, because the two
+   themes need opposite behaviour: dark wants a long near-black fade, light
+   wants a short one into the card surface (the covers already carry their own
+   white base fade, so anything heavier bleaches them). */
+.img-scrim {
+    background: linear-gradient(
+        to top,
+        var(--img-fade-color) 0%,
+        color-mix(in srgb, var(--img-fade-color) 45%, transparent) 34%,
+        transparent 64%
+    );
+    opacity: var(--img-fade);
+}
+
+/* A card edge that survives a translucent fill: one crisp inner highlight so
+   the top edge reads even where the fill is nearly the page colour. The
+   highlight is white in light mode and a faint paper lift in dark — a dark
+   inner line on a light card looks like a crack, not an edge. */
+.card-edge {
+    box-shadow:
+        var(--shadow-1),
+        inset 0 1px 0 var(--card-inset);
+}
+
+/* Hero electric CTA. Light mode cannot reuse the dark-mode `bg-ink` pill: on
+   tinted paper it becomes an empty white hole ringed by a rainbow. So the
+   fill is a token pair — accent on light, near-black on dark. The label stays
+   high-contrast against whichever fill is in play, and the periodic glare is
+   the hover affordance (a colour swap would drop below contrast in one theme
+   or the other). */
+.electric-pill {
+    background: var(--electric-bg);
+    box-shadow: var(--shadow-2);
+}
+.electric-label {
+    color: var(--electric-fg);
 }
 
 /* Cinematic aurora color field: slow-drifting blurred color blobs behind the

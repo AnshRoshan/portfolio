@@ -22,10 +22,14 @@ export default function PillButton({
     sweep?: boolean;
     className?: string;
 }) {
-    // ── Electric: jagged rainbow zigzag outline + dark pill ─────────────────
+    // ── Electric: jagged rainbow zigzag outline + a filled pill ─────────────
+    // The fill comes from the `.electric-pill` token pair, not `bg-ink`: on
+    // light paper an ink-filled pill is a near-white hole with a rainbow
+    // outline around it, which reads as a broken button. Light mode fills
+    // with the accent; dark mode keeps the near-black pill.
     if (variant === "electric") {
         const cls = cn(
-            "group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full bg-ink px-7 text-sm font-medium uppercase tracking-[0.12em] text-paper transition-transform active:scale-[0.97] hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
+            "electric-pill group relative inline-flex h-12 items-center justify-center gap-2 overflow-hidden rounded-full px-7 text-sm font-medium uppercase tracking-[0.12em] transition-transform active:scale-[0.97] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink",
             className
         );
         const inner = (
@@ -33,9 +37,9 @@ export default function PillButton({
                 <ZigzagBorder />
                 <span
                     aria-hidden
-                    className="btn-glare pointer-events-none absolute inset-y-0 left-0 z-[1] w-[45%] bg-gradient-to-r from-transparent via-white/20 to-transparent blur-md"
+                    className="btn-glare pointer-events-none absolute inset-y-0 left-0 z-[1] w-[45%] bg-gradient-to-r from-transparent via-white/25 to-transparent blur-md"
                 />
-                <span className="relative z-10 inline-flex items-center gap-2">
+                <span className="electric-label relative z-10 inline-flex items-center gap-2">
                     {children}
                 </span>
             </>

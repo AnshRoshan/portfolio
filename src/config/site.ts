@@ -5,6 +5,7 @@ export const siteConfig = {
         "AI Engineer at TCS building RAG chatbots, LLM-powered enterprise applications, and agentic systems that ship to production. Python, LangChain, LangGraph, Go, AWS, TypeScript.",
     url: "https://anshroshan.com",
     author: "Ansh Roshan",
+    email: "ianshroshan@gmail.com",
     keywords: [
         "Ansh Roshan",
         "AI Engineer",
@@ -27,6 +28,7 @@ export const siteConfig = {
         facebook: "http://www.facebook.com/anshroshan11",
         discord: "https://discord.gg/Qm9dt5ma",
         blog: "https://blog.anshroshan.com",
+        resume: "https://drive.google.com/file/d/1TF-POXkJmb7m69R3nLEwOrxdDkywTBfc/view",
     },
 };
 

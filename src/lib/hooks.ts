@@ -21,8 +21,12 @@ export function useSpotlight<T extends HTMLElement>() {
     return ref;
 }
 
-/** Subtle 3D tilt toward the pointer (max degrees), disabled for touch. */
-export function useTilt<T extends HTMLElement>(max = 4) {
+/**
+ * Subtle 3D tilt toward the pointer (max degrees), disabled for touch.
+ * `rest` is appended to every frame so a card's resting angle survives the
+ * first pointermove instead of snapping flat when the pointer touches it.
+ */
+export function useTilt<T extends HTMLElement>(max = 4, rest = "") {
     const ref = useRef<T | null>(null);
 
     useEffect(() => {
@@ -34,19 +38,19 @@ export function useTilt<T extends HTMLElement>(max = 4) {
             const rect = el.getBoundingClientRect();
             const px = (e.clientX - rect.left) / rect.width - 0.5;
             const py = (e.clientY - rect.top) / rect.height - 0.5;
-            el.style.transform = `perspective(1100px) rotateX(${-py * max}deg) rotateY(${px * max}deg)`;
+            el.style.transform = `perspective(1100px) rotateX(${-py * max}deg) rotateY(${px * max}deg) ${rest}`;
         };
         const onLeave = () => {
-            el.style.transform =
-                "perspective(1100px) rotateX(0deg) rotateY(0deg)";
+            el.style.transform = `perspective(1100px) rotateX(0deg) rotateY(0deg) ${rest}`;
         };
         el.addEventListener("pointermove", onMove, { passive: true });
         el.addEventListener("pointerleave", onLeave);
         return () => {
             el.removeEventListener("pointermove", onMove);
             el.removeEventListener("pointerleave", onLeave);
+            el.style.transform = "";
         };
-    }, [max]);
+    }, [max, rest]);
 
     return ref;
 }

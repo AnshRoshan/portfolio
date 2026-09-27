@@ -15,7 +15,7 @@ import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { projects } from "@/data/projects";
 
-const EMAIL = "ianshroshan@gmail.com";
+const EMAIL = siteConfig.email;
 
 const nav = [
     { label: "About", href: "/about" },
