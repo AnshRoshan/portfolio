@@ -2,7 +2,6 @@ import {
     IconArrowUpRight,
     IconBrandAws,
     IconBrandGoogle,
-    IconSparkles,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import CTABand from "@/components/main/CTABand";
@@ -76,29 +75,37 @@ const certifications = [
     },
 ];
 
+// Real issuer brand colors for the credential tiles
+const BRAND = {
+    anthropic: "#d97757",
+    aws: "#ff9900",
+    google: "#4285f4",
+} as const;
+
 function IssuerMark({ kind }: { kind: "anthropic" | "aws" | "google" }) {
-    const base =
-        "grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-accent/25 bg-accent/[0.08]";
+    const c = BRAND[kind];
+    const base = "grid h-11 w-11 shrink-0 place-items-center rounded-xl border";
+    const style = {
+        borderColor: `${c}44`,
+        background: `${c}14`,
+        color: c,
+    };
     if (kind === "aws")
         return (
-            <span className={base}>
-                <IconBrandAws size={20} stroke={1.6} className="text-accent" />
+            <span className={base} style={style}>
+                <IconBrandAws size={20} stroke={1.6} />
             </span>
         );
     if (kind === "google")
         return (
-            <span className={base}>
-                <IconBrandGoogle
-                    size={20}
-                    stroke={1.6}
-                    className="text-accent"
-                />
+            <span className={base} style={style}>
+                <IconBrandGoogle size={20} stroke={1.6} />
             </span>
         );
     // Anthropic's mark is a stylized asterisk
     return (
-        <span className={base}>
-            <span aria-hidden className="font-display text-accent text-xl">
+        <span className={base} style={style}>
+            <span aria-hidden className="font-display text-xl">
                 ✳
             </span>
         </span>
@@ -115,7 +122,7 @@ export default async function AboutPage() {
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
             {/* ─── INTRO ────────────────────────────────────────────────────── */}
             <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
-                <div className="max-w-[860px]">
+                <div>
                     <Reveal y={16}>
                         <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
@@ -123,31 +130,36 @@ export default async function AboutPage() {
                         </span>
                     </Reveal>
 
-                    <SplitReveal className="mt-6">
-                        <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-                            I build AI that makes it to{" "}
-                            <span className="text-accent">production.</span>
-                        </h1>
-                    </SplitReveal>
+                    {/* Editorial split: headline left, story right — no dead
+                        whitespace on wide screens */}
+                    <div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16">
+                        <SplitReveal>
+                            <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                                I build AI that makes it to{" "}
+                                <span className="text-accent">production.</span>
+                            </h1>
+                        </SplitReveal>
 
-                    <Reveal delay={0.12} y={18}>
-                        <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
-                            <p className="text-base text-muted leading-relaxed sm:text-lg">
-                                Gen AI Developer at TCS. I design and ship
-                                end-to-end AI products, from the agentic backend
-                                to the interface users actually touch —
-                                LangChain, LangGraph, RAG architectures, and
-                                multi-model orchestration, with full ownership
-                                of deployment on the other end.
-                            </p>
-                            <p className="text-base text-muted leading-relaxed sm:text-lg">
-                                I care about one thing: AI systems that stay
-                                reliable in the real world. Not demos. Shipped
-                                products, running in production, used by real
-                                people.
-                            </p>
-                        </div>
-                    </Reveal>
+                        <Reveal delay={0.12} y={18}>
+                            <div className="flex max-w-[62ch] flex-col gap-4">
+                                <p className="text-base text-muted leading-relaxed sm:text-lg">
+                                    Gen AI Developer at TCS. I design and ship
+                                    end-to-end AI products, from the agentic
+                                    backend to the interface users actually
+                                    touch — LangChain, LangGraph, RAG
+                                    architectures, and multi-model
+                                    orchestration, with full ownership of
+                                    deployment on the other end.
+                                </p>
+                                <p className="text-base text-muted leading-relaxed sm:text-lg">
+                                    I care about one thing: AI systems that stay
+                                    reliable in the real world. Not demos.
+                                    Shipped products, running in production,
+                                    used by real people.
+                                </p>
+                            </div>
+                        </Reveal>
+                    </div>
                 </div>
             </section>
 
@@ -234,10 +246,14 @@ export default async function AboutPage() {
                                             />
                                         </a>
                                     ) : (
-                                        <span className="inline-flex items-center gap-1.5 font-mono text-[10.5px] text-muted uppercase tracking-[0.16em]">
-                                            <IconSparkles
-                                                size={12}
-                                                className="text-accent/60"
+                                        <span className="inline-flex items-center gap-2 font-mono text-[10.5px] text-muted uppercase tracking-[0.16em]">
+                                            <span
+                                                aria-hidden
+                                                className="h-1.5 w-1.5 rounded-full"
+                                                style={{
+                                                    background:
+                                                        BRAND[c.issuerKind],
+                                                }}
                                             />
                                             Earned
                                         </span>
