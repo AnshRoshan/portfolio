@@ -3,22 +3,22 @@ import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/sections/SectionHeading";
 import Reveal from "@/components/sub/Reveal";
-import { projects } from "@/data/projects";
+import { type Project, projects } from "@/data/projects";
 import { cn } from "@/lib/utils";
 
 /**
- * Homepage "Selected work": the featured projects as large alternating
- * case-study rows (cover + narrative), replacing the small 3-card grid —
- * the full grid lives on /projects. Control the set via `featured` in
- * src/data/projects.ts.
+ * Homepage "Selected work" as a bento: the lead project takes a tall
+ * 7-column tile, the other two stack beside it. Control the set via
+ * `featured` in src/data/projects.ts (first = lead).
  */
 export default function Projects() {
     const featured = projects.filter((p) => p.featured).slice(0, 3);
+    const [lead, ...rest] = featured;
 
     return (
         <section
             id="projects"
-            className="relative mx-auto w-full max-w-[1400px] scroll-mt-24 px-6 py-16 md:px-10 md:py-24"
+            className="relative mx-auto w-full max-w-[1400px] scroll-mt-24 px-6 py-16 md:px-10 md:py-20"
         >
             <SectionHeading
                 index="01"
@@ -47,112 +47,124 @@ export default function Projects() {
                 }
             />
 
-            <div className="mt-12 flex flex-col gap-4 lg:gap-5">
-                {featured.map((project, i) => {
-                    const reverse = i % 2 === 1;
-                    return (
-                        <Reveal key={project.slug} delay={0.05} y={36}>
-                            <Link
-                                href={`/projects/${project.slug}`}
-                                className="group block"
-                                aria-label={`${project.title}: read the case study`}
-                            >
-                                <article
-                                    className={cn(
-                                        "glow-card relative grid overflow-hidden rounded-[2rem] border border-line bg-surface/50 backdrop-blur-sm transition-colors duration-700 hover:border-line-2 lg:grid-cols-[1.08fr_1fr]",
-                                        reverse && "lg:grid-cols-[1fr_1.08fr]"
-                                    )}
-                                >
-                                    {/* Cover */}
-                                    <div
-                                        className={cn(
-                                            "relative min-h-[168px] overflow-hidden lg:min-h-[248px]",
-                                            reverse && "lg:order-2"
-                                        )}
-                                    >
-                                        {project.image ? (
-                                            <Image
-                                                src={project.image}
-                                                alt={`${project.title} cover`}
-                                                fill
-                                                sizes="(max-width: 1024px) 100vw, 50vw"
-                                                className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
-                                            />
-                                        ) : (
-                                            <div className="grid h-full w-full place-items-center bg-[linear-gradient(150deg,var(--surface-2),var(--ink))]">
-                                                <span className="font-display font-semibold text-2xl text-accent/50">
-                                                    {project.title}
-                                                </span>
-                                            </div>
-                                        )}
-                                        <span className="absolute top-4 left-4 rounded-full border border-line bg-ink/70 px-2.5 py-1 font-mono text-[9.5px] text-paper uppercase tracking-[0.16em] backdrop-blur-md">
-                                            {String(i + 1).padStart(2, "0")}
-                                        </span>
-                                    </div>
-
-                                    {/* Body */}
-                                    <div
-                                        className={cn(
-                                            "flex flex-col justify-center gap-4 p-6 sm:p-7 lg:p-8",
-                                            reverse && "lg:order-1"
-                                        )}
-                                    >
-                                        <div className="flex items-center gap-3">
-                                            <span className="font-mono text-[10px] text-accent/70 uppercase tracking-[0.28em]">
-                                                {project.category}
-                                            </span>
-                                            <span className="h-px flex-1 bg-gradient-to-r from-line to-transparent" />
-                                            <span className="font-mono text-[10px] text-muted uppercase tracking-[0.2em]">
-                                                {project.year}
-                                            </span>
-                                        </div>
-
-                                        <h3 className="font-display font-semibold text-paper text-xl leading-[1.15] tracking-tight transition-colors group-hover:text-accent sm:text-2xl lg:text-[26px]">
-                                            {project.title}
-                                        </h3>
-
-                                        <p className="line-clamp-2 max-w-[56ch] text-muted text-sm leading-relaxed">
-                                            {project.description}
-                                        </p>
-
-                                        <div className="flex flex-wrap gap-1.5">
-                                            {project.tags
-                                                .slice(0, 3)
-                                                .map((t) => (
-                                                    <span
-                                                        key={t}
-                                                        className="rounded-md border border-line px-2 py-0.5 font-mono text-[11px] text-muted"
-                                                    >
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                        </div>
-
-                                        <div className="flex flex-wrap items-center gap-4 pt-1">
-                                            <span className="inline-flex items-center gap-2 font-medium text-[13px] text-paper transition-colors group-hover:text-accent">
-                                                Read the case study
-                                                <IconArrowUpRight
-                                                    size={15}
-                                                    className="transition-transform duration-500 group-hover:translate-x-1 group-hover:-translate-y-1"
-                                                />
-                                            </span>
-                                            {project.github && (
-                                                <span className="inline-flex items-center gap-2 rounded-full border border-line px-3 py-1.5 text-[12px] text-muted transition-colors group-hover:border-accent/40 group-hover:text-accent">
-                                                    <IconBrandGithub
-                                                        size={14}
-                                                        stroke={1.8}
-                                                    />
-                                                    Source
-                                                </span>
-                                            )}
-                                        </div>
-                                    </div>
-                                </article>
-                            </Link>
-                        </Reveal>
-                    );
-                })}
+            <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-12">
+                {lead && (
+                    <Reveal
+                        y={32}
+                        className="h-full sm:col-span-2 lg:col-span-7"
+                    >
+                        <BentoCard project={lead} lead />
+                    </Reveal>
+                )}
+                {rest.map((project, i) => (
+                    <Reveal
+                        key={project.slug}
+                        y={32}
+                        delay={0.08 * (i + 1)}
+                        className="h-full lg:col-span-5"
+                    >
+                        <BentoCard project={project} />
+                    </Reveal>
+                ))}
             </div>
         </section>
+    );
+}
+
+function BentoCard({
+    project,
+    lead = false,
+}: {
+    project: Project;
+    lead?: boolean;
+}) {
+    return (
+        <Link
+            href={`/projects/${project.slug}`}
+            aria-label={`${project.title}: read the case study`}
+            className="glow-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface/50 backdrop-blur-sm transition-colors duration-500 hover:border-line-2"
+        >
+            {/* Cover */}
+            <div
+                className={cn(
+                    "relative overflow-hidden",
+                    lead ? "aspect-[16/9]" : "aspect-[16/8]"
+                )}
+            >
+                {project.image ? (
+                    <Image
+                        src={project.image}
+                        alt={`${project.title} cover`}
+                        fill
+                        sizes="(max-width: 1024px) 100vw, 50vw"
+                        className="object-cover transition-transform duration-[1100ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.04]"
+                    />
+                ) : (
+                    <div className="grid h-full w-full place-items-center bg-[linear-gradient(150deg,var(--surface-2),var(--ink))]">
+                        <span className="font-display font-semibold text-2xl text-accent/50">
+                            {project.title}
+                        </span>
+                    </div>
+                )}
+                <div
+                    aria-hidden
+                    className="absolute inset-0 bg-gradient-to-t from-ink/85 via-transparent to-transparent"
+                />
+                <span className="absolute top-4 left-4 rounded-full border border-line bg-ink/70 px-2.5 py-1 font-mono text-[9.5px] text-paper uppercase tracking-[0.16em] backdrop-blur-md">
+                    {project.category}
+                </span>
+                <span className="absolute top-4 right-4 rounded-full border border-line bg-ink/70 px-2.5 py-1 font-mono text-[9.5px] text-paper/80 uppercase tracking-[0.16em] backdrop-blur-md">
+                    {project.year}
+                </span>
+            </div>
+
+            {/* Body */}
+            <div
+                className={cn(
+                    "flex flex-1 flex-col gap-3 p-5 sm:p-6",
+                    lead && "sm:gap-4 sm:p-7"
+                )}
+            >
+                <h3
+                    className={cn(
+                        "font-display font-semibold text-paper leading-tight tracking-tight transition-colors group-hover:text-accent",
+                        lead ? "text-2xl sm:text-3xl" : "text-xl"
+                    )}
+                >
+                    {project.title}
+                </h3>
+                <p className="line-clamp-2 text-muted text-sm leading-relaxed">
+                    {project.description}
+                </p>
+                <div className="mt-auto flex flex-wrap items-center justify-between gap-3 pt-3">
+                    <div className="flex flex-wrap gap-1.5">
+                        {project.tags.slice(0, 3).map((t) => (
+                            <span
+                                key={t}
+                                className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] text-muted"
+                            >
+                                {t}
+                            </span>
+                        ))}
+                    </div>
+                    <span className="inline-flex items-center gap-1.5 font-mono text-[10.5px] text-muted uppercase tracking-[0.16em] transition-colors group-hover:text-accent">
+                        Case study
+                        <IconArrowUpRight
+                            size={13}
+                            className="transition-transform duration-500 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        />
+                        {project.github && (
+                            <span
+                                aria-hidden
+                                className="ml-1 inline-flex items-center gap-1 text-muted/70"
+                            >
+                                <IconBrandGithub size={13} stroke={1.8} />
+                                code
+                            </span>
+                        )}
+                    </span>
+                </div>
+            </div>
+        </Link>
     );
 }

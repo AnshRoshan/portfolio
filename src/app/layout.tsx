@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 import { SiteChrome } from "@/components/main/SiteChrome";
-import { ThemeProvider } from "@/components/main/theme-provider";
 import { JsonLd } from "@/components/seo/json-ld";
 import { siteConfig } from "@/config/site";
 import { personSchema, webSiteSchema } from "@/lib/seo";
@@ -15,14 +14,15 @@ const inter = Inter({
 
 const sora = Sora({
     subsets: ["latin"],
-    weight: ["400", "500", "600", "700"],
+    // only the weights actually rendered across the site
+    weight: ["600"],
     variable: "--font-display",
     display: "swap",
 });
 
 const jetbrainsMono = JetBrains_Mono({
     subsets: ["latin"],
-    weight: ["400", "500"],
+    weight: ["400"],
     variable: "--font-mono",
     display: "swap",
 });
@@ -103,9 +103,7 @@ export default function RootLayout({
             <body
                 className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-ink text-paper antialiased selection:bg-accent selection:text-ink`}
             >
-                <ThemeProvider>
-                    <SiteChrome>{children}</SiteChrome>
-                </ThemeProvider>
+                <SiteChrome>{children}</SiteChrome>
             </body>
         </html>
     );

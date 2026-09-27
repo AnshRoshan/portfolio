@@ -134,7 +134,7 @@ export default function ProjectCard({
                 {typeof index === "number" ? (
                     <span
                         aria-hidden
-                        className="pointer-events-none absolute right-3 bottom-0 z-[5] font-bold font-display text-7xl text-fill leading-none"
+                        className="pointer-events-none absolute right-3 bottom-0 z-[5] font-display font-semibold text-7xl text-fill leading-none"
                     >
                         {String(index + 1).padStart(2, "0")}
                     </span>

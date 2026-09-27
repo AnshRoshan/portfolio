@@ -88,7 +88,7 @@ export function MobileNav() {
                                             : undefined
                                     }
                                     className={
-                                        "rounded-xl px-4 py-3 font-display font-medium text-2xl tracking-tight transition-colors" +
+                                        "rounded-xl px-4 py-3 font-display font-semibold text-2xl tracking-tight transition-colors" +
                                         (active
                                             ? "text-accent"
                                             : "text-muted hover:bg-fill hover:text-paper")

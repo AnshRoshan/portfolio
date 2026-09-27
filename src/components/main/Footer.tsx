@@ -116,7 +116,7 @@ const Footer = () => {
                             aria-label="Ansh Roshan, home"
                             className="group inline-flex w-fit items-center gap-1"
                         >
-                            <span className="font-medium font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
+                            <span className="font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
                                 Ansh Roshan
                             </span>
                             <span
@@ -226,7 +226,7 @@ const Footer = () => {
                     aria-hidden
                     className="relative mt-16 select-none sm:mt-20"
                 >
-                    <span className="block font-bold font-display text-[clamp(2.6rem,13vw,10rem)] text-transparent leading-[0.85] tracking-[-0.055em] [-webkit-text-stroke:1px_var(--line-2)]">
+                    <span className="block font-display font-semibold text-[clamp(2.6rem,13vw,10rem)] text-transparent leading-[0.85] tracking-[-0.055em] [-webkit-text-stroke:1px_var(--line-2)]">
                         ANSH ROSHAN
                     </span>
                 </div>

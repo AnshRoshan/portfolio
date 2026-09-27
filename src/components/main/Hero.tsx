@@ -3,9 +3,11 @@
 import {
     IconBrain,
     IconBrandAws,
+    IconBrandGoogle,
     IconCertificate,
     IconDownload,
     IconRobot,
+    IconScale,
 } from "@tabler/icons-react";
 import Image from "next/image";
 import { heroStats } from "@/data/content";
@@ -194,6 +196,33 @@ const Hero = () => {
                             />
                             <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
                                 LangGraph · RAG · Evals
+                            </span>
+                        </div>
+
+                        {/* Right: Google Cloud credential */}
+                        <div className="absolute top-[56%] -right-3 animate-float rounded-2xl border border-line bg-surface/95 px-3.5 py-2.5 backdrop-blur-xl [-rotate:3deg] [animation-delay:2.9s] sm:-right-7">
+                            <span className="flex items-center gap-1.5 font-mono text-[9px] text-muted uppercase tracking-[0.2em]">
+                                <IconBrandGoogle
+                                    size={12}
+                                    stroke={2}
+                                    className="text-accent"
+                                />
+                                Google Cloud
+                            </span>
+                            <p className="mt-1 font-semibold text-[13px] text-paper">
+                                Prompt Design · Vertex AI
+                            </p>
+                        </div>
+
+                        {/* Bottom right: open-source chip */}
+                        <div className="absolute right-5 -bottom-5 inline-flex animate-float items-center gap-2 rounded-full border border-line bg-surface/95 px-4 py-2 backdrop-blur-xl [animation-delay:3.6s] [rotate:-2deg]">
+                            <IconScale
+                                size={14}
+                                stroke={1.8}
+                                className="text-accent"
+                            />
+                            <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
+                                Open source · MIT
                             </span>
                         </div>
                     </div>

@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import BackgroundVideo from "@/components/main/BackgroundVideo";
+import Backdrop from "@/components/main/Backdrop";
 import CursorGlow from "@/components/main/CursorGlow";
 import Footer from "@/components/main/Footer";
 import Navbar from "@/components/main/Navbar";
@@ -17,7 +17,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
 
     return (
         <>
-            <BackgroundVideo />
+            <Backdrop />
             <CursorGlow />
             <ScrollProgress />
             <Navbar />

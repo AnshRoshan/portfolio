@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import { useEffect, useRef } from "react";
 
 /**
  * Cinematic looping video backdrop, fixed behind all content, on the ink base
@@ -25,6 +26,25 @@ export default function BackgroundVideo() {
     const pathname = usePathname();
     const variant = pathname?.startsWith("/about") ? "vex" : "space";
     const src = SOURCES[variant];
+    const videoRef = useRef<HTMLVideoElement>(null);
+
+    /* Start playback only after the window load event: decoding the loop
+       during first paint is what pushes LCP out on mobile. The poster paints
+       instantly in the meantime. */
+    useEffect(() => {
+        const v = videoRef.current;
+        if (!v) return;
+        let t: ReturnType<typeof setTimeout>;
+        const play = () => {
+            t = setTimeout(() => v.play().catch(() => {}), 150);
+        };
+        if (document.readyState === "complete") play();
+        else window.addEventListener("load", play, { once: true });
+        return () => {
+            clearTimeout(t);
+            window.removeEventListener("load", play);
+        };
+    }, [variant]);
 
     return (
         <div
@@ -34,11 +54,11 @@ export default function BackgroundVideo() {
             {/* key forces a remount so the source swaps on route change */}
             <video
                 key={variant}
-                autoPlay
+                ref={videoRef}
                 loop
                 muted
                 playsInline
-                preload="metadata"
+                preload="none"
                 poster={src.poster}
                 className="h-full w-full bg-video object-cover"
             >

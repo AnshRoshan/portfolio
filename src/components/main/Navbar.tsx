@@ -6,9 +6,8 @@ import {
     IconBrandLinkedin,
     IconBrandX,
 } from "@tabler/icons-react";
-import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Link from "next/link";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import MagneticSocial from "../sub/MagneticSocial";
 import { MobileNav } from "./MobileNav";
@@ -31,24 +30,25 @@ const socials = [
 ];
 
 /**
- * Floating, transparent header with a console signature: a mono wordmark with a
- * blinking cyan caret, decode-on-hover nav links (NavItems), and magnetic
- * social icons for one-click direct access. A blurred scrim + hairline fades in
- * after the fold so everything stays legible over scrolling content.
+ * Floating, transparent header with a console signature: a mono wordmark with
+ * a blinking cyan caret, decode-on-hover nav links (NavItems), and magnetic
+ * social icons. A blurred scrim + hairline fades in after the fold. Plain
+ * scroll listener + CSS page-in — no framer-motion in the critical path.
  */
 const Navbar = () => {
-    const { scrollY } = useScroll();
     const [scrolled, setScrolled] = useState(false);
 
-    useMotionValueEvent(scrollY, "change", (y) => setScrolled(y > 8));
+    useEffect(() => {
+        const onScroll = () => setScrolled(window.scrollY > 8);
+        onScroll();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        return () => window.removeEventListener("scroll", onScroll);
+    }, []);
 
     return (
-        <motion.header
-            initial={{ y: -24, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+        <header
             className={
-                "sticky top-0 z-50 w-full border-b transition-colors duration-300" +
+                "page-in sticky top-0 z-50 w-full border-b transition-colors duration-300" +
                 (scrolled
                     ? "border-line bg-ink/60 backdrop-blur-xl"
                     : "border-transparent")
@@ -61,7 +61,7 @@ const Navbar = () => {
                     aria-label="Ansh Roshan, home"
                     className="group inline-flex items-center gap-1 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-4 focus-visible:ring-offset-ink"
                 >
-                    <span className="font-medium font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
+                    <span className="font-mono text-paper text-sm tracking-tight transition-colors group-hover:text-accent">
                         Ansh Roshan
                     </span>
                     <span
@@ -90,7 +90,7 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-        </motion.header>
+        </header>
     );
 };
 

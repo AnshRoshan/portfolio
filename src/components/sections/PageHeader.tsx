@@ -110,7 +110,7 @@ export default function PageHeader({
                                 <span className="font-mono text-[10px] text-muted uppercase tracking-[0.18em]">
                                     {m.label}
                                 </span>
-                                <span className="font-display font-medium text-[15px] text-paper">
+                                <span className="font-display font-semibold text-[15px] text-paper">
                                     {m.value}
                                 </span>
                             </div>

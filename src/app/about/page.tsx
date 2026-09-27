@@ -1,23 +1,19 @@
 import {
     IconArrowUpRight,
-    IconAward,
-    IconBriefcase,
-    IconCertificate,
-    IconCloudUpload,
-    IconCode,
-    IconRobot,
-    IconSchool,
+    IconBrandAws,
+    IconBrandGoogle,
+    IconSparkles,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
+import CTABand from "@/components/main/CTABand";
 import GithubStats from "@/components/main/GithubStats";
-import PillButton from "@/components/sub/PillButton";
+import Journey from "@/components/main/Journey";
 import Reveal from "@/components/sub/Reveal";
 import { SkillIcon } from "@/components/sub/SkillIcon";
 import SplitReveal from "@/components/sub/SplitReveal";
 import { skillGroups } from "@/data/skills";
 import { getGithubContributions, getGithubStats } from "@/lib/github";
 import { pageMetadata } from "@/lib/seo";
-import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
     title: "About",
@@ -26,107 +22,15 @@ export const metadata: Metadata = pageMetadata({
     path: "/about",
 });
 
-const focusItems = [
-    {
-        icon: IconRobot,
-        label: "Gen AI",
-        detail: "Multi-agent systems and retrieval pipelines that stay reliable under real traffic: evaluations, guardrails, and graceful failure, not just happy-path demos.",
-    },
-    {
-        icon: IconCode,
-        label: "Full-stack",
-        detail: "Owning the whole path: typed FastAPI and Node services, React and Next.js front ends, and the contracts that hold them together.",
-    },
-    {
-        icon: IconCloudUpload,
-        label: "Delivery",
-        detail: "Containerised, observable, reproducible: Docker and Kubernetes on AWS with infra as code, so a model becomes a product that stays up.",
-    },
-] as const;
-
-// Career + education timeline, newest first (top) → oldest (bottom).
-// Each entry branches off the central stem in its own colour.
-// University / school entries still carry [bracketed] placeholders.
-const journey = [
-    {
-        period: "Apr 2026 — Present",
-        title: "Full-stack AI Engineer",
-        org: "TCS · Bengaluru",
-        detail: "Fully focused on end-to-end Generative AI delivery: agentic backends, RAG pipelines, evaluations, and the interfaces on top. Enterprise knowledge assistants that give employees reliable answers, AI automation that streamlines SDLC workflows, proof-of-concept to production on React, Python, PostgreSQL, Docker, and GitHub Actions.",
-        accent: "#22d3ee", // cyan
-        icon: IconRobot,
-        current: true,
-        tags: ["Agentic systems", "RAG", "Evals", "AWS"],
-    },
-    {
-        period: "Apr 2025 — Apr 2026",
-        title: "Web Developer · AI engineering team",
-        org: "TCS · Bengaluru",
-        detail: "Embedded in the AI engineering track owning the front end of enterprise GenAI applications: chatbot and knowledge-assistant interfaces, streaming LLM responses, dashboards. Learned the model side from inside the product, and widened the work into the backend along the way.",
-        accent: "#a78bfa", // violet
-        icon: IconCode,
-        current: false,
-        tags: ["React", "Next.js", "Streaming UI"],
-    },
-    {
-        period: "Jan 2025 — Apr 2025",
-        title: "System Engineer",
-        org: "TCS · Bengaluru",
-        detail: "Onboarded into TCS and moved into the AI engineering track within four months by shipping work end to end on my own stack.",
-        accent: "#60a5fa", // blue
-        icon: IconBriefcase,
-        current: false,
-        tags: ["Foundations"],
-    },
-    {
-        period: "2022 — 2024",
-        title: "Full-stack Developer",
-        org: "Freelance & open source",
-        detail: "Shipped storefronts, social apps, and internal tools on Next.js and MongoDB — a Stripe-backed ecommerce store from catalogue to completed order, and a social platform with auth, feeds, and a responsive interface. The foundations I now use for AI products.",
-        accent: "#34d399", // emerald
-        icon: IconBriefcase,
-        current: false,
-        tags: ["Next.js", "MongoDB", "Stripe"],
-    },
-    {
-        period: "Mar 2023 — Apr 2023",
-        title: "Summer Intern",
-        org: "Bihar State Power Transmission Co. Ltd. · Naugachhia",
-        detail: "Worked on grid equipment and daily grid operations, and the communication flow between the grid and the Load Dispatch Center.",
-        accent: "#fbbf24", // amber
-        icon: IconCloudUpload,
-        current: false,
-        tags: ["Grid ops"],
-    },
-    {
-        period: "2021 — 2024",
-        title: "B.Tech, Electrical Engineering",
-        org: "Bhagalpur College of Engineering",
-        detail: "The degree that started the self-taught software path: from React and Node.js into Python and Go, then into the GenAI stack. Final-year work on clinical risk prediction.",
-        accent: "#fb7185", // rose
-        icon: IconSchool,
-        current: false,
-        tags: ["Electrical", "Self-taught SWE"],
-    },
-] as const;
-
-// Certifications & achievements. Add `url` (credential link) to make a card
-// clickable; leave "" if none.
-type Certification = {
-    name: string;
-    issuer: string;
-    year: string;
-    url?: string;
-    credentialId?: string;
-    skills?: string[];
-};
-
-const certifications: Certification[] = [
+// Credentials. `url` makes a card verifiable; `credentialId` shows the raw
+// receipt when there's no public link.
+const certifications = [
     {
         name: "Claude Certified Architect — Professional",
         issuer: "Anthropic",
         year: "2026",
         url: "https://www.credly.com/badges/911b0cc0-846a-4b78-b0f7-c63381e4f213/public_url",
+        issuerKind: "anthropic" as const,
         skills: [
             "AI Governance",
             "Context engineering",
@@ -141,6 +45,7 @@ const certifications: Certification[] = [
         issuer: "Anthropic",
         year: "2026",
         url: "https://www.credly.com/badges/ba1c2fee-97a5-4b6b-8daa-870c3159e8e0/public_url",
+        issuerKind: "anthropic" as const,
         skills: [
             "Agent development",
             "Claude API integration",
@@ -154,19 +59,51 @@ const certifications: Certification[] = [
         issuer: "Amazon Web Services · Coursera",
         year: "Mar 2024",
         credentialId: "QPX5VKLV99FJ",
+        issuerKind: "aws" as const,
     },
     {
         name: "DevOps on AWS Specialization",
         issuer: "Amazon Web Services · Coursera",
         year: "Jan 2024",
         credentialId: "MGKVVZBNDBD9",
+        issuerKind: "aws" as const,
     },
     {
         name: "Prompt Design in Vertex AI Skill Badge",
         issuer: "Google Cloud",
         year: "Apr 2025",
+        issuerKind: "google" as const,
     },
 ];
+
+function IssuerMark({ kind }: { kind: "anthropic" | "aws" | "google" }) {
+    const base =
+        "grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-accent/25 bg-accent/[0.08]";
+    if (kind === "aws")
+        return (
+            <span className={base}>
+                <IconBrandAws size={20} stroke={1.6} className="text-accent" />
+            </span>
+        );
+    if (kind === "google")
+        return (
+            <span className={base}>
+                <IconBrandGoogle
+                    size={20}
+                    stroke={1.6}
+                    className="text-accent"
+                />
+            </span>
+        );
+    // Anthropic's mark is a stylized asterisk
+    return (
+        <span className={base}>
+            <span aria-hidden className="font-display text-accent text-xl">
+                ✳
+            </span>
+        </span>
+    );
+}
 
 export default async function AboutPage() {
     const [githubStats, githubContributions] = await Promise.all([
@@ -176,86 +113,169 @@ export default async function AboutPage() {
 
     return (
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
-            {/* ─── SECTION 1 · INTRO ─────────────────────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <div>
-                    {/* Text column: the full story, no portrait (it lives in the hero) */}
-                    <div className="flex max-w-[820px] flex-col gap-8">
-                        {/* Eyebrow - counts as 1 of max 2 */}
+            {/* ─── INTRO ────────────────────────────────────────────────────── */}
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
+                <div className="max-w-[860px]">
+                    <Reveal y={16}>
                         <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
                             <span className="h-px w-8 bg-accent" />
                             About
                         </span>
+                    </Reveal>
 
-                        {/* Hero headline via SplitReveal */}
-                        <SplitReveal>
-                            <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-                                I build AI that makes it to{" "}
-                                <span className="text-accent">production.</span>
-                            </h1>
-                        </SplitReveal>
+                    <SplitReveal className="mt-6">
+                        <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                            I build AI that makes it to{" "}
+                            <span className="text-accent">production.</span>
+                        </h1>
+                    </SplitReveal>
 
-                        {/* Bio */}
-                        <Reveal
-                            delay={0.1}
-                            className="flex max-w-[580px] flex-col gap-5"
-                        >
-                            <p className="text-base text-muted leading-relaxed">
+                    <Reveal delay={0.12} y={18}>
+                        <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
+                            <p className="text-base text-muted leading-relaxed sm:text-lg">
                                 Gen AI Developer at TCS. I design and ship
                                 end-to-end AI products, from the agentic backend
-                                to the interface users actually touch. My work
-                                spans LangChain, LangGraph, RAG architectures,
-                                and multi-model orchestration, with full
-                                ownership of deployment on the other end.
+                                to the interface users actually touch —
+                                LangChain, LangGraph, RAG architectures, and
+                                multi-model orchestration, with full ownership
+                                of deployment on the other end.
                             </p>
-                            <p className="text-base text-muted leading-relaxed">
-                                I care about one thing: building AI systems that
-                                are reliable in the real world. Not demos, not
-                                prototypes sitting in a notebook. Shipped
+                            <p className="text-base text-muted leading-relaxed sm:text-lg">
+                                I care about one thing: AI systems that stay
+                                reliable in the real world. Not demos. Shipped
                                 products, running in production, used by real
                                 people.
                             </p>
-                        </Reveal>
-                    </div>
+                        </div>
+                    </Reveal>
                 </div>
             </section>
 
-            {/* ─── SECTION 2 · FOCUS (editorial label / description rows) ────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <Reveal className="mb-10 md:mb-12">
-                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
-                        What I do
+            {/* ─── CREDENTIALS ───────────────────────────────────────────────── */}
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
+                <Reveal y={16}>
+                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
+                        <span className="h-px w-8 bg-accent" />
+                        Credentials
+                    </span>
+                </Reveal>
+                <Reveal y={20} delay={0.06}>
+                    <h2 className="mt-5 font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
+                        Certified, verifiable
                     </h2>
                 </Reveal>
 
-                <div className="divide-y divide-line border-line border-y">
-                    {focusItems.map(({ icon: Icon, label, detail }, i) => (
-                        <Reveal key={label} delay={i * 0.06}>
-                            <div className="group grid items-start gap-3 py-7 md:grid-cols-[260px_1fr] md:gap-12 md:py-8">
-                                <div className="flex items-center gap-3">
-                                    <Icon
-                                        size={22}
-                                        stroke={1.6}
-                                        className="shrink-0 text-accent"
-                                    />
-                                    <h3 className="font-display font-medium text-paper text-xl tracking-tight">
-                                        {label}
-                                    </h3>
+                <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-6">
+                    {certifications.map((c, i) => (
+                        <Reveal
+                            key={c.name}
+                            delay={i * 0.06}
+                            y={26}
+                            className={
+                                i < 2 ? "lg:col-span-3" : "lg:col-span-2"
+                            }
+                        >
+                            <article className="glow-card relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-sm transition-colors duration-500 hover:bg-surface/90 sm:p-6">
+                                <div className="flex items-start justify-between gap-3">
+                                    <IssuerMark kind={c.issuerKind} />
+                                    <span className="font-mono text-[10px] text-muted uppercase tracking-[0.16em]">
+                                        {c.year}
+                                    </span>
                                 </div>
-                                <p className="max-w-2xl text-base text-muted leading-relaxed transition-colors duration-300 group-hover:text-paper/90">
-                                    {detail}
-                                </p>
-                            </div>
+
+                                <div className="flex flex-col gap-1">
+                                    <h3 className="font-display font-semibold text-[17px] text-paper leading-snug tracking-tight">
+                                        {c.name}
+                                    </h3>
+                                    <p className="font-mono text-[11px] text-muted tracking-[0.08em]">
+                                        {c.issuer}
+                                    </p>
+                                </div>
+
+                                {c.skills && (
+                                    <div className="flex flex-wrap gap-1.5">
+                                        {c.skills.slice(0, 4).map((s) => (
+                                            <span
+                                                key={s}
+                                                className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] text-muted"
+                                            >
+                                                {s}
+                                            </span>
+                                        ))}
+                                        {c.skills.length > 4 && (
+                                            <span className="font-mono text-[10px] text-muted">
+                                                +{c.skills.length - 4}
+                                            </span>
+                                        )}
+                                    </div>
+                                )}
+
+                                <div className="mt-auto flex items-center justify-between gap-3 border-line border-t pt-4">
+                                    {c.credentialId ? (
+                                        <span className="font-mono text-[10px] text-muted tracking-[0.08em]">
+                                            ID {c.credentialId}
+                                        </span>
+                                    ) : (
+                                        <span className="font-mono text-[10px] text-muted tracking-[0.08em]">
+                                            Credly badge
+                                        </span>
+                                    )}
+                                    {c.url ? (
+                                        <a
+                                            href={c.url}
+                                            target="_blank"
+                                            rel="noreferrer noopener"
+                                            className="group inline-flex items-center gap-1.5 font-mono text-[10.5px] text-accent uppercase tracking-[0.16em] hover:text-accent-2"
+                                        >
+                                            Verify
+                                            <IconArrowUpRight
+                                                size={13}
+                                                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                                            />
+                                        </a>
+                                    ) : (
+                                        <span className="inline-flex items-center gap-1.5 font-mono text-[10.5px] text-muted uppercase tracking-[0.16em]">
+                                            <IconSparkles
+                                                size={12}
+                                                className="text-accent/60"
+                                            />
+                                            Earned
+                                        </span>
+                                    )}
+                                </div>
+                            </article>
                         </Reveal>
                     ))}
                 </div>
             </section>
 
-            {/* ─── SECTION 3 · STACK (no eyebrow) ───────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <Reveal className="mb-12">
-                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
-                        The stack
+            {/* ─── TIMELINE (three recent + expand) ──────────────────────────── */}
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
+                <Reveal y={16}>
+                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
+                        <span className="h-px w-8 bg-accent" />
+                        Timeline
+                    </span>
+                </Reveal>
+                <Reveal y={20} delay={0.06}>
+                    <h2 className="mt-5 mb-10 font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
+                        How I got here
+                    </h2>
+                </Reveal>
+                <Journey />
+            </section>
+
+            {/* ─── STACK ─────────────────────────────────────────────────────── */}
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
+                <Reveal y={16}>
+                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
+                        <span className="h-px w-8 bg-accent" />
+                        Stack
+                    </span>
+                </Reveal>
+                <Reveal y={20} delay={0.06}>
+                    <h2 className="mt-5 mb-10 font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
+                        The tools
                     </h2>
                 </Reveal>
 
@@ -265,10 +285,10 @@ export default async function AboutPage() {
                         return (
                             <Reveal
                                 key={group.title}
-                                delay={i * 0.07}
+                                delay={i * 0.06}
                                 className={isPrimary ? "md:col-span-2" : ""}
                             >
-                                <div className="relative flex h-full flex-col gap-5 bg-surface/70 p-8 backdrop-blur-xl">
+                                <div className="relative flex h-full flex-col gap-4 bg-surface/70 p-6 backdrop-blur-xl sm:p-7">
                                     {isPrimary && (
                                         <div
                                             aria-hidden
@@ -279,7 +299,7 @@ export default async function AboutPage() {
                                             }}
                                         />
                                     )}
-                                    <div className="relative flex flex-col gap-5">
+                                    <div className="relative flex flex-col gap-4">
                                         <div className="flex flex-col gap-1.5">
                                             {isPrimary && (
                                                 <span className="mb-1 inline-flex w-fit items-center gap-2 rounded-full border border-accent/30 bg-accent/10 px-3 py-1 font-mono text-[10.5px] text-accent uppercase tracking-[0.18em]">
@@ -287,7 +307,7 @@ export default async function AboutPage() {
                                                     Primary focus
                                                 </span>
                                             )}
-                                            <h3 className="font-display font-medium text-lg text-paper">
+                                            <h3 className="font-display font-semibold text-lg text-paper">
                                                 {group.title}
                                             </h3>
                                             <p className="text-muted text-sm">
@@ -316,7 +336,7 @@ export default async function AboutPage() {
                 </div>
             </section>
 
-            {/* ─── SECTION · GITHUB (data cached once per day, see lib/github.ts) ── */}
+            {/* ─── GITHUB (cached once per day, see lib/github.ts) ───────────── */}
             {githubStats ? (
                 <GithubStats
                     stats={githubStats}
@@ -324,233 +344,15 @@ export default async function AboutPage() {
                 />
             ) : null}
 
-            {/* ─── SECTION 4 · JOURNEY (center-stem timeline, colored branches) ── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <Reveal className="mb-14 md:mb-20">
-                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
-                        How I got here
-                    </h2>
-                </Reveal>
-
-                <ol className="relative mx-auto max-w-5xl">
-                    {/* Central multi-colour stem (mobile-left, centered on desktop) */}
-                    <span
-                        aria-hidden
-                        className="absolute top-2 bottom-2 left-[17px] w-[2px] -translate-x-1/2 rounded-full opacity-70 md:left-1/2"
-                        style={{
-                            background:
-                                "linear-gradient(180deg,#22d3ee,#a78bfa,#60a5fa,#34d399,#fbbf24,#fb7185)",
-                        }}
-                    />
-
-                    {journey.map((it, i) => {
-                        const left = i % 2 === 0; // desktop column
-                        const Icon = it.icon;
-                        return (
-                            <li
-                                key={it.title}
-                                className="relative pb-10 pl-12 last:pb-0 md:grid md:grid-cols-2 md:gap-x-14 md:pl-0"
-                            >
-                                {/* Node on the stem: a coloured glyph for this chapter */}
-                                <span
-                                    className="absolute top-1 left-[17px] z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
-                                    style={{
-                                        borderColor: it.accent,
-                                        boxShadow: "0 0 0 4px var(--ink)",
-                                    }}
-                                >
-                                    {it.current ? (
-                                        <span
-                                            aria-hidden
-                                            className="absolute inset-0 inline-flex animate-ping rounded-full opacity-40"
-                                            style={{
-                                                backgroundColor: it.accent,
-                                            }}
-                                        />
-                                    ) : null}
-                                    <Icon
-                                        size={16}
-                                        stroke={1.7}
-                                        className="relative"
-                                        style={{ color: it.accent }}
-                                    />
-                                </span>
-
-                                {/* Explicit grid placement: no calc() widths, no
-                                    auto-margin tricks — the empty cell collapses
-                                    on its own, so alternation cannot break. */}
-                                <div
-                                    className={
-                                        left
-                                            ? "md:col-start-1 md:row-start-1 md:pr-2 md:text-right"
-                                            : "md:col-start-2 md:row-start-1 md:pl-2"
-                                    }
-                                >
-                                    <Reveal delay={i * 0.06} y={24}>
-                                        <article
-                                            className="group relative flex flex-col gap-3.5 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:bg-surface/90 sm:p-6"
-                                            style={{
-                                                boxShadow: `0 18px 50px -28px ${it.accent}`,
-                                            }}
-                                        >
-                                            <div
-                                                className={cn(
-                                                    "flex flex-wrap items-center gap-2.5",
-                                                    left && "md:justify-end"
-                                                )}
-                                            >
-                                                <span
-                                                    className="rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em]"
-                                                    style={{
-                                                        borderColor: `${it.accent}3d`,
-                                                        background: `${it.accent}12`,
-                                                        color: it.accent,
-                                                    }}
-                                                >
-                                                    {it.period}
-                                                </span>
-                                                {it.current && (
-                                                    <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[10px] text-accent uppercase tracking-[0.16em]">
-                                                        Current
-                                                    </span>
-                                                )}
-                                            </div>
-
-                                            <div className="flex flex-col gap-1">
-                                                <h3 className="font-display font-semibold text-[19px] text-paper leading-snug tracking-tight">
-                                                    {it.title}
-                                                </h3>
-                                                <span className="font-mono text-[11px] text-muted tracking-[0.1em]">
-                                                    {it.org}
-                                                </span>
-                                            </div>
-
-                                            <p className="text-muted text-sm leading-relaxed">
-                                                {it.detail}
-                                            </p>
-
-                                            <div
-                                                className={cn(
-                                                    "flex flex-wrap gap-1.5",
-                                                    left && "md:justify-end"
-                                                )}
-                                            >
-                                                {it.tags.map((t) => (
-                                                    <span
-                                                        key={t}
-                                                        className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] text-muted"
-                                                    >
-                                                        {t}
-                                                    </span>
-                                                ))}
-                                            </div>
-                                        </article>
-                                    </Reveal>
-                                </div>
-                            </li>
-                        );
-                    })}
-                </ol>
-            </section>
-
-            {/* ─── SECTION · CERTIFICATIONS & ACHIEVEMENTS ──────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
-                <Reveal className="mb-10 md:mb-12">
-                    <h2 className="font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl">
-                        Certifications & achievements
-                    </h2>
-                </Reveal>
-
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {certifications.map((c, i) => {
-                        const Icon =
-                            i === certifications.length - 1
-                                ? IconAward
-                                : IconCertificate;
-                        const cls =
-                            "flex h-full items-start gap-4 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-0.5 group-hover:border-accent/40";
-                        const inner = (
-                            <>
-                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-surface-2">
-                                    <Icon
-                                        size={20}
-                                        stroke={1.6}
-                                        className="text-accent"
-                                    />
-                                </span>
-                                <div className="min-w-0">
-                                    <h3 className="font-display font-semibold text-paper text-sm leading-snug">
-                                        {c.name}
-                                    </h3>
-                                    <p className="mt-0.5 text-muted text-xs">
-                                        {c.issuer}
-                                        {c.year ? ` · ${c.year}` : ""}
-                                    </p>
-                                    {c.skills ? (
-                                        <div className="mt-2.5 flex flex-wrap gap-1">
-                                            {c.skills.map((skill) => (
-                                                <span
-                                                    key={skill}
-                                                    className="rounded border border-line px-1.5 py-0.5 font-mono text-[10px] text-muted"
-                                                >
-                                                    {skill}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    ) : null}
-                                    {c.credentialId ? (
-                                        <p className="mt-2 font-mono text-[10px] text-muted/70 tracking-[0.08em]">
-                                            ID {c.credentialId}
-                                        </p>
-                                    ) : null}
-                                    {c.url ? (
-                                        <span className="mt-2 inline-flex items-center gap-1 font-mono text-[11px] text-accent uppercase tracking-[0.14em]">
-                                            Verify
-                                            <IconArrowUpRight
-                                                size={12}
-                                                stroke={1.8}
-                                            />
-                                        </span>
-                                    ) : null}
-                                </div>
-                            </>
-                        );
-                        return (
-                            <Reveal
-                                key={`${c.name}-${i}`}
-                                delay={i * 0.06}
-                                y={20}
-                                className="group h-full"
-                            >
-                                {c.url ? (
-                                    <a
-                                        href={c.url}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className={`${cls} focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink`}
-                                    >
-                                        {inner}
-                                    </a>
-                                ) : (
-                                    <div className={cls}>{inner}</div>
-                                )}
-                            </Reveal>
-                        );
-                    })}
-                </div>
-            </section>
-
-            {/* ─── SECTION 5 · CTA BAND ──────────────────────────────────────── */}
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-32 md:px-10 md:pb-40">
-                <Reveal>
-                    <div className="flex flex-col items-center gap-8 rounded-[24px] border border-line bg-surface/70 px-8 py-16 text-center backdrop-blur-xl md:px-16 md:py-20">
-                        <h2 className="max-w-2xl font-display font-semibold text-3xl text-gradient tracking-tight sm:text-4xl lg:text-5xl">
-                            Have an AI product to build?
-                        </h2>
-                        <PillButton href="/contact">Get in touch</PillButton>
-                    </div>
-                </Reveal>
-            </section>
+            <CTABand
+                title={
+                    <>
+                        Have an AI product to{" "}
+                        <span className="text-accent">build?</span>
+                    </>
+                }
+                body="From architecture review to a shipped agentic system — the fastest way to find out if we're a fit is a conversation."
+            />
         </main>
     );
 }
