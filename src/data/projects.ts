@@ -16,6 +16,8 @@ export type Project = {
     title: string;
     category: string;
     description: string;
+    /** One-line positioning label shown on the homepage bento cards. */
+    tagline?: string;
     tags: string[];
     image?: string;
     live?: string;
@@ -49,6 +51,7 @@ export const projects: Project[] = [
         slug: "loupe",
         title: "Loupe — AI PR Reviewer",
         category: "Gen AI",
+        tagline: "AI Developer Tooling",
         description:
             "A self-built AI pull-request review agent in the spirit of CodeRabbit: a zero-dependency review engine that reads any diff, posts inline comments plus a summary, and runs as a GitHub Action or Cloudflare Worker with your own LLM key — no server required. Named for the jeweler's lens: close, careful inspection of every diff.",
         tags: ["TypeScript", "GitHub Actions", "Cloudflare Workers", "Next.js"],
@@ -61,6 +64,7 @@ export const projects: Project[] = [
         slug: "llm-benchmark",
         title: "OmniBench — LLM Benchmark",
         category: "Gen AI",
+        tagline: "LLM Evaluation",
         description:
             "Point it at any model — API, aggregator, or local — and it runs a 5-pillar battery (capability, reliability, safety, agency, economics), recording every run, task, turn, span, and token. Compare models side-by-side in a full dashboard with CLI/TUI runners, three.js 3D data views, and portable run bundles that pool into community averages.",
         tags: ["TypeScript", "three.js", "CLI/TUI", "Evaluation"],
@@ -80,6 +84,19 @@ export const projects: Project[] = [
         image: "/projects/cover-ragstack.jpg",
         live: "https://anshroshan.github.io/ragstack/",
         github: "https://github.com/AnshRoshan/ragstack",
+        year: "2026",
+        featured: true,
+        tagline: "RAG + Agents + Knowledge Systems",
+    },
+    {
+        slug: "llmrouter",
+        title: "LLM Router",
+        category: "Gen AI",
+        tagline: "LLM Infrastructure + Optimization",
+        description:
+            "A cache-aware LLM router with learned quality routing: one decision engine, two runtimes (pip + npm), zero dependencies, and an HTTP /decide sidecar that slots into LiteLLM and Bifrost to pick the best model per request on cost, latency, and quality.",
+        tags: ["Python", "TypeScript", "LiteLLM", "Bifrost"],
+        github: "https://github.com/AnshRoshan/llmrouter",
         year: "2026",
         featured: true,
     },
@@ -110,12 +127,14 @@ export const projects: Project[] = [
         slug: "cortex",
         title: "Cortex",
         category: "Full-stack",
+        tagline: "Real-time Collaborative Editor",
         description:
             "A private, authenticated, multi-file collaborative workspace that presents as an AI workspace on the surface — behind the login it is a real-time collaborative code editor built on Monaco and operational transforms, with a Rust + WASM backend in a single Docker image.",
         tags: ["Rust", "WASM", "Monaco", "OT", "Docker"],
         image: "/projects/cover-cortex.jpg",
         github: "https://github.com/AnshRoshan/cortex",
         year: "2026",
+        featured: true,
     },
     {
         slug: "create-reactor",

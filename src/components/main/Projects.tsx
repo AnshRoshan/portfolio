@@ -8,11 +8,22 @@ import { cn } from "@/lib/utils";
 
 /**
  * Homepage "Selected work" as a bento: the lead project takes a tall
- * 7-column tile, the other two stack beside it. Control the set via
- * `featured` in src/data/projects.ts (first = lead).
+ * 7-column tile spanning two rows, two partners stack beside it, and two
+ * half-width tiles close the row. Order is explicit here (the five the
+ * owner wants surfaced); details live in src/data/projects.ts.
  */
+const HOME_ORDER = [
+    "ragstack",
+    "llmrouter",
+    "loupe",
+    "llm-benchmark",
+    "cortex",
+] as const;
+
 export default function Projects() {
-    const featured = projects.filter((p) => p.featured).slice(0, 3);
+    const featured = HOME_ORDER.map((slug) =>
+        projects.find((p) => p.slug === slug)
+    ).filter((p): p is Project => Boolean(p));
     const [lead, ...rest] = featured;
 
     return (
@@ -32,7 +43,7 @@ export default function Projects() {
                         .
                     </>
                 }
-                description="The projects that best show how I think: an AI code reviewer, a model evaluation harness, and a hybrid retrieval engine."
+                description="Five systems that show how I think: retrieval, routing, evaluation, review tooling, and real-time collaboration."
                 action={
                     <Link
                         href="/projects"
@@ -51,7 +62,7 @@ export default function Projects() {
                 {lead && (
                     <Reveal
                         y={32}
-                        className="h-full sm:col-span-2 lg:col-span-7"
+                        className="h-full sm:col-span-2 lg:col-span-7 lg:row-span-2"
                     >
                         <BentoCard project={lead} lead />
                     </Reveal>
@@ -61,7 +72,10 @@ export default function Projects() {
                         key={project.slug}
                         y={32}
                         delay={0.08 * (i + 1)}
-                        className="h-full lg:col-span-5"
+                        className={cn(
+                            "h-full",
+                            i < 2 ? "lg:col-span-5" : "lg:col-span-6"
+                        )}
                     >
                         <BentoCard project={project} />
                     </Reveal>
@@ -133,6 +147,11 @@ function BentoCard({
                 >
                     {project.title}
                 </h3>
+                {project.tagline && (
+                    <p className="font-mono text-[10.5px] text-accent/80 uppercase tracking-[0.18em]">
+                        {project.tagline}
+                    </p>
+                )}
                 <p className="line-clamp-2 text-muted text-sm leading-relaxed">
                     {project.description}
                 </p>
