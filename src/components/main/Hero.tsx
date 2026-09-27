@@ -24,7 +24,7 @@ const Hero = () => {
     const tiltRef = useTilt<HTMLDivElement>(6);
 
     return (
-        <section className="relative mx-auto flex min-h-[calc(100dvh-68px)] w-full max-w-[1400px] flex-col justify-center px-6 pt-16 pb-20 md:px-10">
+        <section className="relative mx-auto flex min-h-[88svh] w-full max-w-[1200px] flex-col justify-center px-6 pt-14 pb-16 md:px-10">
             <div className="grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-16">
                 {/* Left: copy */}
                 <div className="order-2 lg:order-1">

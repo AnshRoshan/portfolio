@@ -62,7 +62,7 @@ export default function Projects() {
                 {lead && (
                     <Reveal
                         y={32}
-                        className="h-full sm:col-span-2 lg:col-span-7 lg:row-span-2"
+                        className="h-full sm:col-span-2 lg:col-span-8"
                     >
                         <BentoCard project={lead} lead />
                     </Reveal>
@@ -72,10 +72,7 @@ export default function Projects() {
                         key={project.slug}
                         y={32}
                         delay={0.08 * (i + 1)}
-                        className={cn(
-                            "h-full",
-                            i < 2 ? "lg:col-span-5" : "lg:col-span-6"
-                        )}
+                        className="h-full lg:col-span-4"
                     >
                         <BentoCard project={project} />
                     </Reveal>
@@ -98,11 +95,11 @@ function BentoCard({
             aria-label={`${project.title}: read the case study`}
             className="glow-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface/50 backdrop-blur-sm transition-colors duration-500 hover:border-line-2"
         >
-            {/* Cover */}
+            {/* Cover: the lead tile stretches its image to fill the row */}
             <div
                 className={cn(
                     "relative overflow-hidden",
-                    lead ? "aspect-[16/9]" : "aspect-[16/8]"
+                    lead ? "min-h-[300px] flex-1" : "aspect-[16/8]"
                 )}
             >
                 {project.image ? (

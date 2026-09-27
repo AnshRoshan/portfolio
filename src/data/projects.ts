@@ -96,6 +96,7 @@ export const projects: Project[] = [
         description:
             "A cache-aware LLM router with learned quality routing: one decision engine, two runtimes (pip + npm), zero dependencies, and an HTTP /decide sidecar that slots into LiteLLM and Bifrost to pick the best model per request on cost, latency, and quality.",
         tags: ["Python", "TypeScript", "LiteLLM", "Bifrost"],
+        image: "/projects/cover-llmrouter.jpg",
         github: "https://github.com/AnshRoshan/llmrouter",
         year: "2026",
         featured: true,
