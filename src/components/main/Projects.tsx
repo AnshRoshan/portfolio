@@ -21,7 +21,7 @@ export default function Projects() {
             className="relative mx-auto w-full max-w-[1400px] scroll-mt-24 px-6 py-16 md:px-10 md:py-24"
         >
             <SectionHeading
-                index="02"
+                index="01"
                 eyebrow="Selected work"
                 title={
                     <>

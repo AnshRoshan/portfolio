@@ -17,8 +17,7 @@ import { ThemeToggle } from "./ThemeToggle";
 const navItems = [
     { name: "About", link: "/about" },
     { name: "Projects", link: "/projects" },
-    { name: "Blogs", link: "https://blog.anshroshan.com" },
-    { name: "Contact", link: "/contact" },
+    { name: "Blog", link: "https://blog.anshroshan.com" },
 ];
 
 const socials = [

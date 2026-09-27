@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, JetBrains_Mono, Space_Grotesk } from "next/font/google";
+import { Inter, JetBrains_Mono, Sora } from "next/font/google";
 import { SiteChrome } from "@/components/main/SiteChrome";
 import { ThemeProvider } from "@/components/main/theme-provider";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -13,7 +13,7 @@ const inter = Inter({
     display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
+const sora = Sora({
     subsets: ["latin"],
     weight: ["400", "500", "600", "700"],
     variable: "--font-display",
@@ -79,8 +79,8 @@ export const metadata: Metadata = {
 // viewport is other theme in mobile devices
 export const viewport: Viewport = {
     themeColor: [
-        { media: "(prefers-color-scheme: light)", color: "white" },
-        { media: "(prefers-color-scheme: dark)", color: "black" },
+        { media: "(prefers-color-scheme: light)", color: "#f7f8fa" },
+        { media: "(prefers-color-scheme: dark)", color: "#07090f" },
     ],
 };
 
@@ -101,7 +101,7 @@ export default function RootLayout({
                 <JsonLd data={webSiteSchema()} />
             </head>
             <body
-                className={`${inter.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-ink text-paper antialiased selection:bg-accent selection:text-ink`}
+                className={`${inter.variable} ${sora.variable} ${jetbrainsMono.variable} flex min-h-[100dvh] w-full flex-col overflow-x-clip bg-ink text-paper antialiased selection:bg-accent selection:text-ink`}
             >
                 <ThemeProvider>
                     <SiteChrome>{children}</SiteChrome>

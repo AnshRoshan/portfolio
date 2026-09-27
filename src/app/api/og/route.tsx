@@ -34,7 +34,7 @@ export async function GET(req: NextRequest) {
                     width: "100%",
                     height: "100%",
                     padding: "72px",
-                    background: "#0a0a0b",
+                    background: "#07090f",
                     fontFamily: "Inter",
                     overflow: "hidden",
                 }}
@@ -66,7 +66,7 @@ export async function GET(req: NextRequest) {
                         style={{
                             marginLeft: 16,
                             fontSize: 30,
-                            color: "#e7e7ea",
+                            color: "#e9edf5",
                         }}
                     >
                         Ansh Roshan
@@ -100,7 +100,7 @@ export async function GET(req: NextRequest) {
                             marginTop: 28,
                             fontSize: 72,
                             lineHeight: 1.05,
-                            color: "#f4f4f5",
+                            color: "#f2f5fb",
                             maxWidth: 980,
                         }}
                     >
@@ -115,7 +115,7 @@ export async function GET(req: NextRequest) {
                         justifyContent: "space-between",
                         alignItems: "center",
                         fontSize: 24,
-                        color: "#9a9aa4",
+                        color: "#8a93a8",
                     }}
                 >
                     <div style={{ display: "flex" }}>{host}</div>

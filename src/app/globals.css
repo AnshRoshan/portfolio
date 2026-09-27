@@ -8,39 +8,51 @@
    text-muted, border-line, bg-surface, text-accent, ...).
    ============================================================ */
 :root {
-    /* light theme (default) */
-    --ink: #f4f4f5; /* page background */
-    --ink-rgb: 244, 244, 245;
+    /* light theme — cool paper, not gray */
+    --ink: #f7f8fa; /* page background */
+    --ink-rgb: 247, 248, 250;
     --surface: #ffffff; /* cards */
-    --surface-2: #ececee; /* code blocks, wells */
-    --paper: #121217; /* primary text */
-    --muted: #56565f; /* secondary text */
-    --accent: #0e7490; /* readable mint for light ground */
+    --surface-2: #eef0f4; /* code blocks, wells */
+    --paper: #10141c; /* primary text */
+    --muted: #525a68; /* secondary text */
+    --accent: #0e7490; /* readable cyan for light ground */
     --accent-2: #0891b2;
-    --line: rgba(18, 18, 23, 0.14);
-    --line-2: rgba(18, 18, 23, 0.24);
-    --fill: rgba(18, 18, 23, 0.05);
-    --grad-a: #2b2b33; /* metallic heading gradient (light) */
-    --grad-b: #4c4c58;
-    --grad-c: #83838f;
+    --line: rgba(16, 20, 28, 0.1);
+    --line-2: rgba(16, 20, 28, 0.2);
+    --fill: rgba(16, 20, 28, 0.045);
+    --grad-a: #1a1e28; /* metallic heading gradient (light) */
+    --grad-b: #3c4454;
+    --grad-c: #6b7484;
+    /* video backdrop readability layers */
+    --video-opacity: 0.5;
+    --scrim-top: 0.38;
+    --scrim-mid: 0.16;
+    --scrim-bottom: 0.55;
+    --vignette: 0.28;
 }
 
 .dark {
-    --ink: #0a0a0b;
-    --ink-rgb: 10, 10, 11;
-    --surface: #131316;
-    --surface-2: #0f0f12;
-    --paper: #e7e7ea;
-    --muted: #9a9aa4;
+    /* blue-tinted ink: the difference between "dark gray" and "expensive" */
+    --ink: #07090f;
+    --ink-rgb: 7, 9, 15;
+    --surface: #0d1119;
+    --surface-2: #10151f;
+    --paper: #e9edf5;
+    --muted: #8a93a8;
     --accent: #22d3ee;
     --accent-2: #67e8f9;
-    --line: rgba(255, 255, 255, 0.1);
-    --line-2: rgba(255, 255, 255, 0.16);
-    --fill: rgba(255, 255, 255, 0.05);
-    --grad-a: #f4f4f5;
-    --grad-b: #c4c4cc;
-    --grad-c: #8c8c97;
-    /* brighter cinematic backdrop in dark mode (owner request) */
+    --line: rgba(233, 237, 245, 0.08);
+    --line-2: rgba(233, 237, 245, 0.14);
+    --fill: rgba(233, 237, 245, 0.04);
+    --grad-a: #f2f5fb;
+    --grad-b: #b9c2d4;
+    --grad-c: #7f8aa0;
+    /* brighter cinematic video backdrop in dark mode (owner request) */
+    --video-opacity: 0.82;
+    --scrim-top: 0.5;
+    --scrim-mid: 0.26;
+    --scrim-bottom: 0.68;
+    --vignette: 0.38;
 }
 
 @theme inline {
@@ -54,6 +66,11 @@
     --color-line: var(--line);
     --color-line-2: var(--line-2);
     --color-fill: var(--fill);
+}
+
+/* Background video brightness follows the theme */
+.bg-video {
+    opacity: var(--video-opacity);
 }
 
 @layer base {
@@ -141,6 +158,16 @@ body {
     font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
 }
 
+/* Refined scrollbar + selection (reference polish details) */
+html {
+    scrollbar-color: color-mix(in srgb, var(--paper) 18%, transparent)
+        transparent;
+}
+::selection {
+    background: color-mix(in srgb, var(--accent) 28%, transparent);
+    color: var(--paper);
+}
+
 .font-display {
     font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
 }
@@ -163,11 +190,11 @@ body {
 .shimmer-text {
     background: linear-gradient(
         90deg,
-        #9a9aa4 0%,
-        #9a9aa4 38%,
+        #8a93a8 0%,
+        #8a93a8 38%,
         #22d3ee 50%,
-        #9a9aa4 62%,
-        #9a9aa4 100%
+        #8a93a8 62%,
+        #8a93a8 100%
     );
     background-size: 200% 100%;
     -webkit-background-clip: text;
