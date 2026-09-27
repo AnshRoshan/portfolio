@@ -23,11 +23,6 @@
     --grad-a: #2b2b33; /* metallic heading gradient (light) */
     --grad-b: #4c4c58;
     --grad-c: #83838f;
-    --video-opacity: 0.5;
-    --scrim-top: 0.38;
-    --scrim-mid: 0.16;
-    --scrim-bottom: 0.55;
-    --vignette: 0.28;
 }
 
 .dark {
@@ -46,11 +41,6 @@
     --grad-b: #c4c4cc;
     --grad-c: #8c8c97;
     /* brighter cinematic backdrop in dark mode (owner request) */
-    --video-opacity: 0.82;
-    --scrim-top: 0.5;
-    --scrim-mid: 0.26;
-    --scrim-bottom: 0.68;
-    --vignette: 0.38;
 }
 
 @theme inline {
@@ -64,11 +54,6 @@
     --color-line: var(--line);
     --color-line-2: var(--line-2);
     --color-fill: var(--fill);
-}
-
-/* Background video brightness follows the theme */
-.bg-video {
-    opacity: var(--video-opacity);
 }
 
 @layer base {

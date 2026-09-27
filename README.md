@@ -40,7 +40,8 @@ bun run build       # production build
 - `src/components/sub/` — small motion/UI primitives
 - `src/components/ui/` — shadcn-style primitives
 - `src/data/` — single source of truth for projects & skills
-- `scripts/to-webm.mjs` — video conversion helper for background assets
+- `src/components/main/Backdrop.tsx` — pure-CSS aurora/grid/grain backdrop
+  (no video assets; theme-aware)
 
 ## SEO checklist (what's wired up)
 
