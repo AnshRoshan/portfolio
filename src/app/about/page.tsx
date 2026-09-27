@@ -4,6 +4,7 @@ import {
     IconBrandGoogle,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
+import Image from "next/image";
 import CTABand from "@/components/main/CTABand";
 import GithubStats from "@/components/main/GithubStats";
 import Journey from "@/components/main/Journey";
@@ -29,6 +30,7 @@ const certifications = [
         issuer: "Anthropic",
         year: "2026",
         url: "https://www.credly.com/badges/911b0cc0-846a-4b78-b0f7-c63381e4f213/public_url",
+        badge: "/certs/claude-architect-pro.png",
         issuerKind: "anthropic" as const,
         skills: [
             "AI Governance",
@@ -44,6 +46,7 @@ const certifications = [
         issuer: "Anthropic",
         year: "2026",
         url: "https://www.credly.com/badges/ba1c2fee-97a5-4b6b-8daa-870c3159e8e0/public_url",
+        badge: "/certs/claude-developer-foundations.png",
         issuerKind: "anthropic" as const,
         skills: [
             "Agent development",
@@ -189,7 +192,17 @@ export default async function AboutPage() {
                         >
                             <article className="glow-card relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-sm transition-colors duration-500 hover:bg-surface/90 sm:p-6">
                                 <div className="flex items-start justify-between gap-3">
-                                    <IssuerMark kind={c.issuerKind} />
+                                    {c.badge ? (
+                                        <Image
+                                            src={c.badge}
+                                            alt={`${c.name} badge`}
+                                            width={56}
+                                            height={56}
+                                            className="h-14 w-14 object-contain"
+                                        />
+                                    ) : (
+                                        <IssuerMark kind={c.issuerKind} />
+                                    )}
                                     <span className="font-mono text-[10px] text-muted uppercase tracking-[0.16em]">
                                         {c.year}
                                     </span>
