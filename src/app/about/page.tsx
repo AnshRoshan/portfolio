@@ -1,7 +1,14 @@
 import {
     IconArrowUpRight,
     IconBrandAws,
+    IconBrandGithub,
     IconBrandGoogle,
+    IconBrandLinkedin,
+    IconBrandX,
+    IconMail,
+    IconMapPin,
+    IconRobot,
+    IconRss,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import Image from "next/image";
@@ -11,6 +18,7 @@ import Journey from "@/components/main/Journey";
 import Reveal from "@/components/sub/Reveal";
 import { SkillIcon } from "@/components/sub/SkillIcon";
 import SplitReveal from "@/components/sub/SplitReveal";
+import { siteConfig } from "@/config/site";
 import { skillGroups } from "@/data/skills";
 import { getGithubContributions, getGithubStats } from "@/lib/github";
 import { pageMetadata } from "@/lib/seo";
@@ -125,18 +133,17 @@ export default async function AboutPage() {
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
             {/* ─── INTRO ────────────────────────────────────────────────────── */}
             <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
-                <div>
-                    <Reveal y={16}>
-                        <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
-                            <span className="h-px w-8 bg-accent" />
-                            About
-                        </span>
-                    </Reveal>
+                <div className="grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-start lg:gap-16">
+                    {/* Left: the story, all left-aligned */}
+                    <div>
+                        <Reveal y={16}>
+                            <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
+                                <span className="h-px w-8 bg-accent" />
+                                About
+                            </span>
+                        </Reveal>
 
-                    {/* Editorial split: headline left, story right — no dead
-                        whitespace on wide screens */}
-                    <div className="mt-6 grid gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:items-end lg:gap-16">
-                        <SplitReveal>
+                        <SplitReveal className="mt-6">
                             <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
                                 I build AI that makes it to{" "}
                                 <span className="text-accent">production.</span>
@@ -144,7 +151,7 @@ export default async function AboutPage() {
                         </SplitReveal>
 
                         <Reveal delay={0.12} y={18}>
-                            <div className="flex max-w-[62ch] flex-col gap-4">
+                            <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
                                 <p className="text-base text-muted leading-relaxed sm:text-lg">
                                     Gen AI Developer at TCS. I design and ship
                                     end-to-end AI products, from the agentic
@@ -163,6 +170,100 @@ export default async function AboutPage() {
                             </div>
                         </Reveal>
                     </div>
+
+                    {/* Right: currently + all my links, one tidy panel */}
+                    <Reveal delay={0.18} y={22} className="lg:pt-14">
+                        <aside className="glow-card flex flex-col gap-6 rounded-2xl border border-line bg-surface/60 p-6 backdrop-blur-sm">
+                            <div className="flex flex-col gap-3">
+                                <span className="font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
+                                    Currently
+                                </span>
+                                <div className="flex flex-col gap-2.5 text-paper text-sm">
+                                    <span className="flex items-center gap-2.5">
+                                        <span className="relative flex h-1.5 w-1.5">
+                                            <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent" />
+                                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                                        </span>
+                                        Full-stack AI Engineer @ TCS
+                                    </span>
+                                    <span className="flex items-center gap-2.5 text-muted">
+                                        <IconMapPin
+                                            size={14}
+                                            stroke={1.8}
+                                            className="shrink-0 text-accent"
+                                        />
+                                        Bengaluru, India
+                                    </span>
+                                    <span className="flex items-center gap-2.5 text-muted">
+                                        <IconRobot
+                                            size={14}
+                                            stroke={1.8}
+                                            className="shrink-0 text-accent"
+                                        />
+                                        Building: RAGStack · Loupe · LLM Router
+                                    </span>
+                                </div>
+                            </div>
+
+                            <div className="flex flex-col gap-1 border-line border-t pt-5">
+                                <span className="mb-2 font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
+                                    Elsewhere
+                                </span>
+                                {[
+                                    {
+                                        label: "GitHub",
+                                        href: siteConfig.links.github,
+                                        Icon: IconBrandGithub,
+                                    },
+                                    {
+                                        label: "LinkedIn",
+                                        href: siteConfig.links.linkedin,
+                                        Icon: IconBrandLinkedin,
+                                    },
+                                    {
+                                        label: "X (Twitter)",
+                                        href: siteConfig.links.twitter,
+                                        Icon: IconBrandX,
+                                    },
+                                    {
+                                        label: "Blog",
+                                        href: siteConfig.links.blog,
+                                        Icon: IconRss,
+                                    },
+                                    {
+                                        label: "ianshroshan@gmail.com",
+                                        href: "mailto:ianshroshan@gmail.com",
+                                        Icon: IconMail,
+                                    },
+                                ].map(({ label, href, Icon }) => (
+                                    <a
+                                        key={label}
+                                        href={href}
+                                        target={
+                                            href.startsWith("mailto")
+                                                ? undefined
+                                                : "_blank"
+                                        }
+                                        rel="noreferrer noopener"
+                                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted text-sm transition-all duration-300 hover:bg-accent/[0.06] hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                                    >
+                                        <Icon
+                                            size={16}
+                                            stroke={1.7}
+                                            className="shrink-0 text-accent"
+                                        />
+                                        <span className="truncate">
+                                            {label}
+                                        </span>
+                                        <IconArrowUpRight
+                                            size={13}
+                                            className="ml-auto shrink-0 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
+                                        />
+                                    </a>
+                                ))}
+                            </div>
+                        </aside>
+                    </Reveal>
                 </div>
             </section>
 
