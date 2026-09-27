@@ -50,20 +50,29 @@ const focusItems = [
 // University / school entries still carry [bracketed] placeholders.
 const journey = [
     {
-        period: "Apr 2025 — Present",
-        title: "Artificial Intelligence Engineer",
+        period: "Apr 2026 — Present",
+        title: "Full-stack AI Engineer",
         org: "TCS · Bengaluru",
-        detail: "Building enterprise Generative AI applications and internal platforms: RAG chatbots and knowledge assistants that give employees reliable answers from enterprise data, AI-powered automation that streamlines SDLC workflows, and end-to-end GenAI delivery from proof-of-concept to production — on React, Python, PostgreSQL, Docker, and GitHub Actions.",
+        detail: "Fully focused on end-to-end Generative AI delivery: agentic backends, RAG pipelines, evaluations, and the interfaces on top. Enterprise knowledge assistants that give employees reliable answers, AI automation that streamlines SDLC workflows, proof-of-concept to production on React, Python, PostgreSQL, Docker, and GitHub Actions.",
         accent: "#22d3ee", // cyan
-        icon: IconBriefcase,
+        icon: IconRobot,
         current: true,
+    },
+    {
+        period: "Apr 2025 — Apr 2026",
+        title: "Web Developer · AI engineering team",
+        org: "TCS · Bengaluru",
+        detail: "Embedded in the AI engineering track owning the front end of enterprise GenAI applications: chatbot and knowledge-assistant interfaces, streaming LLM responses, dashboards. Learned the model side from inside the product, and widened the work into the backend along the way.",
+        accent: "#a78bfa", // violet
+        icon: IconCode,
+        current: false,
     },
     {
         period: "Jan 2025 — Apr 2025",
         title: "System Engineer",
         org: "TCS · Bengaluru",
-        detail: "Onboarded into TCS and moved into the AI engineering track within four months by shipping AI work end to end on my own stack.",
-        accent: "#a78bfa", // violet
+        detail: "Onboarded into TCS and moved into the AI engineering track within four months by shipping work end to end on my own stack.",
+        accent: "#60a5fa", // blue
         icon: IconBriefcase,
         current: false,
     },
@@ -370,14 +379,14 @@ export default async function AboutPage() {
                     </h2>
                 </Reveal>
 
-                <ol className="relative mx-auto max-w-4xl">
+                <ol className="relative mx-auto max-w-5xl">
                     {/* Central multi-colour stem (neutral on mobile-left, centered on desktop) */}
                     <span
                         aria-hidden
                         className="absolute top-2 bottom-2 left-5 w-[2px] -translate-x-1/2 rounded-full opacity-70 md:left-1/2"
                         style={{
                             background:
-                                "linear-gradient(180deg,#22d3ee,#a78bfa,#34d399,#fbbf24,#fb7185)",
+                                "linear-gradient(180deg,#22d3ee,#a78bfa,#60a5fa,#34d399,#fbbf24,#fb7185)",
                         }}
                     />
 
@@ -385,79 +394,82 @@ export default async function AboutPage() {
                         const right = i % 2 === 0; // alternate sides on desktop
                         const Icon = it.icon;
                         return (
-                            <Reveal key={it.title} delay={i * 0.08} y={24}>
-                                <li className="relative pb-12 last:pb-0">
-                                    {/* Node on the stem: a coloured glyph for this chapter */}
-                                    <span
-                                        className="absolute top-0 left-5 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
-                                        style={{
-                                            borderColor: it.accent,
-                                            boxShadow: "0 0 0 4px var(--ink)",
-                                        }}
-                                    >
-                                        {it.current ? (
-                                            <span
-                                                aria-hidden
-                                                className="absolute inset-0 inline-flex animate-ping rounded-full opacity-40"
-                                                style={{
-                                                    backgroundColor: it.accent,
-                                                }}
-                                            />
-                                        ) : null}
-                                        <Icon
-                                            size={16}
-                                            stroke={1.7}
-                                            className="relative"
-                                            style={{ color: it.accent }}
-                                        />
-                                    </span>
-
-                                    {/* Coloured branch connector (desktop only) */}
-                                    <span
-                                        aria-hidden
-                                        className={
-                                            "absolute top-4 hidden h-[2px] w-8 md:block" +
-                                            (right ? "left-1/2" : "right-1/2")
-                                        }
-                                        style={{
-                                            background: `linear-gradient(${right ? "90deg" : "270deg"}, ${it.accent}, transparent)`,
-                                        }}
-                                    />
-
-                                    {/* Card, branching to one side on desktop */}
-                                    <div
-                                        className={
-                                            "group ml-12 md:w-[calc(50%-2.5rem)]" +
-                                            (right
-                                                ? "md:ml-auto"
-                                                : "md:mr-auto md:ml-0 md:text-right")
-                                        }
-                                    >
-                                        <div
-                                            className="rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-transform duration-300 group-hover:-translate-y-1"
+                            <li
+                                key={it.title}
+                                className="relative pb-12 last:pb-0"
+                            >
+                                {/* Node on the stem: a coloured glyph for this chapter */}
+                                <span
+                                    className="absolute top-0 left-5 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
+                                    style={{
+                                        borderColor: it.accent,
+                                        boxShadow: "0 0 0 4px var(--ink)",
+                                    }}
+                                >
+                                    {it.current ? (
+                                        <span
+                                            aria-hidden
+                                            className="absolute inset-0 inline-flex animate-ping rounded-full opacity-40"
                                             style={{
-                                                boxShadow: `0 18px 50px -28px ${it.accent}`,
+                                                backgroundColor: it.accent,
                                             }}
+                                        />
+                                    ) : null}
+                                    <Icon
+                                        size={16}
+                                        stroke={1.7}
+                                        className="relative"
+                                        style={{ color: it.accent }}
+                                    />
+                                </span>
+
+                                {/* Coloured branch connector (desktop only) */}
+                                <span
+                                    aria-hidden
+                                    className={
+                                        "absolute top-4 hidden h-[2px] w-8 md:block" +
+                                        (right ? "left-1/2" : "right-1/2")
+                                    }
+                                    style={{
+                                        background: `linear-gradient(${right ? "90deg" : "270deg"}, ${it.accent}, transparent)`,
+                                    }}
+                                />
+
+                                {/* Card, branching to one side on desktop */}
+                                <Reveal
+                                    delay={i * 0.08}
+                                    y={24}
+                                    className={
+                                        "group ml-12 md:w-[calc(50%_-_3rem)]" +
+                                        (right
+                                            ? "md:ml-auto"
+                                            : "md:mr-auto md:ml-0 md:text-right")
+                                    }
+                                >
+                                    <div
+                                        className="rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1"
+                                        style={{
+                                            boxShadow: `0 18px 50px -28px ${it.accent}`,
+                                        }}
+                                    >
+                                        <span
+                                            className="font-mono text-xs uppercase tracking-[0.18em]"
+                                            style={{ color: it.accent }}
                                         >
-                                            <span
-                                                className="font-mono text-xs uppercase tracking-[0.18em]"
-                                                style={{ color: it.accent }}
-                                            >
-                                                {it.period}
-                                            </span>
-                                            <h3 className="mt-2 font-display font-semibold text-paper text-xl tracking-tight">
-                                                {it.title}
-                                            </h3>
-                                            <p className="mt-0.5 font-medium text-paper/80 text-sm">
-                                                {it.org}
-                                            </p>
-                                            <p className="mt-2 text-muted text-sm leading-relaxed">
-                                                {it.detail}
-                                            </p>
-                                        </div>
+                                            {it.period}
+                                        </span>
+                                        <h3 className="mt-2 font-display font-semibold text-paper text-xl tracking-tight">
+                                            {it.title}
+                                        </h3>
+                                        <p className="mt-0.5 font-medium text-paper/80 text-sm">
+                                            {it.org}
+                                        </p>
+                                        <p className="mt-2 text-muted text-sm leading-relaxed">
+                                            {it.detail}
+                                        </p>
                                     </div>
-                                </li>
-                            </Reveal>
+                                </Reveal>
+                            </li>
                         );
                     })}
                 </ol>
