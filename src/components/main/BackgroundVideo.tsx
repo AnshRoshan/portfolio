@@ -1,28 +1,51 @@
+"use client";
+
+import { usePathname } from "next/navigation";
+
 /**
  * Cinematic looping video backdrop, fixed behind all content, on the ink base
- * (#0a0a0b) with a dark scrim (for text contrast), a side vignette, and a
- * film-grain veil. One clip site-wide: consistent identity, no remount flash
- * between routes, and only ~135 KB of VP9 WebM over the wire. WebM is listed
- * first; the mp4 is the fallback for browsers without VP9-in-WebM support.
- * Server component — nothing here is interactive.
+ * with a dark scrim and a side vignette for text contrast. Per-route: the
+ * About page runs the abstract "vex" clip; every other page the "space"
+ * voyage. WebM first; the mp4 is the fallback for browsers without
+ * VP9-in-WebM support.
  */
+const SOURCES = {
+    space: {
+        webm: "/hero-bg.webm",
+        mp4: "/hero-bg.mp4",
+        poster: "/hero-bg-poster.webp",
+    },
+    vex: {
+        webm: "/bg-vex.webm",
+        poster: "/bg-vex-poster.webp",
+    },
+} as const;
+
 export default function BackgroundVideo() {
+    const pathname = usePathname();
+    const variant = pathname?.startsWith("/about") ? "vex" : "space";
+    const src = SOURCES[variant];
+
     return (
         <div
             aria-hidden
             className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-ink"
         >
+            {/* key forces a remount so the source swaps on route change */}
             <video
+                key={variant}
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="metadata"
-                poster="/hero-bg-poster.webp"
+                poster={src.poster}
                 className="h-full w-full bg-video object-cover"
             >
-                <source src="/hero-bg.webm" type="video/webm" />
-                <source src="/hero-bg.mp4" type="video/mp4" />
+                <source src={src.webm} type="video/webm" />
+                {"mp4" in src ? (
+                    <source src={src.mp4} type="video/mp4" />
+                ) : null}
             </video>
 
             {/* Readability scrim: strength is theme-aware via tokens so the
@@ -42,8 +65,6 @@ export default function BackgroundVideo() {
                         "radial-gradient(120% 80% at 50% 35%, transparent 45%, rgba(var(--ink-rgb), var(--vignette)) 100%)",
                 }}
             />
-            {/* Film grain */}
-            <div className="grain-overlay absolute inset-0 opacity-[0.05] mix-blend-soft-light" />
         </div>
     );
 }

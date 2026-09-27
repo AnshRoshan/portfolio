@@ -237,7 +237,8 @@ export default async function AboutPage() {
                         </Reveal>
                     </div>
 
-                    {/* Portrait (left on desktop) — floating cutout over a soft glow */}
+                    {/* Portrait card (left on desktop): photo on a deep panel
+                        with a location pill, name plate, and floating cert */}
                     <Reveal
                         x={-24}
                         y={0}
@@ -245,30 +246,81 @@ export default async function AboutPage() {
                         className="flex justify-center lg:order-1 lg:justify-start"
                     >
                         <div className="relative w-full max-w-[460px] lg:max-w-none">
-                            {/* Soft mint glow */}
-                            <div
-                                aria-hidden
-                                className="pointer-events-none absolute inset-[2%] -z-10 rounded-full blur-2xl"
-                                style={{
-                                    background:
-                                        "radial-gradient(circle at 50% 44%, rgba(34,211,238,0.22) 0%, transparent 64%)",
-                                }}
-                            />
-                            {/* Faint uniform ring for subtle structure */}
-                            <div
-                                aria-hidden
-                                className="pointer-events-none absolute inset-[6%] -z-10 rounded-full border border-line"
-                            />
-                            {/* Transparent cutout, floating with depth */}
-                            <Image
-                                src="/ansh-pro.webp"
-                                alt="Ansh Roshan"
-                                width={520}
-                                height={520}
-                                sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 460px"
-                                className="relative aspect-square w-full object-contain object-bottom drop-shadow-[0_24px_50px_rgba(0,0,0,0.5)]"
-                                priority
-                            />
+                            <div className="glow-card relative overflow-hidden rounded-[2rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)]">
+                                {/* Accent hairline across the top edge */}
+                                <span
+                                    aria-hidden
+                                    className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/40 to-transparent"
+                                />
+                                {/* Soft cyan light behind the subject */}
+                                <div
+                                    aria-hidden
+                                    className="absolute inset-x-0 top-0 h-[70%] bg-[radial-gradient(ellipse_60%_50%_at_50%_38%,color-mix(in_srgb,var(--accent)_13%,transparent),transparent_70%)]"
+                                />
+
+                                <Image
+                                    src="/ansh-pro.webp"
+                                    alt="Ansh Roshan"
+                                    width={520}
+                                    height={650}
+                                    sizes="(max-width: 768px) 90vw, (max-width: 1024px) 45vw, 460px"
+                                    className="relative aspect-[4/5] w-full object-cover object-top"
+                                    priority
+                                />
+
+                                {/* Bottom scrim keeps the name plate legible */}
+                                <div
+                                    aria-hidden
+                                    className="absolute inset-x-0 bottom-0 h-3/5 bg-gradient-to-t from-ink via-ink/75 to-transparent"
+                                />
+
+                                {/* Location pill */}
+                                <span className="absolute bottom-[6.5rem] left-5 inline-flex items-center gap-2 rounded-full border border-line bg-ink/70 px-3.5 py-1.5 font-mono text-[10px] text-paper uppercase tracking-[0.18em] backdrop-blur-md">
+                                    <span className="relative flex h-1.5 w-1.5">
+                                        <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent" />
+                                        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
+                                    </span>
+                                    Bengaluru
+                                </span>
+
+                                {/* Name plate */}
+                                <div className="absolute inset-x-0 bottom-0 flex items-end justify-between gap-3 px-6 pb-6">
+                                    <div>
+                                        <p className="font-display font-semibold text-2xl text-paper tracking-tight">
+                                            Ansh Roshan
+                                        </p>
+                                        <p className="mt-1.5 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
+                                            Artificial Intelligence Engineer @
+                                            TCS
+                                        </p>
+                                    </div>
+                                    <span
+                                        aria-hidden
+                                        className="grid h-9 w-9 shrink-0 place-items-center rounded-xl border border-accent/30 bg-accent/10"
+                                    >
+                                        <IconRobot
+                                            size={16}
+                                            stroke={1.7}
+                                            className="text-accent"
+                                        />
+                                    </span>
+                                </div>
+                            </div>
+
+                            {/* Floating credential badge */}
+                            <div className="absolute -top-5 -right-2 rounded-2xl border border-line bg-surface/95 px-4 py-3 backdrop-blur-xl sm:-right-6">
+                                <span className="flex items-center gap-1.5 font-mono text-[9px] text-muted uppercase tracking-[0.2em]">
+                                    <IconCertificate
+                                        size={12}
+                                        stroke={2}
+                                        className="text-accent"
+                                    />
+                                    Certified
+                                </span>
+                                <p className="mt-1 font-semibold text-paper text-sm">
+                                    Claude Architect · Pro
+                                </p>
+                            </div>
                         </div>
                     </Reveal>
                 </div>
