@@ -5,15 +5,20 @@ import {
     IconBrandGoogle,
     IconBrandLinkedin,
     IconBrandX,
+    IconBriefcase,
+    IconDownload,
     IconMail,
+    IconMapPin,
     IconRobot,
     IconRss,
+    IconTargetArrow,
 } from "@tabler/icons-react";
 import type { Metadata } from "next";
 import Image from "next/image";
 import CTABand from "@/components/main/CTABand";
 import GithubStats from "@/components/main/GithubStats";
 import Journey from "@/components/main/Journey";
+import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
 import { SkillIcon } from "@/components/sub/SkillIcon";
 import SplitReveal from "@/components/sub/SplitReveal";
@@ -122,6 +127,57 @@ function IssuerMark({ kind }: { kind: "anthropic" | "aws" | "google" }) {
     );
 }
 
+const elsewhere = [
+    {
+        name: "GitHub",
+        handle: "github.com/anshroshan",
+        href: siteConfig.links.github,
+        Icon: IconBrandGithub,
+    },
+    {
+        name: "LinkedIn",
+        handle: "in/anshroshan",
+        href: siteConfig.links.linkedin,
+        Icon: IconBrandLinkedin,
+    },
+    {
+        name: "X",
+        handle: "@anshzero",
+        href: siteConfig.links.twitter,
+        Icon: IconBrandX,
+    },
+    {
+        name: "Blog",
+        handle: "blog.anshroshan.com",
+        href: siteConfig.links.blog,
+        Icon: IconRss,
+    },
+    {
+        name: "Email",
+        handle: "ianshroshan@gmail.com",
+        href: "mailto:ianshroshan@gmail.com",
+        Icon: IconMail,
+    },
+];
+
+const facts = [
+    {
+        k: "Based in",
+        v: "Bengaluru, India",
+        Icon: IconMapPin,
+    },
+    {
+        k: "Focus",
+        v: "Agentic systems · RAG · Evals",
+        Icon: IconTargetArrow,
+    },
+    {
+        k: "Experience",
+        v: "4+ years shipping software",
+        Icon: IconBriefcase,
+    },
+];
+
 export default async function AboutPage() {
     const [githubStats, githubContributions] = await Promise.all([
         getGithubStats(),
@@ -130,145 +186,117 @@ export default async function AboutPage() {
 
     return (
         <main className="relative min-h-[100dvh] bg-transparent pt-12 md:pt-16">
-            {/* ─── INTRO ────────────────────────────────────────────────────── */}
+            {/* ─── INTRO ───────────────────────────────────────────────────── */}
             <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-16 md:px-10 md:pb-20">
-                <div className="grid gap-10 lg:grid-cols-[1.35fr_0.65fr] lg:items-start lg:gap-16">
-                    {/* Left: the story, all left-aligned */}
-                    <div>
-                        <Reveal y={16}>
-                            <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
-                                <span className="h-px w-8 bg-accent" />
-                                About
-                            </span>
-                        </Reveal>
+                <Reveal y={16}>
+                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
+                        <span className="h-px w-8 bg-accent" />
+                        About
+                    </span>
+                </Reveal>
 
-                        <SplitReveal className="mt-6">
-                            <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
-                                I build AI that makes it to{" "}
-                                <span className="text-accent">production.</span>
-                            </h1>
-                        </SplitReveal>
+                <SplitReveal className="mt-6">
+                    <h1 className="font-display font-semibold text-4xl text-paper leading-[1.08] tracking-tight sm:text-5xl lg:text-6xl">
+                        I build AI that makes it to{" "}
+                        <span className="text-accent">production.</span>
+                    </h1>
+                </SplitReveal>
 
-                        <Reveal delay={0.12} y={18}>
-                            <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
-                                <p className="text-base text-muted leading-relaxed sm:text-lg">
-                                    Gen AI Developer at TCS. I design and ship
-                                    end-to-end AI products, from the agentic
-                                    backend to the interface users actually
-                                    touch — LangChain, LangGraph, RAG
-                                    architectures, and multi-model
-                                    orchestration, with full ownership of
-                                    deployment on the other end.
-                                </p>
-                                <p className="text-base text-muted leading-relaxed sm:text-lg">
-                                    I care about one thing: AI systems that stay
-                                    reliable in the real world. Not demos.
-                                    Shipped products, running in production,
-                                    used by real people.
-                                </p>
-                            </div>
-                        </Reveal>
+                <Reveal delay={0.12} y={18}>
+                    <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
+                        <p className="text-base text-muted leading-relaxed sm:text-lg">
+                            Gen AI Developer at TCS. I design and ship
+                            end-to-end AI products, from the agentic backend to
+                            the interface users actually touch — LangChain,
+                            LangGraph, RAG architectures, and multi-model
+                            orchestration, with full ownership of deployment on
+                            the other end.
+                        </p>
+                        <p className="text-base text-muted leading-relaxed sm:text-lg">
+                            I care about one thing: AI systems that stay
+                            reliable in the real world. Not demos. Shipped
+                            products, running in production, used by real
+                            people.
+                        </p>
                     </div>
+                </Reveal>
 
-                    {/* Right: a detail card in the same language as the
-                        hero portrait card — identity, key facts, real handles */}
-                    <Reveal delay={0.18} y={22} className="lg:pt-14">
-                        <aside className="glow-card relative overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)]">
-                            <span
-                                aria-hidden
-                                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
-                            />
-                            <div className="flex flex-col gap-6 p-6 sm:p-7">
-                                {/* Name plate */}
-                                <div className="flex items-center justify-between gap-3">
-                                    <div>
-                                        <p className="font-display font-semibold text-2xl text-paper tracking-tight">
-                                            Ansh Roshan
-                                        </p>
-                                        <p className="mt-1.5 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
-                                            Artificial Intelligence Engineer @
-                                            TCS
-                                        </p>
-                                    </div>
+                <Reveal delay={0.2} y={18}>
+                    <div className="mt-9 flex flex-wrap items-center gap-4">
+                        <PillButton href="/contact">Get in touch</PillButton>
+                        <PillButton
+                            href="https://drive.google.com/file/d/1TF-POXkJmb7m69R3nLEwOrxdDkywTBfc/view"
+                            variant="ghost"
+                            external
+                        >
+                            Download resume{" "}
+                            <IconDownload size={18} stroke={1.8} />
+                        </PillButton>
+                    </div>
+                </Reveal>
+
+                {/* Detail card: left-aligned under the story, and a real
+                    hoverable card — lift, glow ring, accent shadow */}
+                <Reveal delay={0.26} y={22}>
+                    <aside className="glow-card relative mt-12 max-w-[920px] overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_30px_80px_-30px_color-mix(in_srgb,var(--accent)_30%,transparent)]">
+                        <span
+                            aria-hidden
+                            className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+                        />
+                        <div className="grid gap-8 p-6 sm:p-8 md:grid-cols-[0.95fr_1.05fr]">
+                            {/* Identity + key facts */}
+                            <div className="flex flex-col gap-5">
+                                <div className="flex items-center gap-3.5">
                                     <span
                                         aria-hidden
-                                        className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-accent/30 bg-accent/10"
+                                        className="grid h-11 w-11 shrink-0 place-items-center rounded-xl border border-accent/30 bg-accent/10"
                                     >
                                         <IconRobot
-                                            size={17}
+                                            size={18}
                                             stroke={1.7}
                                             className="text-accent"
                                         />
                                     </span>
+                                    <div>
+                                        <p className="font-display font-semibold text-paper text-xl tracking-tight">
+                                            Ansh Roshan
+                                        </p>
+                                        <p className="mt-0.5 font-mono text-[10px] text-muted uppercase tracking-[0.2em]">
+                                            Artificial Intelligence Engineer @
+                                            TCS
+                                        </p>
+                                    </div>
                                 </div>
 
-                                {/* Key facts */}
-                                <dl className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line">
-                                    {[
-                                        {
-                                            k: "Based in",
-                                            v: "Bengaluru, India",
-                                        },
-                                        {
-                                            k: "Focus",
-                                            v: "Agentic systems · RAG · Evals",
-                                        },
-                                        {
-                                            k: "Experience",
-                                            v: "4+ years shipping software",
-                                        },
-                                    ].map((row) => (
+                                <dl className="flex flex-col gap-2.5 text-sm">
+                                    {facts.map(({ k, v, Icon }) => (
                                         <div
-                                            key={row.k}
-                                            className="flex items-center justify-between gap-4 bg-ink/90 px-4 py-3"
+                                            key={k}
+                                            className="flex items-center gap-3"
                                         >
-                                            <dt className="font-mono text-[10px] text-muted uppercase tracking-[0.18em]">
-                                                {row.k}
+                                            <Icon
+                                                size={15}
+                                                stroke={1.8}
+                                                className="shrink-0 text-accent"
+                                            />
+                                            <dt className="font-mono text-[10px] text-muted uppercase tracking-[0.16em]">
+                                                {k}
                                             </dt>
-                                            <dd className="text-right font-medium text-[13px] text-paper">
-                                                {row.v}
+                                            <dd className="ml-auto text-right font-medium text-paper">
+                                                {v}
                                             </dd>
                                         </div>
                                     ))}
                                 </dl>
+                            </div>
 
-                                {/* Real handles */}
-                                <div className="flex flex-col gap-0.5 border-line border-t pt-5">
-                                    <span className="mb-2 font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
-                                        Elsewhere
-                                    </span>
-                                    {[
-                                        {
-                                            name: "GitHub",
-                                            handle: "github.com/anshroshan",
-                                            href: siteConfig.links.github,
-                                            Icon: IconBrandGithub,
-                                        },
-                                        {
-                                            name: "LinkedIn",
-                                            handle: "in/anshroshan",
-                                            href: siteConfig.links.linkedin,
-                                            Icon: IconBrandLinkedin,
-                                        },
-                                        {
-                                            name: "X",
-                                            handle: "@anshzero",
-                                            href: siteConfig.links.twitter,
-                                            Icon: IconBrandX,
-                                        },
-                                        {
-                                            name: "Blog",
-                                            handle: "blog.anshroshan.com",
-                                            href: siteConfig.links.blog,
-                                            Icon: IconRss,
-                                        },
-                                        {
-                                            name: "Email",
-                                            handle: "ianshroshan@gmail.com",
-                                            href: "mailto:ianshroshan@gmail.com",
-                                            Icon: IconMail,
-                                        },
-                                    ].map(({ name, handle, href, Icon }) => (
+                            {/* Real handles */}
+                            <div className="flex flex-col gap-0.5 border-line border-t pt-6 md:border-t-0 md:border-l md:pt-0 md:pl-8">
+                                <span className="mb-2 font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
+                                    Elsewhere
+                                </span>
+                                {elsewhere.map(
+                                    ({ name, handle, href, Icon }) => (
                                         <a
                                             key={name}
                                             href={href}
@@ -296,12 +324,12 @@ export default async function AboutPage() {
                                                 className="shrink-0 text-muted opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent group-hover:opacity-100"
                                             />
                                         </a>
-                                    ))}
-                                </div>
+                                    )
+                                )}
                             </div>
-                        </aside>
-                    </Reveal>
-                </div>
+                        </div>
+                    </aside>
+                </Reveal>
             </section>
 
             {/* ─── CREDENTIALS ───────────────────────────────────────────────── */}
@@ -328,7 +356,7 @@ export default async function AboutPage() {
                                 i < 2 ? "lg:col-span-3" : "lg:col-span-2"
                             }
                         >
-                            <article className="glow-card relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-sm transition-colors duration-500 hover:bg-surface/90 sm:p-6">
+                            <article className="glow-card group relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-sm transition-all duration-500 hover:-translate-y-0.5 hover:bg-surface/90 sm:p-6">
                                 {/* Official badge as a background flourish,
                                     top-right corner */}
                                 {c.badge && (
