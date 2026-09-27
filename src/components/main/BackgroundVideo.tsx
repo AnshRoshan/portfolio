@@ -1,54 +1,28 @@
-"use client";
-
-import { usePathname } from "next/navigation";
-
 /**
  * Cinematic looping video backdrop, fixed behind all content, on the ink base
  * (#0a0a0b) with a dark scrim (for text contrast), a side vignette, and a
- * film-grain veil. Per-route: the About page uses the abstract "vex" clip;
- * every other page uses the "space" voyage. WebM (VP9) is listed first for
- * bandwidth; the browser falls back to mp4 only where one is provided.
+ * film-grain veil. One clip site-wide: consistent identity, no remount flash
+ * between routes, and only ~135 KB of VP9 WebM over the wire. WebM is listed
+ * first; the mp4 is the fallback for browsers without VP9-in-WebM support.
+ * Server component — nothing here is interactive.
  */
-const SOURCES = {
-    // cosmic space voyage
-    space: {
-        webm: "/hero-bg.webm",
-        mp4: "/hero-bg.mp4",
-        poster: "/hero-bg-poster.webp",
-    },
-    // dark abstract (About page)
-    vex: { webm: "/bg-vex.webm", poster: "/bg-vex-poster.webp" },
-} as const;
-
-function variantFor(pathname: string | null): keyof typeof SOURCES {
-    return pathname?.startsWith("/about") ? "vex" : "space";
-}
-
 export default function BackgroundVideo() {
-    const pathname = usePathname();
-    const variant = variantFor(pathname);
-    const src = SOURCES[variant];
-
     return (
         <div
             aria-hidden
             className="pointer-events-none fixed inset-0 -z-20 overflow-hidden bg-ink"
         >
-            {/* key forces a remount so the source swaps when the route changes */}
             <video
-                key={variant}
                 autoPlay
                 loop
                 muted
                 playsInline
                 preload="metadata"
-                poster={src.poster}
+                poster="/hero-bg-poster.webp"
                 className="h-full w-full bg-video object-cover"
             >
-                <source src={src.webm} type="video/webm" />
-                {"mp4" in src ? (
-                    <source src={src.mp4} type="video/mp4" />
-                ) : null}
+                <source src="/hero-bg.webm" type="video/webm" />
+                <source src="/hero-bg.mp4" type="video/mp4" />
             </video>
 
             {/* Readability scrim: strength is theme-aware via tokens so the

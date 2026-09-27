@@ -19,6 +19,7 @@ import SplitReveal from "@/components/sub/SplitReveal";
 import { skillGroups } from "@/data/skills";
 import { getGithubContributions, getGithubStats } from "@/lib/github";
 import { pageMetadata } from "@/lib/seo";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = pageMetadata({
     title: "About",
@@ -57,6 +58,7 @@ const journey = [
         accent: "#22d3ee", // cyan
         icon: IconRobot,
         current: true,
+        tags: ["Agentic systems", "RAG", "Evals", "AWS"],
     },
     {
         period: "Apr 2025 — Apr 2026",
@@ -66,6 +68,7 @@ const journey = [
         accent: "#a78bfa", // violet
         icon: IconCode,
         current: false,
+        tags: ["React", "Next.js", "Streaming UI"],
     },
     {
         period: "Jan 2025 — Apr 2025",
@@ -75,6 +78,7 @@ const journey = [
         accent: "#60a5fa", // blue
         icon: IconBriefcase,
         current: false,
+        tags: ["Foundations"],
     },
     {
         period: "2022 — 2024",
@@ -84,6 +88,7 @@ const journey = [
         accent: "#34d399", // emerald
         icon: IconBriefcase,
         current: false,
+        tags: ["Next.js", "MongoDB", "Stripe"],
     },
     {
         period: "Mar 2023 — Apr 2023",
@@ -93,6 +98,7 @@ const journey = [
         accent: "#fbbf24", // amber
         icon: IconCloudUpload,
         current: false,
+        tags: ["Grid ops"],
     },
     {
         period: "2021 — 2024",
@@ -102,6 +108,7 @@ const journey = [
         accent: "#fb7185", // rose
         icon: IconSchool,
         current: false,
+        tags: ["Electrical", "Self-taught SWE"],
     },
 ] as const;
 
@@ -380,10 +387,10 @@ export default async function AboutPage() {
                 </Reveal>
 
                 <ol className="relative mx-auto max-w-5xl">
-                    {/* Central multi-colour stem (neutral on mobile-left, centered on desktop) */}
+                    {/* Central multi-colour stem (mobile-left, centered on desktop) */}
                     <span
                         aria-hidden
-                        className="absolute top-2 bottom-2 left-5 w-[2px] -translate-x-1/2 rounded-full opacity-70 md:left-1/2"
+                        className="absolute top-2 bottom-2 left-[17px] w-[2px] -translate-x-1/2 rounded-full opacity-70 md:left-1/2"
                         style={{
                             background:
                                 "linear-gradient(180deg,#22d3ee,#a78bfa,#60a5fa,#34d399,#fbbf24,#fb7185)",
@@ -391,16 +398,16 @@ export default async function AboutPage() {
                     />
 
                     {journey.map((it, i) => {
-                        const right = i % 2 === 0; // alternate sides on desktop
+                        const left = i % 2 === 0; // desktop column
                         const Icon = it.icon;
                         return (
                             <li
                                 key={it.title}
-                                className="relative pb-12 last:pb-0"
+                                className="relative pb-10 pl-12 last:pb-0 md:grid md:grid-cols-2 md:gap-x-14 md:pl-0"
                             >
                                 {/* Node on the stem: a coloured glyph for this chapter */}
                                 <span
-                                    className="absolute top-0 left-5 z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
+                                    className="absolute top-1 left-[17px] z-10 flex h-9 w-9 -translate-x-1/2 items-center justify-center rounded-full border bg-ink md:left-1/2"
                                     style={{
                                         borderColor: it.accent,
                                         boxShadow: "0 0 0 4px var(--ink)",
@@ -423,52 +430,77 @@ export default async function AboutPage() {
                                     />
                                 </span>
 
-                                {/* Coloured branch connector (desktop only) */}
-                                <span
-                                    aria-hidden
+                                {/* Explicit grid placement: no calc() widths, no
+                                    auto-margin tricks — the empty cell collapses
+                                    on its own, so alternation cannot break. */}
+                                <div
                                     className={
-                                        "absolute top-4 hidden h-[2px] w-8 md:block" +
-                                        (right ? "left-1/2" : "right-1/2")
-                                    }
-                                    style={{
-                                        background: `linear-gradient(${right ? "90deg" : "270deg"}, ${it.accent}, transparent)`,
-                                    }}
-                                />
-
-                                {/* Card, branching to one side on desktop */}
-                                <Reveal
-                                    delay={i * 0.08}
-                                    y={24}
-                                    className={
-                                        "group ml-12 md:w-[calc(50%_-_3rem)]" +
-                                        (right
-                                            ? "md:ml-auto"
-                                            : "md:mr-auto md:ml-0 md:text-right")
+                                        left
+                                            ? "md:col-start-1 md:row-start-1 md:pr-2 md:text-right"
+                                            : "md:col-start-2 md:row-start-1 md:pl-2"
                                     }
                                 >
-                                    <div
-                                        className="rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-300 group-hover:-translate-y-1"
-                                        style={{
-                                            boxShadow: `0 18px 50px -28px ${it.accent}`,
-                                        }}
-                                    >
-                                        <span
-                                            className="font-mono text-xs uppercase tracking-[0.18em]"
-                                            style={{ color: it.accent }}
+                                    <Reveal delay={i * 0.06} y={24}>
+                                        <article
+                                            className="group relative flex flex-col gap-3.5 rounded-2xl border border-line bg-surface/70 p-5 backdrop-blur-xl transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:bg-surface/90 sm:p-6"
+                                            style={{
+                                                boxShadow: `0 18px 50px -28px ${it.accent}`,
+                                            }}
                                         >
-                                            {it.period}
-                                        </span>
-                                        <h3 className="mt-2 font-display font-semibold text-paper text-xl tracking-tight">
-                                            {it.title}
-                                        </h3>
-                                        <p className="mt-0.5 font-medium text-paper/80 text-sm">
-                                            {it.org}
-                                        </p>
-                                        <p className="mt-2 text-muted text-sm leading-relaxed">
-                                            {it.detail}
-                                        </p>
-                                    </div>
-                                </Reveal>
+                                            <div
+                                                className={cn(
+                                                    "flex flex-wrap items-center gap-2.5",
+                                                    left && "md:justify-end"
+                                                )}
+                                            >
+                                                <span
+                                                    className="rounded-full border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.16em]"
+                                                    style={{
+                                                        borderColor: `${it.accent}3d`,
+                                                        background: `${it.accent}12`,
+                                                        color: it.accent,
+                                                    }}
+                                                >
+                                                    {it.period}
+                                                </span>
+                                                {it.current && (
+                                                    <span className="rounded-full border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[10px] text-accent uppercase tracking-[0.16em]">
+                                                        Current
+                                                    </span>
+                                                )}
+                                            </div>
+
+                                            <div className="flex flex-col gap-1">
+                                                <h3 className="font-display font-semibold text-[19px] text-paper leading-snug tracking-tight">
+                                                    {it.title}
+                                                </h3>
+                                                <span className="font-mono text-[11px] text-muted tracking-[0.1em]">
+                                                    {it.org}
+                                                </span>
+                                            </div>
+
+                                            <p className="text-muted text-sm leading-relaxed">
+                                                {it.detail}
+                                            </p>
+
+                                            <div
+                                                className={cn(
+                                                    "flex flex-wrap gap-1.5",
+                                                    left && "md:justify-end"
+                                                )}
+                                            >
+                                                {it.tags.map((t) => (
+                                                    <span
+                                                        key={t}
+                                                        className="rounded-md border border-line px-2 py-0.5 font-mono text-[10px] text-muted"
+                                                    >
+                                                        {t}
+                                                    </span>
+                                                ))}
+                                            </div>
+                                        </article>
+                                    </Reveal>
+                                </div>
                             </li>
                         );
                     })}
