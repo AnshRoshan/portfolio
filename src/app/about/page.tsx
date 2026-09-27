@@ -6,7 +6,6 @@ import {
     IconBrandLinkedin,
     IconBrandX,
     IconMail,
-    IconMapPin,
     IconRobot,
     IconRss,
 } from "@tabler/icons-react";
@@ -171,96 +170,134 @@ export default async function AboutPage() {
                         </Reveal>
                     </div>
 
-                    {/* Right: currently + all my links, one tidy panel */}
+                    {/* Right: a detail card in the same language as the
+                        hero portrait card — identity, key facts, real handles */}
                     <Reveal delay={0.18} y={22} className="lg:pt-14">
-                        <aside className="glow-card flex flex-col gap-6 rounded-2xl border border-line bg-surface/60 p-6 backdrop-blur-sm">
-                            <div className="flex flex-col gap-3">
-                                <span className="font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
-                                    Currently
-                                </span>
-                                <div className="flex flex-col gap-2.5 text-paper text-sm">
-                                    <span className="flex items-center gap-2.5">
-                                        <span className="relative flex h-1.5 w-1.5">
-                                            <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent" />
-                                            <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-accent" />
-                                        </span>
-                                        Full-stack AI Engineer @ TCS
-                                    </span>
-                                    <span className="flex items-center gap-2.5 text-muted">
-                                        <IconMapPin
-                                            size={14}
-                                            stroke={1.8}
-                                            className="shrink-0 text-accent"
-                                        />
-                                        Bengaluru, India
-                                    </span>
-                                    <span className="flex items-center gap-2.5 text-muted">
+                        <aside className="glow-card relative overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)]">
+                            <span
+                                aria-hidden
+                                className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
+                            />
+                            <div className="flex flex-col gap-6 p-6 sm:p-7">
+                                {/* Name plate */}
+                                <div className="flex items-center justify-between gap-3">
+                                    <div>
+                                        <p className="font-display font-semibold text-2xl text-paper tracking-tight">
+                                            Ansh Roshan
+                                        </p>
+                                        <p className="mt-1.5 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
+                                            Artificial Intelligence Engineer @
+                                            TCS
+                                        </p>
+                                    </div>
+                                    <span
+                                        aria-hidden
+                                        className="grid h-10 w-10 shrink-0 place-items-center rounded-xl border border-accent/30 bg-accent/10"
+                                    >
                                         <IconRobot
-                                            size={14}
-                                            stroke={1.8}
-                                            className="shrink-0 text-accent"
+                                            size={17}
+                                            stroke={1.7}
+                                            className="text-accent"
                                         />
-                                        Building: RAGStack · Loupe · LLM Router
                                     </span>
                                 </div>
-                            </div>
 
-                            <div className="flex flex-col gap-1 border-line border-t pt-5">
-                                <span className="mb-2 font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
-                                    Elsewhere
-                                </span>
-                                {[
-                                    {
-                                        label: "GitHub",
-                                        href: siteConfig.links.github,
-                                        Icon: IconBrandGithub,
-                                    },
-                                    {
-                                        label: "LinkedIn",
-                                        href: siteConfig.links.linkedin,
-                                        Icon: IconBrandLinkedin,
-                                    },
-                                    {
-                                        label: "X (Twitter)",
-                                        href: siteConfig.links.twitter,
-                                        Icon: IconBrandX,
-                                    },
-                                    {
-                                        label: "Blog",
-                                        href: siteConfig.links.blog,
-                                        Icon: IconRss,
-                                    },
-                                    {
-                                        label: "ianshroshan@gmail.com",
-                                        href: "mailto:ianshroshan@gmail.com",
-                                        Icon: IconMail,
-                                    },
-                                ].map(({ label, href, Icon }) => (
-                                    <a
-                                        key={label}
-                                        href={href}
-                                        target={
-                                            href.startsWith("mailto")
-                                                ? undefined
-                                                : "_blank"
-                                        }
-                                        rel="noreferrer noopener"
-                                        className="group flex items-center gap-3 rounded-xl px-3 py-2.5 text-muted text-sm transition-all duration-300 hover:bg-accent/[0.06] hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                                    >
-                                        <Icon
-                                            size={16}
-                                            stroke={1.7}
-                                            className="shrink-0 text-accent"
-                                        />
-                                        <span className="truncate">
-                                            {label}
-                                        </span>
-                                        <IconArrowUpRight
-                                            size={13}
-                                            className="ml-auto shrink-0 opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100"
-                                        />
-                                    </a>
-                                ))}
+                                {/* Key facts */}
+                                <dl className="grid gap-px overflow-hidden rounded-2xl border border-line bg-line">
+                                    {[
+                                        {
+                                            k: "Based in",
+                                            v: "Bengaluru, India",
+                                        },
+                                        {
+                                            k: "Focus",
+                                            v: "Agentic systems · RAG · Evals",
+                                        },
+                                        {
+                                            k: "Experience",
+                                            v: "4+ years shipping software",
+                                        },
+                                    ].map((row) => (
+                                        <div
+                                            key={row.k}
+                                            className="flex items-center justify-between gap-4 bg-ink/90 px-4 py-3"
+                                        >
+                                            <dt className="font-mono text-[10px] text-muted uppercase tracking-[0.18em]">
+                                                {row.k}
+                                            </dt>
+                                            <dd className="text-right font-medium text-[13px] text-paper">
+                                                {row.v}
+                                            </dd>
+                                        </div>
+                                    ))}
+                                </dl>
+
+                                {/* Real handles */}
+                                <div className="flex flex-col gap-0.5 border-line border-t pt-5">
+                                    <span className="mb-2 font-mono text-[11px] text-muted uppercase tracking-[0.24em]">
+                                        Elsewhere
+                                    </span>
+                                    {[
+                                        {
+                                            name: "GitHub",
+                                            handle: "github.com/anshroshan",
+                                            href: siteConfig.links.github,
+                                            Icon: IconBrandGithub,
+                                        },
+                                        {
+                                            name: "LinkedIn",
+                                            handle: "in/anshroshan",
+                                            href: siteConfig.links.linkedin,
+                                            Icon: IconBrandLinkedin,
+                                        },
+                                        {
+                                            name: "X",
+                                            handle: "@anshzero",
+                                            href: siteConfig.links.twitter,
+                                            Icon: IconBrandX,
+                                        },
+                                        {
+                                            name: "Blog",
+                                            handle: "blog.anshroshan.com",
+                                            href: siteConfig.links.blog,
+                                            Icon: IconRss,
+                                        },
+                                        {
+                                            name: "Email",
+                                            handle: "ianshroshan@gmail.com",
+                                            href: "mailto:ianshroshan@gmail.com",
+                                            Icon: IconMail,
+                                        },
+                                    ].map(({ name, handle, href, Icon }) => (
+                                        <a
+                                            key={name}
+                                            href={href}
+                                            target={
+                                                href.startsWith("mailto")
+                                                    ? undefined
+                                                    : "_blank"
+                                            }
+                                            rel="noreferrer noopener"
+                                            className="group flex items-center gap-3 rounded-xl px-3 py-2.5 transition-all duration-300 hover:bg-accent/[0.06] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                                        >
+                                            <Icon
+                                                size={16}
+                                                stroke={1.7}
+                                                className="shrink-0 text-accent"
+                                            />
+                                            <span className="font-medium text-[13px] text-paper">
+                                                {name}
+                                            </span>
+                                            <span className="ml-auto truncate font-mono text-[11px] text-muted transition-colors group-hover:text-paper">
+                                                {handle}
+                                            </span>
+                                            <IconArrowUpRight
+                                                size={13}
+                                                className="shrink-0 text-muted opacity-0 transition-all duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent group-hover:opacity-100"
+                                            />
+                                        </a>
+                                    ))}
+                                </div>
                             </div>
                         </aside>
                     </Reveal>
@@ -292,30 +329,28 @@ export default async function AboutPage() {
                             }
                         >
                             <article className="glow-card relative flex h-full flex-col gap-4 overflow-hidden rounded-2xl border border-line bg-surface/60 p-5 backdrop-blur-sm transition-colors duration-500 hover:bg-surface/90 sm:p-6">
-                                <div className="flex items-start justify-between gap-3">
-                                    {c.badge ? (
-                                        <Image
-                                            src={c.badge}
-                                            alt={`${c.name} badge`}
-                                            width={56}
-                                            height={56}
-                                            className="h-14 w-14 object-contain"
-                                        />
-                                    ) : (
-                                        <IssuerMark kind={c.issuerKind} />
-                                    )}
-                                    <span className="font-mono text-[10px] text-muted uppercase tracking-[0.16em]">
-                                        {c.year}
-                                    </span>
-                                </div>
-
-                                <div className="flex flex-col gap-1">
-                                    <h3 className="font-display font-semibold text-[17px] text-paper leading-snug tracking-tight">
-                                        {c.name}
-                                    </h3>
-                                    <p className="font-mono text-[11px] text-muted tracking-[0.08em]">
-                                        {c.issuer}
-                                    </p>
+                                {/* Official badge as a background flourish,
+                                    top-right corner */}
+                                {c.badge && (
+                                    <Image
+                                        src={c.badge}
+                                        alt={`${c.name} official badge`}
+                                        width={112}
+                                        height={112}
+                                        aria-hidden
+                                        className="pointer-events-none absolute -top-5 -right-5 h-28 w-28 rotate-6 object-contain opacity-20 transition-opacity duration-500 group-hover:opacity-40"
+                                    />
+                                )}
+                                <div className="flex items-start gap-4">
+                                    <IssuerMark kind={c.issuerKind} />
+                                    <div className="flex min-w-0 flex-col gap-1">
+                                        <h3 className="font-display font-semibold text-[17px] text-paper leading-snug tracking-tight">
+                                            {c.name}
+                                        </h3>
+                                        <p className="font-mono text-[11px] text-muted tracking-[0.08em]">
+                                            {c.issuer} · {c.year}
+                                        </p>
+                                    </div>
                                 </div>
 
                                 {c.skills && (
