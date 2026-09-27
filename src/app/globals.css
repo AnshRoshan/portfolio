@@ -402,3 +402,226 @@ body {
    the GSAP layer, and framer-motion (MotionConfig reducedMotion="never") all run
    regardless of the OS setting. Re-add a reduced-motion block here if broad
    accessibility compliance is needed later. */
+
+/* ============================================================
+   "Ink & Signal" utility layer — adapted from the redesign study
+   to our cyan tokens (--accent / --accent-2). Theme-aware via
+   color-mix, so light mode gets the same structure, softer ink.
+   ============================================================ */
+
+/* Animated gradient ring on hover/focus (mask-punched border). */
+.glow-card {
+    position: relative;
+    isolation: isolate;
+}
+.glow-card::before {
+    content: "";
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+        140deg,
+        color-mix(in srgb, var(--accent) 55%, transparent),
+        color-mix(in srgb, var(--accent-2) 22%, transparent) 38%,
+        var(--line) 62%,
+        color-mix(in srgb, var(--accent) 35%, transparent)
+    );
+    -webkit-mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    mask:
+        linear-gradient(#000 0 0) content-box,
+        linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+    z-index: 1;
+}
+.glow-card:hover::before,
+.glow-card:focus-within::before {
+    opacity: 1;
+}
+
+/* Pointer-following accent spotlight. Set --mx/--my from JS. */
+.spotlight {
+    position: relative;
+}
+.spotlight::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        380px circle at var(--mx, 50%) var(--my, 50%),
+        color-mix(in srgb, var(--accent) 11%, transparent),
+        transparent 62%
+    );
+    opacity: 0;
+    transition: opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+    pointer-events: none;
+}
+.spotlight:hover::after {
+    opacity: 1;
+}
+
+/* Structural backdrops */
+.grid-lines {
+    background-image:
+        linear-gradient(to right, var(--line) 1px, transparent 1px),
+        linear-gradient(to bottom, var(--line) 1px, transparent 1px);
+    background-size: 68px 68px;
+}
+.dot-grid {
+    background-image: radial-gradient(var(--line-2) 1px, transparent 1px);
+    background-size: 22px 22px;
+}
+
+/* Ambient drift — slow aurora movement for background blooms */
+@keyframes drift {
+    0%,
+    100% {
+        transform: translate3d(0, 0, 0) scale(1);
+    }
+    33% {
+        transform: translate3d(4%, -6%, 0) scale(1.09);
+    }
+    66% {
+        transform: translate3d(-5%, 4%, 0) scale(0.95);
+    }
+}
+.animate-drift {
+    animation: drift 26s ease-in-out infinite;
+}
+.animate-drift-slow {
+    animation: drift 38s ease-in-out infinite reverse;
+}
+
+@keyframes float-y {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-12px);
+    }
+}
+.animate-float {
+    animation: float-y 7s ease-in-out infinite;
+}
+
+/* Expanding ring behind live-status dots */
+@keyframes pulse-ring {
+    0% {
+        transform: scale(0.85);
+        opacity: 0.75;
+    }
+    70% {
+        transform: scale(2.1);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+.animate-pulse-ring {
+    animation: pulse-ring 2.4s cubic-bezier(0.25, 0.8, 0.4, 1) infinite;
+}
+
+/* Cover scanline sweep */
+@keyframes scan {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(600%);
+    }
+}
+.animate-scan {
+    animation: scan 5.5s linear infinite;
+}
+
+/* Link underline that sweeps in from the left */
+.link-sweep {
+    position: relative;
+}
+.link-sweep::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    height: 1px;
+    width: 100%;
+    background: currentColor;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.42s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.link-sweep:hover::after,
+.link-sweep[data-active="true"]::after {
+    transform: scaleX(1);
+}
+
+/* Route entrance — content rises once on mount */
+@keyframes page-in {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 14px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.page-in {
+    animation: page-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Mobile drawer / list stagger item */
+@keyframes drawer-item {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 22px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+.drawer-item {
+    animation: drawer-item 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+/* Skeleton shimmer bar (terminal typing placeholder) */
+@keyframes shimmer-bar {
+    0% {
+        background-position: -220% 0;
+    }
+    100% {
+        background-position: 220% 0;
+    }
+}
+.shimmer-bar {
+    background: linear-gradient(
+        100deg,
+        transparent 20%,
+        var(--line-2) 45%,
+        transparent 70%
+    );
+    background-color: var(--fill);
+    background-size: 220% 100%;
+    animation: shimmer-bar 2.6s linear infinite;
+}
+
+/* Masked fade to the bottom edge */
+.mask-fade-b {
+    mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, #000 55%, transparent 100%);
+}
+
+/* Accent text glow for hero words */
+.text-glow {
+    text-shadow: 0 0 48px color-mix(in srgb, var(--accent) 35%, transparent);
+}

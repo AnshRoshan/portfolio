@@ -26,6 +26,7 @@ export const siteConfig = {
         instagram: "http://www.instagram.com/anshroshan",
         facebook: "http://www.facebook.com/anshroshan11",
         discord: "https://discord.gg/Qm9dt5ma",
+        blog: "https://blog.anshroshan.com",
     },
 };
 

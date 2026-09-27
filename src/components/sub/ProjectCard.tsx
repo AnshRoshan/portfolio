@@ -67,7 +67,7 @@ export default function ProjectCard({
                     transformStyle: "preserve-3d",
                     willChange: "transform",
                 }}
-                className="relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface/80 group-hover:[--ty:-4px]"
+                className="glow-card relative flex h-full flex-col overflow-hidden rounded-2xl border border-line bg-surface/60 backdrop-blur-xl transition-all duration-300 group-hover:border-accent/40 group-hover:bg-surface/80 group-hover:[--ty:-4px]"
             >
                 {/* Cursor-following mint spotlight */}
                 <div

@@ -1,6 +1,7 @@
 "use client";
 
 import {
+    IconArrowUpRight,
     IconBrandGithub,
     IconBrandInstagram,
     IconBrandLinkedin,
@@ -75,9 +76,20 @@ const Navbar = () => {
                     <NavItems />
                 </div>
 
-                {/* Right: magnetic social icons (desktop) / menu (mobile) */}
+                {/* Right: CTA + magnetic social icons (desktop) / menu (mobile) */}
                 <div className="flex items-center">
                     <div className="hidden items-center gap-1.5 lg:flex">
+                        <Link
+                            href="/contact"
+                            className="group mr-2 inline-flex items-center gap-1.5 rounded-full bg-accent px-4 py-2 font-semibold text-[13px] text-ink transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-0.5 hover:shadow-[0_14px_40px_-12px_var(--accent)]"
+                        >
+                            Let&apos;s talk
+                            <IconArrowUpRight
+                                size={14}
+                                stroke={2}
+                                className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                            />
+                        </Link>
                         {socials.map(({ name, href, icon: Icon }) => (
                             <MagneticSocial key={name} href={href} label={name}>
                                 <Icon size={19} stroke={1.5} />

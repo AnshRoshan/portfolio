@@ -1,4 +1,5 @@
 import { IconBrandGithub } from "@tabler/icons-react";
+import TerminalCard from "@/components/sections/TerminalCard";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
 import { buildingProjects, type ProjectStage } from "@/data/projects";
@@ -76,11 +77,16 @@ export default function NowBuilding() {
                     </Reveal>
                 </div>
 
-                {/* Cards: full width, even grid (2-up for two projects) */}
-                <div className="relative mt-10 grid gap-5 sm:grid-cols-2 lg:gap-6">
+                {/* Cards: full width grid; the live agent trace closes the row */}
+                <div className="relative mt-10 grid items-stretch gap-5 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
                     {buildingProjects.map((p, i) => (
-                        <Reveal key={p.slug} delay={0.08 * i} y={28}>
-                            <article className="group flex h-full flex-col rounded-2xl border border-line bg-surface/70 p-6 backdrop-blur transition-colors duration-300 hover:border-accent/40 sm:p-7">
+                        <Reveal
+                            key={p.slug}
+                            delay={0.08 * i}
+                            y={28}
+                            className="h-full"
+                        >
+                            <article className="glow-card group flex h-full flex-col rounded-2xl border border-line bg-surface/70 p-6 backdrop-blur transition-colors duration-300 hover:border-accent/40 sm:p-7">
                                 <div className="flex items-start justify-between gap-3">
                                     <span className="rounded-md border border-accent/30 bg-accent/10 px-2.5 py-1 font-mono text-[11px] text-accent uppercase tracking-[0.14em]">
                                         {p.category}
@@ -130,6 +136,17 @@ export default function NowBuilding() {
                             </article>
                         </Reveal>
                     ))}
+
+                    <Reveal
+                        delay={0.24}
+                        y={28}
+                        className="flex h-full flex-col justify-center gap-3"
+                    >
+                        <TerminalCard />
+                        <p className="text-center font-mono text-[10.5px] text-muted uppercase tracking-[0.16em]">
+                            Illustrative trace · RAGStack pipeline
+                        </p>
+                    </Reveal>
                 </div>
             </div>
         </section>

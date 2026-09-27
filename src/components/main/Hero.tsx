@@ -2,6 +2,8 @@
 
 import { IconArrowDownRight } from "@tabler/icons-react";
 import Image from "next/image";
+import { heroStats } from "@/data/content";
+import Counter from "../sections/Counter";
 import PillButton from "../sub/PillButton";
 import Reveal from "../sub/Reveal";
 import RotatingText from "../sub/RotatingText";
@@ -75,6 +77,20 @@ const Hero = () => {
                                 View work
                                 <IconArrowDownRight size={18} stroke={1.8} />
                             </PillButton>
+                        </div>
+                    </Reveal>
+
+                    {/* Proof strip — numbers derive from src/data */}
+                    <Reveal delay={0.5} y={20}>
+                        <div className="mt-10 grid grid-cols-2 gap-6 border-line border-t pt-8 sm:grid-cols-4">
+                            {heroStats.map((s) => (
+                                <Counter
+                                    key={s.label}
+                                    value={s.value}
+                                    suffix={s.suffix}
+                                    label={s.label}
+                                />
+                            ))}
                         </div>
                     </Reveal>
                 </div>

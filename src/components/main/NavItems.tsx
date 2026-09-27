@@ -94,7 +94,15 @@ function ScrambleLink({
                 (active ? "text-accent" : "text-muted hover:text-paper")
             }
         >
-            <span ref={textRef}>{name}</span>
+            <span className="relative flex items-center gap-2">
+                {active && (
+                    <span
+                        aria-hidden
+                        className="h-1 w-1 rounded-full bg-accent shadow-[0_0_10px_2px_color-mix(in_srgb,var(--accent)_70%,transparent)]"
+                    />
+                )}
+                <span ref={textRef}>{name}</span>
+            </span>
             <span
                 aria-hidden
                 className={

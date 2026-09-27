@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
+import CTABand from "@/components/main/CTABand";
 import ProjectsGallery from "@/components/main/ProjectsGallery";
+import PageHeader from "@/components/sections/PageHeader";
 import Reveal from "@/components/sub/Reveal";
-import SplitReveal from "@/components/sub/SplitReveal";
 import { projects } from "@/data/projects";
 import { pageMetadata } from "@/lib/seo";
 
@@ -16,31 +17,42 @@ export const metadata: Metadata = pageMetadata({
 // "Now building" rail.
 export default function ProjectsPage() {
     const shipped = projects.filter((p) => p.status !== "building");
-    return (
-        <section className="relative mx-auto w-full max-w-[1400px] px-6 pt-12 pb-24 md:px-10 md:pt-16 md:pb-32">
-            <div className="mb-14 md:mb-20">
-                <Reveal y={24}>
-                    <span className="inline-flex items-center gap-2.5 font-mono text-muted text-sm uppercase tracking-[0.22em]">
-                        <span className="h-px w-8 bg-accent" />
-                        Projects
-                    </span>
-                </Reveal>
-                <SplitReveal className="mt-6">
-                    <h1 className="font-display font-semibold text-4xl text-gradient tracking-tight sm:text-5xl lg:text-6xl">
-                        Things I have built
-                    </h1>
-                </SplitReveal>
-                <Reveal delay={0.18} y={20}>
-                    <p className="mt-4 max-w-[58ch] text-base text-muted">
-                        AI models, agentic systems, and the full-stack products
-                        around them. This list grows as I ship.
-                    </p>
-                </Reveal>
-            </div>
+    const inFlight = projects.length - shipped.length;
+    const domains = new Set(projects.map((p) => p.category)).size;
 
-            <Reveal y={24}>
-                <ProjectsGallery projects={shipped} />
-            </Reveal>
-        </section>
+    return (
+        <>
+            <PageHeader
+                eyebrow="Projects"
+                title="Things I have built"
+                description="AI models, agentic systems, and the full-stack products around them. This list grows as I ship."
+                crumbs={[{ label: "Home", href: "/" }, { label: "Projects" }]}
+                meta={[
+                    { label: "Shipped", value: `${shipped.length} projects` },
+                    { label: "In flight", value: `${inFlight} building` },
+                    { label: "Domains", value: `${domains} categories` },
+                    {
+                        label: "Case studies",
+                        value: "Problem → approach → outcome",
+                    },
+                ]}
+            />
+
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
+                <Reveal y={24}>
+                    <ProjectsGallery projects={shipped} />
+                </Reveal>
+            </section>
+
+            <CTABand
+                title={
+                    <>
+                        Want one of these to be{" "}
+                        <span className="text-accent">your system</span>?
+                    </>
+                }
+                body="Every project here started as a message from someone with a problem worth solving. Yours can too."
+            />
+        </>
     );
 }
