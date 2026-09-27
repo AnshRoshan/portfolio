@@ -203,7 +203,7 @@ export default async function AboutPage() {
                 </SplitReveal>
 
                 <Reveal delay={0.12} y={18}>
-                    <div className="mt-7 flex max-w-[62ch] flex-col gap-4">
+                    <div className="mt-7 grid gap-5 lg:grid-cols-2 lg:gap-12">
                         <p className="text-base text-muted leading-relaxed sm:text-lg">
                             Gen AI Developer at TCS. I design and ship
                             end-to-end AI products, from the agentic backend to
@@ -238,12 +238,12 @@ export default async function AboutPage() {
                 {/* Detail card: left-aligned under the story, and a real
                     hoverable card — lift, glow ring, accent shadow */}
                 <Reveal delay={0.26} y={22}>
-                    <aside className="glow-card relative mt-12 max-w-[920px] overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_30px_80px_-30px_color-mix(in_srgb,var(--accent)_30%,transparent)]">
+                    <aside className="glow-card relative mt-12 overflow-hidden rounded-[1.75rem] border border-line bg-[linear-gradient(165deg,var(--surface)_0%,var(--ink)_78%)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-1 hover:border-accent/40 hover:shadow-[0_30px_80px_-30px_color-mix(in_srgb,var(--accent)_30%,transparent)]">
                         <span
                             aria-hidden
                             className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-accent/50 to-transparent"
                         />
-                        <div className="grid gap-8 p-6 sm:p-8 md:grid-cols-[0.95fr_1.05fr]">
+                        <div className="grid gap-8 p-6 sm:p-8 lg:grid-cols-[0.85fr_1.15fr]">
                             {/* Identity + key facts */}
                             <div className="flex flex-col gap-5">
                                 <div className="flex items-center gap-3.5">
