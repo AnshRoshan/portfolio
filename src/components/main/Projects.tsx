@@ -1,9 +1,12 @@
+"use client";
+
 import { IconArrowUpRight, IconBrandGithub } from "@tabler/icons-react";
 import Image from "next/image";
 import Link from "next/link";
 import SectionHeading from "@/components/sections/SectionHeading";
 import Reveal from "@/components/sub/Reveal";
 import { type Project, projects } from "@/data/projects";
+import { useGlowTilt } from "@/lib/hooks";
 import { cn } from "@/lib/utils";
 
 /**
@@ -65,13 +68,17 @@ export default function Projects() {
                             y={32}
                             delay={0.08 * i}
                             className={cn(
-                                "h-full",
+                                "h-full [perspective:900px]",
                                 wide
                                     ? "sm:col-span-2 lg:col-span-12"
                                     : "lg:col-span-6"
                             )}
                         >
-                            <BentoCard project={project} wide={wide} />
+                            <BentoCard
+                                project={project}
+                                wide={wide}
+                                index={i + 1}
+                            />
                         </Reveal>
                     );
                 })}
@@ -83,10 +90,13 @@ export default function Projects() {
 function BentoCard({
     project,
     wide = false,
+    index = 0,
 }: {
     project: Project;
     wide?: boolean;
+    index?: number;
 }) {
+    const glowRef = useGlowTilt<HTMLAnchorElement>(2.5);
     const title = (
         <h3 className="font-display font-semibold text-paper text-xl leading-tight tracking-tight transition-colors group-hover:text-accent">
             {project.title}
@@ -137,7 +147,8 @@ function BentoCard({
         <Link
             href={`/projects/${project.slug}`}
             aria-label={`${project.title}: read the case study`}
-            className="glow-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface/70 shadow-elev-1 backdrop-blur-sm transition-all duration-500 hover:border-line-2 hover:shadow-elev-2"
+            ref={glowRef}
+            className="glow-card group relative flex h-full flex-col overflow-hidden rounded-[1.75rem] border border-line bg-surface/70 shadow-elev-1 backdrop-blur-sm transition-[transform,border-color,box-shadow] duration-300 ease-out hover:border-line-2 hover:shadow-elev-2"
         >
             {/* Cover: a fixed-height cinematic strip, not a ratio. Ratio
                 covers gave the widest tile a 310px image that pushed the
@@ -175,10 +186,17 @@ function BentoCard({
                 )}
                 <div aria-hidden className="img-scrim absolute inset-0" />
                 <span className="absolute top-4 left-4 rounded-full border border-media-chip-line bg-media-chip px-2.5 py-1 font-mono text-[9.5px] text-media-chip-fg uppercase tracking-[0.16em] backdrop-blur-md">
-                    {project.category}
+                    {String(index).padStart(2, "0")} · {project.category}
                 </span>
-                <span className="absolute top-4 right-4 rounded-full border border-media-chip-line bg-media-chip px-2.5 py-1 font-mono text-[9.5px] text-media-chip-fg/80 uppercase tracking-[0.16em] backdrop-blur-md">
+                <span className="absolute top-4 right-4 rounded-full border border-media-chip-line bg-media-chip px-2.5 py-1 font-mono text-[9.5px] text-media-chip-fg/80 uppercase tracking-[0.16em] backdrop-blur-md transition-opacity duration-300 group-hover:opacity-0">
                     {project.year}
+                </span>
+                {/* Hover-revealed arrow FAB, swapping places with the year chip */}
+                <span
+                    aria-hidden
+                    className="absolute top-3.5 right-3.5 grid h-8 w-8 translate-y-1 place-items-center rounded-full bg-paper text-ink opacity-0 shadow-elev-1 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100"
+                >
+                    <IconArrowUpRight size={15} stroke={2.2} />
                 </span>
             </div>
 

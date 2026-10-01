@@ -10,6 +10,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import MagneticSocial from "../sub/MagneticSocial";
+import { PaletteTrigger } from "./CommandPalette";
 import { MobileNav } from "./MobileNav";
 import NavItems from "./NavItems";
 import { ThemeToggle } from "./ThemeToggle";
@@ -83,7 +84,8 @@ const Navbar = () => {
                                 <Icon size={19} stroke={1.5} />
                             </MagneticSocial>
                         ))}
-                        <ThemeToggle className="ml-2" />
+                        <PaletteTrigger className="ml-2" />
+                        <ThemeToggle className="ml-1" />
                     </div>
                     <div className="lg:hidden">
                         <MobileNav />

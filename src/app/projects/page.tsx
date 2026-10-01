@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import CTABand from "@/components/main/CTABand";
+import NowBuilding from "@/components/main/NowBuilding";
 import ProjectsGallery from "@/components/main/ProjectsGallery";
 import PageHeader from "@/components/sections/PageHeader";
 import Reveal from "@/components/sub/Reveal";
@@ -13,8 +14,7 @@ export const metadata: Metadata = pageMetadata({
     path: "/projects",
 });
 
-// Shipped work only; in-flight projects live in the home page's
-// "Now building" rail.
+// Shipped work in the gallery; in-flight projects get the stage-meter rail.
 export default function ProjectsPage() {
     const shipped = projects.filter((p) => p.status !== "building");
     const inFlight = projects.length - shipped.length;
@@ -38,7 +38,9 @@ export default function ProjectsPage() {
                 ]}
             />
 
-            <section className="relative mx-auto w-full max-w-[1400px] px-6 pb-24 md:px-10 md:pb-32">
+            <NowBuilding />
+
+            <section className="relative mx-auto w-full max-w-[1400px] px-6 pt-14 pb-24 md:px-10 md:pt-16 md:pb-32">
                 <Reveal y={24}>
                     <ProjectsGallery projects={shipped} />
                 </Reveal>

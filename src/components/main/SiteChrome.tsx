@@ -2,6 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Backdrop from "@/components/main/Backdrop";
+import CommandPalette from "@/components/main/CommandPalette";
 import CursorGlow from "@/components/main/CursorGlow";
 import Footer from "@/components/main/Footer";
 import Navbar from "@/components/main/Navbar";
@@ -9,8 +10,8 @@ import ScrollProgress from "@/components/sub/ScrollProgress";
 
 /**
  * Renders the site shell (video backdrop, cursor glow, scroll bar, nav,
- * footer) around page content. The keyed <main> replays the page-in
- * transition on every route change.
+ * footer, ⌘K palette) around page content. The keyed <main> replays the
+ * page-in transition on every route change.
  */
 export function SiteChrome({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -25,6 +26,7 @@ export function SiteChrome({ children }: { children: React.ReactNode }) {
                 {children}
             </main>
             <Footer />
+            <CommandPalette />
         </>
     );
 }

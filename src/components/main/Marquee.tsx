@@ -18,7 +18,14 @@ import {
 import { gsap } from "gsap";
 import { useRef } from "react";
 import SectionHeading from "@/components/sections/SectionHeading";
-import { allSkills, type Skill, type SkillIconKey } from "@/data/skills";
+import {
+    allSkills,
+    type Skill,
+    type SkillGroup,
+    type SkillIconKey,
+    skillGroups,
+} from "@/data/skills";
+import Reveal from "../sub/Reveal";
 
 gsap.registerPlugin(useGSAP);
 
@@ -142,6 +149,107 @@ export default function Marquee() {
                     <MarqueeRow items={rowB} direction="right" duration={28} />
                 </div>
             </div>
+
+            <SkillBento />
         </section>
+    );
+}
+
+/* Bento of skill groups under the marquee — the reference layout's
+   6/3/3/3/3 span pattern, translated to our tokens. */
+const SPANS = [
+    "lg:col-span-6",
+    "lg:col-span-3",
+    "lg:col-span-3",
+    "lg:col-span-3",
+    "lg:col-span-3",
+];
+
+function GroupChip({ item }: { item: Skill }) {
+    const IconCmp = item.icon ? ICON_MAP[item.icon] : null;
+    const core = item.level === "core";
+    return (
+        <span
+            className={
+                core
+                    ? "flex items-center gap-2 rounded-xl border border-accent/35 bg-accent/[0.08] px-3 py-2 text-[13px] text-paper transition-transform duration-200 hover:-translate-y-0.5"
+                    : "flex items-center gap-2 rounded-xl border border-line bg-ink/40 px-3 py-2 text-[13px] text-muted transition-colors duration-200 hover:-translate-y-0.5 hover:text-paper"
+            }
+        >
+            {item.img ? (
+                <img
+                    src={item.img}
+                    alt=""
+                    loading="lazy"
+                    className="h-4 w-auto object-contain"
+                />
+            ) : IconCmp ? (
+                <IconCmp
+                    size={15}
+                    stroke={1.7}
+                    className={core ? "text-accent" : "text-muted"}
+                />
+            ) : null}
+            {item.name}
+            {core && (
+                <span
+                    aria-hidden
+                    className="ml-auto h-1.5 w-1.5 shrink-0 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]"
+                />
+            )}
+        </span>
+    );
+}
+
+function GroupCard({ group, span }: { group: SkillGroup; span: string }) {
+    return (
+        <article
+            className={`glow-card relative flex h-full flex-col gap-4 overflow-hidden rounded-[1.5rem] border border-line bg-[linear-gradient(160deg,var(--surface)_0%,var(--ink)_82%)] p-6 shadow-elev-1 transition-shadow duration-500 hover:shadow-elev-2 sm:p-7 ${span}`}
+        >
+            <div className="flex items-baseline justify-between gap-4">
+                <h3 className="font-display font-semibold text-paper text-xl tracking-tight">
+                    {group.title}
+                </h3>
+                <span className="font-mono text-[10px] text-muted uppercase tracking-[0.2em]">
+                    {String(group.skills.length).padStart(2, "0")}
+                </span>
+            </div>
+            <p className="max-w-[46ch] text-muted text-sm leading-relaxed">
+                {group.blurb}
+            </p>
+            <div className="mt-auto grid grid-cols-2 gap-2 sm:grid-cols-3">
+                {group.skills.map((s) => (
+                    <GroupChip key={s.name} item={s} />
+                ))}
+            </div>
+        </article>
+    );
+}
+
+function SkillBento() {
+    return (
+        <Reveal y={28} className="mt-14 md:mt-20">
+            <div className="mb-5 flex items-center justify-between gap-4">
+                <p className="font-mono text-[10px] text-muted uppercase tracking-[0.2em]">
+                    Five domains, one stack
+                </p>
+                <p className="flex items-center gap-2 font-mono text-[10px] text-muted uppercase tracking-[0.2em]">
+                    <span
+                        aria-hidden
+                        className="h-1.5 w-1.5 rounded-full bg-accent shadow-[0_0_8px_var(--accent)]"
+                    />
+                    Core daily drivers
+                </p>
+            </div>
+            <div className="grid grid-cols-1 gap-5 lg:grid-cols-6">
+                {skillGroups.map((g, i) => (
+                    <GroupCard
+                        key={g.title}
+                        group={g}
+                        span={SPANS[i] ?? "lg:col-span-3"}
+                    />
+                ))}
+            </div>
+        </Reveal>
     );
 }

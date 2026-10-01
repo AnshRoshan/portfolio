@@ -1,5 +1,6 @@
 "use client";
 
+import { useGSAP } from "@gsap/react";
 import {
     IconBriefcase,
     IconChartArrowsVertical,
@@ -8,10 +9,14 @@ import {
     IconRobot,
     IconSchool,
 } from "@tabler/icons-react";
-import { useState } from "react";
+import { gsap } from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { useRef, useState } from "react";
 import Reveal from "@/components/sub/Reveal";
 import { journey } from "@/data/journey";
 import { cn } from "@/lib/utils";
+
+gsap.registerPlugin(useGSAP, ScrollTrigger);
 
 const ICONS = {
     robot: IconRobot,
@@ -37,15 +42,45 @@ export default function Journey({
 }) {
     const [expanded, setExpanded] = useState(false);
     const visible = expanded ? journey : journey.slice(0, COLLAPSED_COUNT);
+    const railRef = useRef<HTMLOListElement>(null);
+    const paintRef = useRef<HTMLSpanElement>(null);
+
+    /* The gradient stem paints itself top-down as the timeline scrolls. */
+    useGSAP(
+        () => {
+            if (!railRef.current || !paintRef.current) return;
+            gsap.fromTo(
+                paintRef.current,
+                { scaleY: 0 },
+                {
+                    scaleY: 1,
+                    ease: "none",
+                    scrollTrigger: {
+                        trigger: railRef.current,
+                        start: "top 70%",
+                        end: "bottom 75%",
+                        scrub: 0.8,
+                    },
+                }
+            );
+        },
+        { scope: railRef, dependencies: [expanded] }
+    );
 
     return (
         <div>
-            <ol className={cn("relative mx-auto", className)}>
-                {/* Central multi-colour stem (mobile-left, centered on desktop) */}
+            <ol ref={railRef} className={cn("relative mx-auto", className)}>
+                {/* Static track the colour paints over (mobile-left, centered on desktop) */}
                 <span
                     aria-hidden
-                    className="absolute top-2 bottom-2 left-[17px] w-[2px] -translate-x-1/2 rounded-full opacity-70 md:left-1/2"
+                    className="absolute top-2 bottom-2 left-[17px] w-[2px] -translate-x-1/2 rounded-full bg-line-2 opacity-50 md:left-1/2"
+                />
+                <span
+                    ref={paintRef}
+                    aria-hidden
+                    className="absolute top-2 bottom-2 left-[17px] w-[2px] origin-top -translate-x-1/2 rounded-full opacity-90 md:left-1/2"
                     style={{
+                        transform: "translateX(-50%) scaleY(0)",
                         background:
                             "linear-gradient(180deg,#22d3ee,#a78bfa,#60a5fa,#34d399,#fbbf24,#fb7185)",
                     }}

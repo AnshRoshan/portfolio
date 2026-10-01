@@ -7,11 +7,12 @@ import {
     IconClock,
     IconDownload,
     IconLocation,
-    IconMail,
     IconRss,
 } from "@tabler/icons-react";
 
 import type { Metadata } from "next";
+import ContactForm from "@/components/sub/ContactForm";
+import CopyEmail from "@/components/sub/CopyEmail";
 import PillButton from "@/components/sub/PillButton";
 import Reveal from "@/components/sub/Reveal";
 import SplitReveal from "@/components/sub/SplitReveal";
@@ -61,12 +62,6 @@ const elsewhere = [
     },
 ];
 
-// Inputs sit on --surface-2, not a translucent surface: on a light card a
-// `bg-surface/60` field is the same value as the card behind it and the form
-// reads as a blank panel.
-const inputClasses =
-    "w-full rounded-xl border border-line bg-surface-2 px-4 py-3 text-paper placeholder:text-muted/70 outline-none transition focus-visible:border-accent/50 focus-visible:ring-2 focus-visible:ring-accent/40";
-
 export default function ContactPage() {
     return (
         <section className="relative min-h-[100dvh] bg-transparent">
@@ -108,29 +103,9 @@ export default function ContactPage() {
                     {/* LEFT COLUMN — direct channels. Sticky so it stays put
                         while the (much taller) form scrolls past. */}
                     <div className="flex flex-col gap-4 lg:sticky lg:top-28">
-                        {/* Primary: email */}
+                        {/* Primary: email, with a copy-to-clipboard slab */}
                         <Reveal y={20} delay={0.05}>
-                            <a
-                                href={`mailto:${EMAIL}`}
-                                className="group flex items-center gap-4 rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl transition-all duration-300 hover:-translate-y-0.5 hover:border-accent/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
-                            >
-                                <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-line bg-surface-2 text-accent">
-                                    <IconMail size={19} strokeWidth={1.5} />
-                                </span>
-                                <span className="min-w-0 flex-1">
-                                    <span className="block font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
-                                        Email — fastest
-                                    </span>
-                                    <span className="mt-0.5 block truncate font-mono text-paper text-sm tracking-wide transition-colors group-hover:text-accent">
-                                        {EMAIL}
-                                    </span>
-                                </span>
-                                <IconArrowUpRight
-                                    size={16}
-                                    strokeWidth={1.5}
-                                    className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                                />
-                            </a>
+                            <CopyEmail email={EMAIL} />
                         </Reveal>
 
                         {/* Secondary exit: the resume, for people who came to
@@ -184,40 +159,40 @@ export default function ContactPage() {
                             </div>
                         </Reveal>
 
-                        {/* Socials */}
+                        {/* Socials as pointer-tracking glow tiles */}
                         <Reveal y={20} delay={0.15}>
                             <div className="rounded-[1.5rem] border border-line bg-surface/70 p-5 shadow-elev-1 backdrop-blur-xl">
-                                <p className="font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
+                                <p className="mb-4 font-mono text-[10px] text-muted uppercase tracking-[0.22em]">
                                     Elsewhere
                                 </p>
-                                <div className="mt-3 flex flex-col">
+                                <div className="grid grid-cols-2 gap-3">
                                     {elsewhere.map(
-                                        ({ label, sub, href, Icon }) => (
+                                        ({ label, sub, href, Icon }, i) => (
                                             <a
                                                 key={label}
                                                 href={href}
                                                 target="_blank"
                                                 rel="noreferrer noopener"
-                                                className="group flex items-center gap-3 border-line border-t py-3 first:border-t-0 first:pt-0 last:pb-0 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                                                className={`glow-card group relative flex flex-col gap-2 overflow-hidden rounded-2xl border border-line bg-ink/40 p-4 transition-transform duration-300 hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent ${i === elsewhere.length - 1 && elsewhere.length % 2 === 1 ? "col-span-2" : ""}`}
                                             >
-                                                <Icon
-                                                    size={15}
-                                                    strokeWidth={1.7}
-                                                    className="shrink-0 text-accent"
-                                                />
-                                                <span className="min-w-0 flex-1">
-                                                    <span className="block font-medium text-paper text-sm transition-colors group-hover:text-accent">
-                                                        {label}
-                                                    </span>
-                                                    <span className="block text-muted text-xs">
-                                                        {sub}
-                                                    </span>
+                                                <span className="flex items-center justify-between gap-2">
+                                                    <Icon
+                                                        size={16}
+                                                        strokeWidth={1.7}
+                                                        className="text-accent"
+                                                    />
+                                                    <IconArrowUpRight
+                                                        size={14}
+                                                        strokeWidth={1.5}
+                                                        className="text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
+                                                    />
                                                 </span>
-                                                <IconArrowUpRight
-                                                    size={15}
-                                                    strokeWidth={1.5}
-                                                    className="shrink-0 text-muted transition-all duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:text-accent"
-                                                />
+                                                <span className="font-medium text-paper text-sm transition-colors group-hover:text-accent">
+                                                    {label}
+                                                </span>
+                                                <span className="text-muted text-xs leading-snug">
+                                                    {sub}
+                                                </span>
                                             </a>
                                         )
                                     )}
@@ -247,130 +222,7 @@ export default function ContactPage() {
                                     A couple of lines about what you&rsquo;re
                                     building is plenty.
                                 </p>
-                                <form
-                                    method="post"
-                                    action="https://rake.red/api/anshroshan/me"
-                                    className="mt-7 grid grid-cols-1 gap-5 sm:grid-cols-2"
-                                >
-                                    {/* Honeypot - hidden from humans, visible to bots */}
-                                    <div style={{ display: "none" }}>
-                                        <input
-                                            type="text"
-                                            name="honeypot"
-                                            id="honeypot"
-                                            autoComplete="off"
-                                            tabIndex={-1}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label
-                                            htmlFor="first-name"
-                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
-                                        >
-                                            First name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="first-name"
-                                            id="first-name"
-                                            autoComplete="given-name"
-                                            required
-                                            placeholder="Ada"
-                                            className={inputClasses}
-                                        />
-                                    </div>
-
-                                    <div>
-                                        <label
-                                            htmlFor="last-name"
-                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
-                                        >
-                                            Last name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="last-name"
-                                            id="last-name"
-                                            autoComplete="family-name"
-                                            placeholder="Lovelace"
-                                            className={inputClasses}
-                                        />
-                                    </div>
-
-                                    <div className="sm:col-span-2">
-                                        <label
-                                            htmlFor="email"
-                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
-                                        >
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            name="email"
-                                            id="email"
-                                            autoComplete="email"
-                                            required
-                                            placeholder="you@company.com"
-                                            className={inputClasses}
-                                        />
-                                    </div>
-
-                                    <div className="sm:col-span-2">
-                                        <label
-                                            htmlFor="company"
-                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
-                                        >
-                                            Company{" "}
-                                            <span className="normal-case tracking-normal opacity-60">
-                                                (optional)
-                                            </span>
-                                        </label>
-                                        <input
-                                            type="text"
-                                            name="company"
-                                            id="company"
-                                            autoComplete="organization"
-                                            className={inputClasses}
-                                        />
-                                    </div>
-
-                                    <div className="sm:col-span-2">
-                                        <label
-                                            htmlFor="message"
-                                            className="mb-2 block font-mono text-muted text-xs uppercase tracking-[0.22em]"
-                                        >
-                                            Message
-                                        </label>
-                                        <textarea
-                                            name="message"
-                                            id="message"
-                                            rows={5}
-                                            required
-                                            placeholder="What are you building?"
-                                            className={
-                                                inputClasses + "resize-none"
-                                            }
-                                        />
-                                    </div>
-
-                                    <div className="flex flex-wrap items-center justify-between gap-4 pt-1 sm:col-span-2">
-                                        <p className="max-w-[34ch] font-mono text-[11px] text-muted leading-relaxed tracking-[0.08em]">
-                                            Lands straight in my inbox. I reply
-                                            within a day, no newsletter.
-                                        </p>
-                                        <button
-                                            type="submit"
-                                            className="inline-flex items-center justify-center gap-2 rounded-full bg-accent px-7 py-3 font-medium text-ink text-sm uppercase tracking-[0.12em] transition-colors hover:bg-accent-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-ink active:scale-[0.97]"
-                                        >
-                                            Send message
-                                            <IconArrowUpRight
-                                                size={16}
-                                                stroke={1.9}
-                                            />
-                                        </button>
-                                    </div>
-                                </form>
+                                <ContactForm />
                             </div>
                         </div>
                     </Reveal>

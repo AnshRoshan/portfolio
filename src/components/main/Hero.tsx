@@ -10,6 +10,7 @@ import {
     IconScale,
 } from "@tabler/icons-react";
 import Image from "next/image";
+import { useEffect, useState } from "react";
 import { siteConfig } from "@/config/site";
 import { heroStats } from "@/data/content";
 import { useTilt } from "@/lib/hooks";
@@ -17,11 +18,68 @@ import { cn } from "@/lib/utils";
 import Counter from "../sections/Counter";
 import PillButton from "../sub/PillButton";
 import Reveal from "../sub/Reveal";
+import { Typewriter } from "../sub/Typewriter";
 
 /**
  * Minimal hero: one signal, one headline, one line, two exits, one proof
  * strip, and the portrait card. The long story lives on /about.
  */
+
+const TRACE_LINES = [
+    {
+        glyph: "$",
+        cls: "text-accent",
+        text: 'agent.ask("hybrid vs pure vector?")',
+    },
+    { glyph: "→", cls: "text-muted", text: "route  bm25 + vector + graph" },
+    { glyph: "~", cls: "text-muted", text: "recall 128 → rerank 24 → ctx 6" },
+    { glyph: "✓", cls: "text-accent", text: "answer  grounded · 4 citations" },
+];
+
+/** Self-replaying terminal card — the agent's reasoning as hero flavour. */
+const AgentTrace = () => {
+    const [shown, setShown] = useState(1);
+
+    useEffect(() => {
+        const done = shown >= TRACE_LINES.length;
+        const t = setTimeout(
+            () => setShown(done ? 1 : shown + 1),
+            done ? 2800 : shown === 1 ? 900 : 620
+        );
+        return () => clearTimeout(t);
+    }, [shown]);
+
+    return (
+        <div className="card-edge w-full rounded-2xl border border-line bg-surface/95 p-4 backdrop-blur-xl">
+            <div className="mb-3 flex items-center gap-2 border-line border-b pb-2.5">
+                <span aria-hidden className="flex gap-1.5">
+                    <span className="h-2 w-2 rounded-full bg-[#ff5f57]" />
+                    <span className="h-2 w-2 rounded-full bg-[#febc2e]" />
+                    <span className="h-2 w-2 rounded-full bg-[#28c840]" />
+                </span>
+                <span className="ml-1 font-mono text-[9px] text-muted uppercase tracking-[0.18em]">
+                    agent-trace.log
+                </span>
+            </div>
+            <div className="flex flex-col gap-1.5">
+                {TRACE_LINES.map((l, i) => (
+                    <p
+                        key={l.text}
+                        className={cn(
+                            "font-mono text-[10.5px] transition-all duration-300",
+                            i < shown
+                                ? "translate-x-0 opacity-100"
+                                : "-translate-x-1 opacity-0"
+                        )}
+                    >
+                        <span className={cn("mr-2", l.cls)}>{l.glyph}</span>
+                        <span className="text-paper/85">{l.text}</span>
+                    </p>
+                ))}
+            </div>
+        </div>
+    );
+};
 
 /** Resting angle of the portrait. The class below and the `rest` argument of
  *  useTilt must stay in sync or the card snaps when the pointer enters. */
@@ -60,6 +118,20 @@ const Hero = () => {
                         <p className="mt-6 max-w-[40ch] text-base text-muted leading-relaxed sm:text-lg">
                             Agentic systems, RAG pipelines, and the products
                             around them, shipped at TCS.
+                        </p>
+                    </Reveal>
+
+                    <Reveal delay={0.27} y={14}>
+                        <p className="mt-4 font-mono text-[12px] text-muted uppercase tracking-[0.06em] sm:text-[13px]">
+                            Currently building —{" "}
+                            <Typewriter
+                                phrases={[
+                                    "Agentic systems",
+                                    "RAG pipelines",
+                                    "LLM evaluation",
+                                    "AI-powered products",
+                                ]}
+                            />
                         </p>
                     </Reveal>
 
@@ -232,30 +304,35 @@ const Hero = () => {
                             </p>
                         </div>
 
-                        {/* The last two signals live in normal flow under the
-                            card: absolutely positioned they overlapped each
+                        {/* The agent-trace terminal lives in normal flow under
+                            the card: absolutely positioned it overlapped each
                             other and the name plate. */}
-                        <div className="mt-7 flex flex-wrap items-center justify-center gap-2.5">
-                            <span className="card-edge inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2">
-                                <IconBrain
-                                    size={14}
-                                    stroke={1.8}
-                                    className="text-accent"
-                                />
-                                <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
-                                    LangGraph · RAG · Evals
+                        <div className="mt-7 flex flex-col items-center gap-3">
+                            <div className="w-full max-w-[340px]">
+                                <AgentTrace />
+                            </div>
+                            <div className="flex flex-wrap items-center justify-center gap-2.5">
+                                <span className="card-edge inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2">
+                                    <IconBrain
+                                        size={14}
+                                        stroke={1.8}
+                                        className="text-accent"
+                                    />
+                                    <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
+                                        LangGraph · RAG · Evals
+                                    </span>
                                 </span>
-                            </span>
-                            <span className="card-edge inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2">
-                                <IconScale
-                                    size={14}
-                                    stroke={1.8}
-                                    className="text-accent"
-                                />
-                                <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
-                                    Open source · MIT
+                                <span className="card-edge inline-flex items-center gap-2 rounded-full border border-line bg-surface px-4 py-2">
+                                    <IconScale
+                                        size={14}
+                                        stroke={1.8}
+                                        className="text-accent"
+                                    />
+                                    <span className="font-mono text-[10px] text-paper uppercase tracking-[0.16em]">
+                                        Open source · MIT
+                                    </span>
                                 </span>
-                            </span>
+                            </div>
                         </div>
                     </div>
                 </Reveal>

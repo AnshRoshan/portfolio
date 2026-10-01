@@ -55,6 +55,46 @@ export function useTilt<T extends HTMLElement>(max = 4, rest = "") {
     return ref;
 }
 
+/**
+ * Spotlight-border tracking + subtle 3D tilt in one ref for .glow-card
+ * elements: writes --mx/--my for the CSS radial border and a small
+ * perspective rotate on pointer move. Touch devices get the vars only.
+ */
+export function useGlowTilt<T extends HTMLElement>(max = 2.5) {
+    const ref = useRef<T | null>(null);
+
+    useEffect(() => {
+        const el = ref.current;
+        if (!el) return;
+        const tilt = !window.matchMedia("(hover: none)").matches;
+
+        const onMove = (e: PointerEvent) => {
+            const rect = el.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            el.style.setProperty("--mx", `${x}px`);
+            el.style.setProperty("--my", `${y}px`);
+            if (tilt && e.pointerType === "mouse") {
+                const px = x / rect.width - 0.5;
+                const py = y / rect.height - 0.5;
+                el.style.transform = `perspective(900px) rotateX(${-py * max}deg) rotateY(${px * max}deg)`;
+            }
+        };
+        const onLeave = () => {
+            el.style.transform = "";
+        };
+        el.addEventListener("pointermove", onMove, { passive: true });
+        el.addEventListener("pointerleave", onLeave);
+        return () => {
+            el.removeEventListener("pointermove", onMove);
+            el.removeEventListener("pointerleave", onLeave);
+            el.style.transform = "";
+        };
+    }, [max]);
+
+    return ref;
+}
+
 /** One-shot in-view detector for counters and staggered reveals. */
 export function useInViewOnce<T extends HTMLElement>(threshold = 0.35) {
     const ref = useRef<T | null>(null);

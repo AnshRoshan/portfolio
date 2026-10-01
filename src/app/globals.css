@@ -307,6 +307,29 @@ html {
     border-color: var(--hairline);
 }
 
+/* Hover shine sweep (reference's .sweep). */
+.sweep {
+    position: relative;
+    overflow: hidden;
+}
+.sweep::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        110deg,
+        transparent 30%,
+        color-mix(in srgb, var(--paper) 22%, transparent) 50%,
+        transparent 70%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+    pointer-events: none;
+}
+.sweep:hover::after {
+    transform: translateX(120%);
+}
+
 /* Auto glare sweep for the hero electric CTA (a shine crosses periodically). */
 @keyframes btn-glare {
     0% {
@@ -542,18 +565,19 @@ html {
     position: relative;
     isolation: isolate;
 }
+/* Pointer-following 1px spotlight border (--mx/--my from JS,
+   centered-top fallback otherwise) + faint interior wash. */
 .glow-card::before {
     content: "";
     position: absolute;
     inset: -1px;
     border-radius: inherit;
     padding: 1px;
-    background: linear-gradient(
-        140deg,
-        color-mix(in srgb, var(--accent) 55%, transparent),
-        color-mix(in srgb, var(--accent-2) 22%, transparent) 38%,
-        var(--line) 62%,
-        color-mix(in srgb, var(--accent) 35%, transparent)
+    background: radial-gradient(
+        420px circle at var(--mx, 50%) var(--my, 0%),
+        color-mix(in srgb, var(--accent) 70%, transparent),
+        color-mix(in srgb, var(--accent-2) 30%, transparent) 30%,
+        transparent 58%
     );
     -webkit-mask:
         linear-gradient(#000 0 0) content-box,
@@ -570,6 +594,24 @@ html {
 }
 .glow-card:hover::before,
 .glow-card:focus-within::before {
+    opacity: 1;
+}
+.glow-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: radial-gradient(
+        500px circle at var(--mx, 50%) var(--my, 0%),
+        color-mix(in srgb, var(--accent) 9%, transparent),
+        transparent 60%
+    );
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+}
+.glow-card:hover::after,
+.glow-card:focus-within::after {
     opacity: 1;
 }
 
